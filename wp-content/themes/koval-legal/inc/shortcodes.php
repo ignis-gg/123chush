@@ -111,26 +111,25 @@ function koval_legal_map_shortcode() {
 	$address = get_theme_mod( 'company_address', "м. Київ, вул. Іоанна Павла ІІ, 23/35, під'їзд 1, офіс 1" );
 
 	/**
-	 * Any TEXT query here — address alone, business name alone, name+
-	 * address — kept showing two pins: "Result Law Company" (the correct
-	 * one) and a second, unrelated-but-apparently-linked listing "Шлях
-	 * до Мрії" nearby. Google's embed treats any name/address string as
-	 * a search, and these two show up together as related results no
-	 * matter how the query is phrased (confirmed by the user on the live
-	 * site, 2026-09-03, across three different query phrasings).
-	 *
-	 * Fix: query by Plus Code instead of text. A Plus Code is a
-	 * geographic coordinate, not a search term, so there's nothing for
-	 * Google to "match similar results" against — it just centers on
-	 * that point with a single marker. Code below is the one the user
-	 * pulled directly off the real "Result Law Company" pin on Google
-	 * Maps (long-press -> coordinates card), which is more precise than
-	 * the shorter code on the business listing's info panel.
+	 * IMPORTANT: this exact query — business name + street address — is
+	 * the one the user explicitly confirmed working ("получилось,
+	 * хорошо") on 2026-09-02, before the project directory got
+	 * accidentally deleted and everything had to be rebuilt. Two later
+	 * "improvements" (name alone, then a Plus Code) were tried after the
+	 * rebuild chasing a still-2-pins report, neither fixed it, and both
+	 * moved away from this confirmed-good state for no benefit — Google's
+	 * keyless /maps?q= embed appears to not be fully deterministic run to
+	 * run regardless of query phrasing, so don't keep "improving" this
+	 * without a fresh confirmation it's actually broken. If the 2-pins
+	 * issue persists on this exact query too, the real fix is external
+	 * (Google Maps Embed API with a Place ID + API key, or fixing the
+	 * "Шлях до Мрії" association at the source in Google Business
+	 * Profile Manager — see TZ section 7) — not another query rewrite.
 	 *
 	 * $address stays clean for the human-readable text used in the
-	 * footer/contacts block — only the map query uses the Plus Code.
+	 * footer/contacts block — only the map query uses the business name.
 	 */
-	$src = 'https://www.google.com/maps?q=' . rawurlencode( "CG9R+3PJ Київ" ) . '&output=embed&hl=uk';
+	$src = 'https://www.google.com/maps?q=' . rawurlencode( 'Result Law Company, вулиця Іоанна Павла II, 23/35, Київ' ) . '&output=embed&hl=uk';
 
 	ob_start();
 	?>
