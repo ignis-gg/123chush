@@ -119,14 +119,17 @@ function koval_legal_map_shortcode() {
 	 * Group itself is also mismatched on Maps — TZ section 7, needs a
 	 * Google Business Profile Manager fix, out of scope for the site).
 	 * "Result Law Company" is the client-verified listing that
-	 * correctly resolves to the exact office (confirmed 2026-09-02
-	 * against a live Google Maps screenshot: 3.7★, 6 reviews, вул.
-	 * Іоанна Павла II, 23/35). Querying by that business name + street
-	 * pins the same correct spot reliably. $address itself stays clean
-	 * for the human-readable text used in the footer/contacts block —
-	 * only the map query uses the business name.
+	 * correctly resolves to the exact office (confirmed against a live
+	 * Google Maps screenshot: 3.7★, 6 reviews, вул. Іоанна Павла II,
+	 * 23/35). Query by the business name ALONE — appending the street
+	 * address too (an earlier version of this fix did that) made Google
+	 * treat it as an ambiguous search and show two pins instead of one
+	 * confirmed place (caught by the user on the live site, 2026-09-03).
+	 * $address itself stays clean for the human-readable text used in
+	 * the footer/contacts block — only the map query uses the business
+	 * name.
 	 */
-	$src = 'https://www.google.com/maps?q=' . rawurlencode( "Result Law Company, вулиця Іоанна Павла II, 23/35, Київ" ) . '&output=embed&hl=uk';
+	$src = 'https://www.google.com/maps?q=' . rawurlencode( 'Result Law Company' ) . '&output=embed&hl=uk';
 
 	ob_start();
 	?>
