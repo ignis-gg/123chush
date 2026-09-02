@@ -111,25 +111,26 @@ function koval_legal_map_shortcode() {
 	$address = get_theme_mod( 'company_address', "м. Київ, вул. Іоанна Павла ІІ, 23/35, під'їзд 1, офіс 1" );
 
 	/**
-	 * Plain-text geocoding of the address alone landed the pin roughly
-	 * 1-2 blocks off the real office — and worse, at that ambiguous
-	 * point Google matched a *different* nearby business entirely
-	 * ("Шлях до Мрії") instead of ours. There are multiple Google
-	 * Business listings registered around this address (Koval Legal
-	 * Group itself is also mismatched on Maps — TZ section 7, needs a
-	 * Google Business Profile Manager fix, out of scope for the site).
-	 * "Result Law Company" is the client-verified listing that
-	 * correctly resolves to the exact office (confirmed against a live
-	 * Google Maps screenshot: 3.7★, 6 reviews, вул. Іоанна Павла II,
-	 * 23/35). Query by the business name ALONE — appending the street
-	 * address too (an earlier version of this fix did that) made Google
-	 * treat it as an ambiguous search and show two pins instead of one
-	 * confirmed place (caught by the user on the live site, 2026-09-03).
-	 * $address itself stays clean for the human-readable text used in
-	 * the footer/contacts block — only the map query uses the business
-	 * name.
+	 * Any TEXT query here — address alone, business name alone, name+
+	 * address — kept showing two pins: "Result Law Company" (the correct
+	 * one) and a second, unrelated-but-apparently-linked listing "Шлях
+	 * до Мрії" nearby. Google's embed treats any name/address string as
+	 * a search, and these two show up together as related results no
+	 * matter how the query is phrased (confirmed by the user on the live
+	 * site, 2026-09-03, across three different query phrasings).
+	 *
+	 * Fix: query by Plus Code instead of text. A Plus Code is a
+	 * geographic coordinate, not a search term, so there's nothing for
+	 * Google to "match similar results" against — it just centers on
+	 * that point with a single marker. Code below is the one the user
+	 * pulled directly off the real "Result Law Company" pin on Google
+	 * Maps (long-press -> coordinates card), which is more precise than
+	 * the shorter code on the business listing's info panel.
+	 *
+	 * $address stays clean for the human-readable text used in the
+	 * footer/contacts block — only the map query uses the Plus Code.
 	 */
-	$src = 'https://www.google.com/maps?q=' . rawurlencode( 'Result Law Company' ) . '&output=embed&hl=uk';
+	$src = 'https://www.google.com/maps?q=' . rawurlencode( "CG9R+3PJ Київ" ) . '&output=embed&hl=uk';
 
 	ob_start();
 	?>
