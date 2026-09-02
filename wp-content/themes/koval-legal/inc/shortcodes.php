@@ -1,10 +1,11 @@
 <?php
 /**
  * Theme shortcodes.
- * RECOVERY REBUILD (2026-09-02) — koval_map and koval_contact_form are
- * reconstructed from session context; koval_legal_consultation_form() and
- * the lead-capture wiring (nonce, koval_lead CPT, wp_mail) referenced below
- * are NOT fully recovered — this is a simplified stand-in form for now.
+ * RECOVERY REBUILD — koval_map, koval_contact_form, and the consultation
+ * form (fields, nonce action, admin-post handler) reconstructed 2026-09-03
+ * from the static export of this exact site (koval-legal-demo.pages.dev),
+ * which preserved the real rendered form markup and field names even
+ * though the PHP source was lost.
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -13,13 +14,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * [koval_contact_form]
  */
-function koval_legal_contact_form_shortcode() {
+function koval_legal_contact_form_shortcode( $atts = array() ) {
+	$atts = shortcode_atts( array( 'service' => '' ), $atts );
 	ob_start();
 	?>
 	<div class="form-card" id="contact-form">
 		<h3>Заявка на консультацію</h3>
 		<p>Заповніть форму — юрист зв'яжеться протягом 30 хвилин.</p>
-		<?php koval_legal_consultation_form(); ?>
+		<?php koval_legal_consultation_form( $atts['service'] ); ?>
 	</div>
 	<?php
 	return ob_get_clean();
@@ -27,25 +29,79 @@ function koval_legal_contact_form_shortcode() {
 add_shortcode( 'koval_contact_form', 'koval_legal_contact_form_shortcode' );
 
 /**
- * Minimal consultation form. The original had nonce verification, a
- * koval_lead CPT entry per submission, and wp_mail() notification — that
- * wiring is not recovered yet, this just renders the fields.
+ * Consultation form. $locked_service pre-fills a hidden "service" field so
+ * leads carry which page they came from (homepage vs a specific service).
  */
-function koval_legal_consultation_form() {
+function koval_legal_consultation_form( $locked_service = '' ) {
 	?>
-	<form class="consultation-form" method="post" action="">
-		<?php wp_nonce_field( 'koval_lead_submit', 'koval_lead_nonce' ); ?>
+	<form action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="post">
+		<input type="hidden" name="action" value="koval_legal_consultation">
+		<?php wp_nonce_field( 'koval_legal_contact', 'koval_legal_contact_nonce' ); ?>
+		<input type="text" name="website" value="" autocomplete="off" tabindex="-1" style="position:absolute;left:-9999px;" aria-hidden="true">
+
 		<div class="form-row">
-			<label>Ім'я *<input type="text" name="koval_name" placeholder="Як до вас звертатись" required></label>
-			<label>Телефон *<input type="tel" name="koval_phone" placeholder="+380" required></label>
+			<div class="field"><label for="koval-name">Ім'я *</label><input id="koval-name" type="text" name="name" placeholder="Як до вас звертатись" required></div>
+			<div class="field"><label for="koval-phone">Телефон *</label><input id="koval-phone" type="tel" name="phone" placeholder="+380" required></div>
 		</div>
-		<label>Email<input type="email" name="koval_email" placeholder="you@mail.com"></label>
-		<label>Коментар<textarea name="koval_comment" placeholder="Коротко опишіть вашу ситуацію"></textarea></label>
-		<label class="consent"><input type="checkbox" name="koval_consent" required> Приймаю умови обробки персональних даних згідно з <a href="<?php echo esc_url( get_privacy_policy_url() ); ?>">Політикою конфіденційності</a></label>
-		<button type="submit" class="btn btn-wine">Отримати консультацію →</button>
+		<div class="form-row form-row-single">
+			<div class="field"><label for="koval-email">Email</label><input id="koval-email" type="email" name="email" placeholder="you@mail.com"></div>
+			<?php if ( $locked_service ) : ?><input type="hidden" name="service" value="<?php echo esc_attr( $locked_service ); ?>"><?php endif; ?>
+		</div>
+		<div class="field"><label for="koval-comment">Коментар</label><textarea id="koval-comment" name="comment" placeholder="Коротко опишіть вашу ситуацію"></textarea></div>
+		<label class="consent"><input type="checkbox" name="consent" value="1" required> Приймаю умови обробки персональних даних згідно з <a href="<?php echo esc_url( get_privacy_policy_url() ); ?>" target="_blank" rel="noopener">Політикою конфіденційності</a> *</label>
+		<button type="submit" class="btn btn-wine">Отримати консультацію</button>
 	</form>
 	<?php
 }
+
+/**
+ * admin-post.php handler for the form above: nonce check, honeypot check,
+ * koval_lead CPT entry, wp_mail() notification (falls back to
+ * admin_email if company_email theme_mod isn't set, same as before).
+ */
+function koval_legal_handle_consultation_submit() {
+	if ( ! isset( $_POST['koval_legal_contact_nonce'] ) || ! wp_verify_nonce( $_POST['koval_legal_contact_nonce'], 'koval_legal_contact' ) ) {
+		wp_die( 'Security check failed.' );
+	}
+	$referer = wp_get_referer() ? wp_get_referer() : home_url( '/' );
+
+	if ( ! empty( $_POST['website'] ) ) {
+		// Honeypot tripped — silently pretend success.
+		wp_safe_redirect( $referer . '#contact-form' );
+		exit;
+	}
+
+	$name    = sanitize_text_field( $_POST['name'] ?? '' );
+	$phone   = sanitize_text_field( $_POST['phone'] ?? '' );
+	$email   = sanitize_email( $_POST['email'] ?? '' );
+	$comment = sanitize_textarea_field( $_POST['comment'] ?? '' );
+	$service = sanitize_text_field( $_POST['service'] ?? '' );
+
+	$lead_id = wp_insert_post( array(
+		'post_type'    => 'koval_lead',
+		'post_title'   => $name . ' — ' . $phone,
+		'post_status'  => 'publish',
+		'post_content' => $comment,
+	) );
+	if ( $lead_id && ! is_wp_error( $lead_id ) ) {
+		update_post_meta( $lead_id, 'lead_phone', $phone );
+		update_post_meta( $lead_id, 'lead_email', $email );
+		update_post_meta( $lead_id, 'lead_service', $service );
+	}
+
+	$to = get_theme_mod( 'company_email' );
+	if ( ! $to ) {
+		$to = get_option( 'admin_email' );
+	}
+	$subject = 'Нова заявка з сайту' . ( $service ? ' — ' . $service : '' );
+	$body    = "Ім'я: $name\nТелефон: $phone\nEmail: $email\nПослуга: $service\nКоментар: $comment";
+	wp_mail( $to, $subject, $body );
+
+	wp_safe_redirect( add_query_arg( 'koval_sent', '1', $referer ) . '#contact-form' );
+	exit;
+}
+add_action( 'admin_post_koval_legal_consultation', 'koval_legal_handle_consultation_submit' );
+add_action( 'admin_post_nopriv_koval_legal_consultation', 'koval_legal_handle_consultation_submit' );
 
 /**
  * [koval_map] — Google Maps embed for the office address. No API key

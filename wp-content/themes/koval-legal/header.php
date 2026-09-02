@@ -1,8 +1,10 @@
 <?php
 /**
- * RECOVERY REBUILD (2026-09-02) — simplified reconstruction, not the
- * original header.php (lost). Topbar/nav text approximated from earlier
- * session context (grep of the original disclaimer strings).
+ * RECOVERY REBUILD (2026-09-03) — markup reconstructed from a static export
+ * of this exact site (koval-legal-demo.pages.dev), which preserved the
+ * original rendered HTML even though the source PHP was lost. Menu items
+ * are pulled dynamically via wp_nav_menu(); the fallback mirrors the
+ * static export's structure for when no menu is assigned yet.
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -16,36 +18,44 @@ if ( ! defined( 'ABSPATH' ) ) {
 </head>
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
+<a class="skip-link" href="#main">Перейти до контенту</a>
 
-<div class="topbar">Ми — дочірня компанія юридичного об'єднання «Шлях до мрії О.К.» з 15+ роками досвіду</div>
+<div class="topbar">
+	<div class="wrap">Ми — дочірня компанія юридичного об'єднання «Шлях до мрії О.К.» з 15+ роками досвіду</div>
+</div>
 
-<header class="site-header">
+<header id="site-header">
 	<div class="wrap">
-		<a class="site-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>">
-			<strong>KOVAL</strong> Legal Group
-			<span class="site-tagline">Юридична компанія · Київ</span>
+		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="logo">
+			<span class="logo-row"><span class="lg-koval">KOVAL</span><span class="lg-legal">Legal Group</span></span>
+			<span class="lg-sub">Юридична компанія · Київ</span>
 		</a>
-		<nav class="main-nav">
+
+		<nav class="main-nav" aria-label="Головна навігація">
 			<?php
 			wp_nav_menu( array(
 				'theme_location' => 'primary',
 				'container'      => false,
-				'fallback_cb'    => function () {
-					$archive = get_post_type_archive_link( 'service' );
-					echo '<ul class="menu">';
-					echo '<li><a href="' . esc_url( home_url( '/' ) ) . '">Головна</a></li>';
-					if ( $archive ) {
-						echo '<li><a href="' . esc_url( $archive ) . '">Послуги</a></li>';
-					}
-					echo '<li><a href="' . esc_url( home_url( '/pro-nas/' ) ) . '">Про нас</a></li>';
-					echo '<li><a href="' . esc_url( home_url( '/blog/' ) ) . '">Блог</a></li>';
-					echo '<li><a href="' . esc_url( home_url( '/kontakty/' ) ) . '">Контакти</a></li>';
-					echo '<li><a href="' . esc_url( home_url( '/tsiny/' ) ) . '">Ціни</a></li>';
-					echo '</ul>';
-				},
+				'items_wrap'     => '<ul>%3$s</ul>',
+				'fallback_cb'    => 'koval_legal_default_menu',
 			) );
 			?>
 		</nav>
-		<a href="#contact-form" class="btn btn-wine">Консультація</a>
+
+		<div class="header-right">
+			<a href="#contact-form" class="btn btn-wine btn-sm">Консультація</a>
+			<button class="menu-toggle" aria-label="Меню" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span><span></span></button>
+		</div>
+	</div>
+
+	<div class="mobile-nav" id="mobile-nav">
+		<?php
+		wp_nav_menu( array(
+			'theme_location' => 'primary',
+			'container'      => false,
+			'items_wrap'     => '<ul>%3$s</ul>',
+			'fallback_cb'    => 'koval_legal_default_menu',
+		) );
+		?>
 	</div>
 </header>

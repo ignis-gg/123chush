@@ -167,5 +167,20 @@ function koval_legal_customize_register( $wp_customize ) {
 }
 add_action( 'customize_register', 'koval_legal_customize_register' );
 
+function koval_legal_default_menu() {
+	$archive = get_post_type_archive_link( 'service' );
+	echo '<ul>';
+	echo '<li><a href="' . esc_url( home_url( '/' ) ) . '">Головна</a></li>';
+	if ( $archive ) {
+		echo '<li><a href="' . esc_url( $archive ) . '">Послуги</a></li>';
+	}
+	echo '<li><a href="' . esc_url( home_url( '/pro-nas/' ) ) . '">Про нас</a></li>';
+	echo '<li><a href="' . esc_url( home_url( '/blog/' ) ) . '">Блог</a></li>';
+	echo '<li><a href="' . esc_url( home_url( '/kontakty/' ) ) . '">Контакти</a></li>';
+	echo '<li><a href="' . esc_url( home_url( '/tsiny/' ) ) . '">Ціни</a></li>';
+	echo '</ul>';
+}
+
 require get_theme_file_path( 'inc/shortcodes.php' );
 require get_theme_file_path( 'inc/services-catalog.php' );
+require get_theme_file_path( 'inc/homepage-sections.php' );
