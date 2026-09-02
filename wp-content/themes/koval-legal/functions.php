@@ -133,13 +133,19 @@ function koval_legal_breadcrumbs() {
 	}
 	echo '<nav class="breadcrumbs"><div class="wrap">';
 	echo '<a href="' . esc_url( home_url( '/' ) ) . '">Головна</a>';
-	if ( is_singular( 'service' ) ) {
+
+	if ( is_post_type_archive( 'service' ) ) {
+		echo ' <span class="sep">/</span> <span class="current">Послуги</span>';
+	} elseif ( is_singular( 'service' ) ) {
 		$archive_link = get_post_type_archive_link( 'service' );
 		if ( $archive_link ) {
 			echo ' <span class="sep">/</span> <a href="' . esc_url( $archive_link ) . '">Послуги</a>';
 		}
+		echo ' <span class="sep">/</span> <span class="current">' . esc_html( get_the_title() ) . '</span>';
+	} else {
+		echo ' <span class="sep">/</span> <span class="current">' . esc_html( get_the_title() ) . '</span>';
 	}
-	echo ' <span class="sep">/</span> <span class="current">' . esc_html( get_the_title() ) . '</span>';
+
 	echo '</div></nav>';
 }
 
