@@ -149,6 +149,12 @@ function koval_legal_breadcrumbs() {
 	echo '</div></nav>';
 }
 
+function koval_legal_reading_time( $post_id = null ) {
+	$content    = get_post_field( 'post_content', $post_id ?: get_the_ID() );
+	$word_count = str_word_count( wp_strip_all_tags( $content ) );
+	return max( 1, (int) ceil( $word_count / 200 ) );
+}
+
 function koval_legal_thumbnail_alt() {
 	$alt = get_post_meta( get_post_thumbnail_id(), '_wp_attachment_image_alt', true );
 	return $alt ? $alt : get_the_title();
