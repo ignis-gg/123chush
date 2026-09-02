@@ -111,24 +111,20 @@ function koval_legal_map_shortcode() {
 	$address = get_theme_mod( 'company_address', "м. Київ, вул. Іоанна Павла ІІ, 23/35, під'їзд 1, офіс 1" );
 
 	/**
-	 * Every TEXT query tried (address+plus-code, name+address, name
-	 * alone, even a Plus Code) kept showing two pins — "Result Law
-	 * Company" and a second, apparently-linked listing "Шлях до Мрії" —
-	 * confirmed by the user across five separate tests on the live site.
-	 * Google's keyless /maps?q= embed treats all of those as searches,
-	 * and this pair surfaces together as related results regardless of
-	 * phrasing. Final fix: raw lat/lng coordinates, pulled directly off
-	 * the real pin by the user (Google Maps long-press -> coordinates
-	 * card). A bare coordinate isn't a search term at all, so there's
-	 * nothing left for Google to match "similar" results against — it
-	 * just centers on the point with a single generic marker (no
-	 * business-name label, which is fine — the page text around the map
-	 * already says who this is).
+	 * Query by business name + street address so the map shows the
+	 * "Result Law Company" label/card, not just a bare pin. The
+	 * "2 pins" reports that briefly led this down a coordinates-only
+	 * detour (see git history on this function if that ever comes back
+	 * up) turned out to be the user's browser caching a stale iframe —
+	 * this exact query was already confirmed working before that. If a
+	 * genuine (cache-ruled-out) 2-pins report comes back, the fallback
+	 * is raw lat/lng '50.417703,30.541901' (no business label, but
+	 * unambiguous) — don't rediscover that from scratch.
 	 *
 	 * $address stays clean for the human-readable text used in the
-	 * footer/contacts block — only the map query uses the coordinates.
+	 * footer/contacts block — only the map query uses the business name.
 	 */
-	$src = 'https://www.google.com/maps?q=' . rawurlencode( '50.417703,30.541901' ) . '&output=embed&hl=uk';
+	$src = 'https://www.google.com/maps?q=' . rawurlencode( 'Result Law Company, вулиця Іоанна Павла II, 23/35, Київ' ) . '&output=embed&hl=uk';
 
 	ob_start();
 	?>
