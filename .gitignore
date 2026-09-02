@@ -1,0 +1,18 @@
+# Secrets / environment-specific config -- never commit real DB creds or auth salts.
+wp-config.php
+wp-config-ddev.php
+
+# User-uploaded media -- binary, grows independently of code, not meant to be
+# reconstructed from git history. Back this up separately (site/db backups).
+/wp-content/uploads/
+
+# Local Claude Code tooling state (permissions, etc.) -- not shared team config.
+/.claude/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+
+# Internal legal/compliance doc -- not for the public repo.
+design-mockups/koval legal.xlsx
