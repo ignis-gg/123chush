@@ -994,3 +994,64 @@ footer#site-footer{background:var(--navy);color:#9aa0ab;padding:70px 0 34px;font
 }
 
 @media(max-width:640px){.sticky-cta.is-visible{display:flex;}body.has-sticky-cta{padding-bottom:66px;}}
+
+/* ==========================================================================
+   Service landing visual refresh (2026-09-03)
+   Scoped to .svc-body (wrapped around post_content only for the "rich"/
+   "pillar" single-service.php branches) so it never touches Про нас/Ціни/
+   Головна, which reuse some of the same class names with their own look.
+   Goals: fewer full-width dark bands, price/guarantee cards matched in
+   width instead of floating at different sizes, compare-table restyled as
+   two card columns instead of a spreadsheet, "Процес" restyled to match
+   the numbered-card rhythm already used by "Що входить".
+   ========================================================================== */
+
+/* Testimonial: light card with a wine accent border instead of a second
+   full-width dark-navy band (hero stays the only dark intro zone). */
+.svc-body .about-quote{background:var(--cream);padding:64px 0;}
+.svc-body .about-quote-card{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--wine);border-radius:var(--radius);box-shadow:var(--card-shadow);padding:36px 40px;}
+.svc-body .about-quote-mark{color:var(--wine);}
+.svc-body .about-quote-card p{color:var(--ink);}
+.svc-body .about-quote-card .cite{color:var(--muted);}
+
+/* Price + guarantee: same width, tighter rhythm, no more 380px card
+   floating in a sea of whitespace next to a full-width guarantee row. */
+.svc-body .price-single{max-width:720px;}
+.svc-body .price-section{padding-bottom:0;}
+.svc-body .guarantee-section{padding-top:32px;}
+.svc-body .guarantee-card{max-width:720px;margin:0 auto;}
+
+/* Compare table -> two card columns (muted "Самостійно" / accented "З
+   KOVAL"), not an HTML table with a stark black header row. */
+.svc-body .compare-table{border:none;box-shadow:none;background:none;border-radius:0;overflow:visible;}
+.svc-body .compare-head{background:none;}
+.svc-body .compare-head div{font-family:var(--serif);font-weight:700;font-size:15px;padding:0 22px 14px;}
+.svc-body .compare-head div:first-child{color:var(--muted);}
+.svc-body .compare-head div:last-child{color:var(--wine);border-left:none;}
+.svc-body .compare-row{border-top:none;margin-bottom:10px;}
+.svc-body .compare-row div{padding:16px 22px;background:var(--paper);border:1px solid var(--line);}
+.svc-body .compare-row div:first-child{color:var(--muted);border-right:none;border-radius:var(--radius) 0 0 var(--radius);background:var(--cream);}
+.svc-body .compare-row div:last-child{color:var(--ink);background:rgba(125,42,53,.05);border-radius:0 var(--radius) var(--radius) 0;font-weight:500;box-shadow:var(--card-shadow);}
+
+/* "Процес" restyled to match the numbered-card timeline already used by
+   "Що входить" (.stepper-grid) instead of plain roman-numeral text. */
+.svc-body .process-grid{grid-template-columns:repeat(4,1fr);gap:34px;}
+.svc-body .process-step{position:relative;background:var(--card-bg);box-shadow:var(--card-shadow);border:1px solid var(--line);border-radius:var(--radius);padding:24px 24px 26px;}
+.svc-body .process-num{width:40px;height:40px;border-radius:50%;background:var(--wine);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:700;font-size:16px;font-style:normal;margin-bottom:18px;}
+.svc-body .process-step:not(:last-child)::after{content:"→";position:absolute;top:30px;right:-27px;color:var(--gold);font-size:20px;font-weight:700;}
+
+@media(max-width:960px){
+  .svc-body .price-single{max-width:100%;}
+  .svc-body .process-grid{grid-template-columns:1fr 1fr;}
+  .svc-body .process-step:not(:last-child)::after{display:none;}
+}
+@media(max-width:640px){
+  .svc-body .process-grid{grid-template-columns:1fr;}
+}
+/* Below 960px the site-wide rule already stacks .compare-row to one column
+   (see the shared @media(max-width:960px) block above) — keep the card
+   look on each stacked half instead of re-fighting that collapse. */
+@media(max-width:960px){
+  .svc-body .compare-row div:first-child{border-radius:var(--radius) var(--radius) 0 0;border-bottom:none;}
+  .svc-body .compare-row div:last-child{border-radius:0 0 var(--radius) var(--radius);}
+}

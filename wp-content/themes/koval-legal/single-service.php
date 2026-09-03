@@ -127,7 +127,9 @@ while ( have_posts() ) :
 			// recognise <button>/<span> as block-level and inserts stray <p>
 			// tags around them), so it's switched off for just this render.
 			remove_filter( 'the_content', 'wpautop' );
+			echo '<div class="svc-body">';
 			the_content();
+			echo '</div>';
 			add_filter( 'the_content', 'wpautop' );
 			?>
 
