@@ -12,7 +12,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 function koval_legal_render_services_grid() {
-	$categories = koval_legal_services_catalog();
+	$categories = array_values( array_filter( koval_legal_catalog_categories(), function ( $c ) {
+		return ! empty( $c['show_on_homepage'] );
+	} ) );
 	$archive    = get_post_type_archive_link( 'service' );
 	$num        = 1;
 	ob_start();

@@ -59,9 +59,24 @@ function koval_legal_register_post_types() {
 		'public'       => true,
 		'has_archive'  => 'poslugy',
 		'rewrite'      => array( 'slug' => 'poslugy' ),
-		'supports'     => array( 'title', 'editor', 'excerpt', 'thumbnail', 'revisions' ),
+		'supports'     => array( 'title', 'editor', 'excerpt', 'thumbnail', 'revisions', 'page-attributes' ),
 		'menu_icon'    => 'dashicons-portfolio',
 		'show_in_rest' => true,
+	) );
+
+	// Drives the /poslugy/ catalog groups and the homepage services grid —
+	// previously a hardcoded PHP array (inc/services-catalog.php); now the
+	// real source of truth is which category each service post is assigned
+	// to, so a new/edited service shows up in the catalog with no code
+	// change. "Order" (page-attributes above) controls card order within a
+	// category, same convention already used for FAQ ordering.
+	register_taxonomy( 'service_category', 'service', array(
+		'label'             => 'Категорії послуг',
+		'hierarchical'      => true,
+		'public'            => true,
+		'show_admin_column' => true,
+		'show_in_rest'      => true,
+		'rewrite'           => false,
 	) );
 
 	register_post_type( 'testimonial', array(
@@ -194,7 +209,6 @@ function koval_legal_default_menu() {
 }
 
 require get_theme_file_path( 'inc/shortcodes.php' );
-require get_theme_file_path( 'inc/services-catalog.php' );
 require get_theme_file_path( 'inc/homepage-sections.php' );
 require get_theme_file_path( 'inc/service-lists.php' );
 require get_theme_file_path( 'inc/acf-fields.php' );

@@ -89,3 +89,67 @@ function koval_legal_acf_content_ids() {
 		array_keys( koval_legal_pillar_services() )
 	);
 }
+
+/**
+ * The /poslugy/ catalog (archive-service.php) and homepage services grid
+ * (inc/homepage-sections.php) used to read this shape — slug/label/
+ * description/mini_cta + cards[] (name/desc/price/duration/permalink/
+ * popular) — from a hardcoded PHP array. It's now built from the real
+ * `service_category` taxonomy terms and the `service` posts assigned to
+ * them, so both templates keep working unchanged: an editor adds a card
+ * just by publishing a service post under a category, no code touched.
+ */
+function koval_legal_catalog_categories() {
+	$terms = get_terms( array(
+		'taxonomy'   => 'service_category',
+		'hide_empty' => false,
+		'orderby'    => 'meta_value_num',
+		'meta_key'   => 'category_sort_order',
+		'order'      => 'ASC',
+	) );
+	if ( is_wp_error( $terms ) ) {
+		return array();
+	}
+
+	$categories = array();
+	foreach ( $terms as $term ) {
+		$posts = get_posts( array(
+			'post_type'      => 'service',
+			'posts_per_page' => -1,
+			'orderby'        => 'menu_order title',
+			'order'          => 'ASC',
+			'tax_query'      => array(
+				array(
+					'taxonomy' => 'service_category',
+					'field'    => 'term_id',
+					'terms'    => $term->term_id,
+				),
+			),
+		) );
+
+		$cards = array();
+		foreach ( $posts as $post ) {
+			$catalog_title = get_field( 'catalog_title', $post->ID );
+			$cards[] = array(
+				'name'      => $catalog_title ? $catalog_title : get_the_title( $post ),
+				'desc'      => (string) get_field( 'catalog_short_description', $post->ID ),
+				'price'     => (string) get_field( 'service_price', $post->ID ),
+				'duration'  => (string) get_field( 'service_duration', $post->ID ),
+				'permalink' => $post->ID,
+				'popular'   => (bool) get_field( 'catalog_popular', $post->ID ),
+			);
+		}
+
+		$categories[] = array(
+			'slug'             => $term->slug,
+			'label'            => $term->name,
+			'description'      => $term->description,
+			'price_anchor'     => '',
+			'mini_cta'         => (string) get_field( 'category_mini_cta', 'service_category_' . $term->term_id ),
+			'show_on_homepage' => (bool) get_field( 'category_show_on_homepage', 'service_category_' . $term->term_id ),
+			'cards'            => $cards,
+		);
+	}
+
+	return $categories;
+}

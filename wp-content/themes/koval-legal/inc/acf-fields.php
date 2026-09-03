@@ -410,6 +410,92 @@ function koval_legal_register_acf_fields() {
 		),
 	) );
 
+	// Як картка послуги виглядає в каталозі /poslugy/ та на кроках "Оберіть
+	// категорію" — окремий короткий опис (не той самий лід/excerpt, що на
+	// самій сторінці послуги: у каталозі текст навмисно коротший).
+	acf_add_local_field_group( array(
+		'key'      => 'group_koval_service_catalog_card',
+		'title'    => 'Картка в каталозі /poslugy/',
+		'location' => array(
+			array(
+				array(
+					'param'    => 'post_type',
+					'operator' => '==',
+					'value'    => 'service',
+				),
+			),
+		),
+		'menu_order' => 3,
+		'position'   => 'side',
+		'fields'     => array(
+			array(
+				'key'          => 'field_koval_catalog_title',
+				'label'        => 'Назва картки в каталозі',
+				'name'         => 'catalog_title',
+				'type'         => 'text',
+				'instructions' => 'Коротка назва для картки в каталозі — окремо від заголовка сторінки, який може бути довшим (для пошукових систем). Порожнє поле — картка покаже заголовок сторінки.',
+			),
+			array(
+				'key'          => 'field_koval_catalog_short_desc',
+				'label'        => 'Короткий опис для картки',
+				'name'         => 'catalog_short_description',
+				'type'         => 'textarea',
+				'rows'         => 3,
+				'instructions' => 'Показується в каталозі послуг під назвою картки.',
+			),
+			array(
+				'key'          => 'field_koval_catalog_popular',
+				'label'        => '«Часто замовляють»',
+				'name'         => 'catalog_popular',
+				'type'         => 'true_false',
+				'ui'           => 1,
+				'instructions' => 'Додає помітний бейдж на картці в каталозі.',
+			),
+		),
+	) );
+
+	// Категорії каталогу /poslugy/ — до якої категорії належить послуга,
+	// обирається прямо на сторінці редагування послуги (стандартний UI
+	// категорій WordPress). Ці поля — на самій категорії: короткий заклик
+	// до дії внизу групи карток і чи показувати категорію на головній.
+	acf_add_local_field_group( array(
+		'key'      => 'group_koval_service_category_meta',
+		'title'    => 'Налаштування категорії',
+		'location' => array(
+			array(
+				array(
+					'param'    => 'taxonomy',
+					'operator' => '==',
+					'value'    => 'service_category',
+				),
+			),
+		),
+		'fields' => array(
+			array(
+				'key'          => 'field_koval_cat_mini_cta',
+				'label'        => 'Текст заклику в кінці групи (необов\'язково)',
+				'name'         => 'category_mini_cta',
+				'type'         => 'text',
+				'instructions' => 'Напр.: «Не знайшли потрібний документ? Залишити заявку →»',
+			),
+			array(
+				'key'          => 'field_koval_cat_show_home',
+				'label'        => 'Показувати на головній сторінці',
+				'name'         => 'category_show_on_homepage',
+				'type'         => 'true_false',
+				'ui'           => 1,
+				'default_value' => 1,
+			),
+			array(
+				'key'          => 'field_koval_cat_sort',
+				'label'        => 'Порядок показу (менше число — вище)',
+				'name'         => 'category_sort_order',
+				'type'         => 'number',
+				'instructions' => 'Визначає порядок вкладок і груп на сторінці /poslugy/ та порядок плиток на головній.',
+			),
+		),
+	) );
+
 	// Місто клієнта у відгуку — та сама причина: раніше звичайний custom
 	// field без підпису, легко було помилитись у назві поля.
 	acf_add_local_field_group( array(

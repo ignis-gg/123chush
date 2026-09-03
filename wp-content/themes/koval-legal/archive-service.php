@@ -1,20 +1,20 @@
 <?php
 /**
- * "Послуги" catalog — 8 categories, ~47 cards. Content comes from
- * inc/services-catalog.php (koval_legal_services_catalog()); this
+ * "Послуги" catalog. Categories come from the service_category taxonomy
+ * and cards are real `service` posts assigned to a category — a non-
+ * technical editor can add/reorder/hide a card just by editing the post,
+ * no code needed (2026-09-03 refactor away from a hardcoded PHP array —
+ * see inc/service-lists.php's koval_legal_catalog_categories()). This
  * template renders it into the tab-filter + accordion-group + live-search
  * markup that assets/js/main.js binds to (data-filter, #svcSearch,
  * .svc-group-toggle, data-search attribute).
- *
- * RECOVERY REBUILD (2026-09-03) — markup reconstructed from the static
- * export of this exact site (koval-legal-demo.pages.dev).
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 get_header();
-$koval_categories = koval_legal_services_catalog();
+$koval_categories = koval_legal_catalog_categories();
 ?>
 <main id="main">
 	<div class="archive-head">
