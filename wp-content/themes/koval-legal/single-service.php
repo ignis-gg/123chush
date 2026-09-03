@@ -122,15 +122,26 @@ while ( have_posts() ) :
 		<?php if ( $koval_rich || $koval_pillar ) : ?>
 
 			<?php
-			// Content here is hand-authored, already-block-level HTML (sections,
-			// tables, the FAQ accordion markup) — wpautop mangles it (it doesn't
-			// recognise <button>/<span> as block-level and inserts stray <p>
-			// tags around them), so it's switched off for just this render.
-			remove_filter( 'the_content', 'wpautop' );
+			// Content prefers ACF fields (inc/acf-render.php) an editor can
+			// fill in through the admin without touching HTML; posts not yet
+			// migrated fall back to the old hand-authored HTML in
+			// post_content so nothing breaks mid-migration.
+			$koval_acf_html = function_exists( 'koval_legal_render_service_acf' ) ? koval_legal_render_service_acf( get_the_ID() ) : '';
 			echo '<div class="svc-body">';
-			the_content();
+			if ( $koval_acf_html ) {
+				// the_content() normally runs post_content through
+				// wptexturize() (straight ' " -> curly “smart” quotes) —
+				// apply it here too so ACF-sourced text matches typographically.
+				echo wptexturize( $koval_acf_html );
+			} else {
+				// Hand-authored HTML (sections, tables, FAQ accordion markup)
+				// — wpautop mangles it (doesn't recognise <button>/<span> as
+				// block-level, inserts stray <p> tags), so it's off just here.
+				remove_filter( 'the_content', 'wpautop' );
+				the_content();
+				add_filter( 'the_content', 'wpautop' );
+			}
 			echo '</div>';
-			add_filter( 'the_content', 'wpautop' );
 			?>
 
 		<?php else : ?>

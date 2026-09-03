@@ -391,6 +391,9 @@ nav.main-nav a:hover,nav.main-nav .current-menu-item>a{opacity:1;}
 
 /* pricing cards */
 .pricing-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:44px;}
+.pricing-cards.cols-2{grid-template-columns:repeat(2,1fr);}
+.pricing-cards.cols-3{grid-template-columns:repeat(3,1fr);}
+@media(max-width:960px){.pricing-cards.cols-2,.pricing-cards.cols-3{grid-template-columns:1fr;}}
 /* Single-product service landings (poslyga-N-*-koval.md) have one clear
    offer, not a 3-tier choice like the ПІБ page's .pricing-cards grid --
    this centers one .price-card on its own instead of stretching it

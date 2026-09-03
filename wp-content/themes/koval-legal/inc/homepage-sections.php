@@ -123,8 +123,14 @@ function koval_legal_render_cta_section( $locked_service = 'Головна ст�
 					<div class="eyebrow">Готові розпочати?</div>
 					<h2>Перша консультація — безкоштовно</h2>
 					<p>Юрист відповість протягом 30 хвилин у робочий час і оцінить вашу ситуацію без зобов'язань.</p>
+					<?php
+					$koval_cta_photo = function_exists( 'get_field' ) ? get_field( 'cta_photo', 'option' ) : '';
+					if ( ! $koval_cta_photo ) {
+						$koval_cta_photo = content_url( '/uploads/2026/08/contract.jpg' ); // fallback until set in Налаштування сайту.
+					}
+					?>
 					<div class="cta-photo">
-						<img src="<?php echo esc_url( content_url( '/uploads/2026/08/contract.jpg' ) ); ?>" alt="Підготовка документів" loading="eager">
+						<img src="<?php echo esc_url( $koval_cta_photo ); ?>" alt="Підготовка документів" loading="eager">
 					</div>
 					<div class="cta-disclaimer">Заповнюючи форму, ви звертаєтесь до приватної юридичної компанії за консультаційними послугами — не до державного органу.</div>
 				</div>
