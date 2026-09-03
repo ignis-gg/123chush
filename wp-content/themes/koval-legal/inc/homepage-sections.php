@@ -104,12 +104,16 @@ function koval_legal_render_faq() {
 }
 
 /**
- * The CTA / consultation-form section (id="contact-form") used on the
- * homepage. Service pages use template-parts/section-cta.php +
- * [koval_contact_form] instead — this is the homepage's own, slightly
- * different layout (photo + disclaimer next to the form).
+ * The CTA / consultation-form section (id="contact-form") — photo + form
+ * side by side. Used site-wide (homepage, Про нас, /poslugy/ catalog, and
+ * every service landing) so every page's consultation form looks and
+ * behaves identically. $locked_service pre-fills the hidden "service"
+ * field on the lead so submissions are traceable to the page they came
+ * from; defaults to 'Головна сторінка' to keep every pre-existing caller
+ * (front-page.php, page.php, archive-service.php) behaving exactly as
+ * before without needing to touch them.
  */
-function koval_legal_render_cta_section() {
+function koval_legal_render_cta_section( $locked_service = 'Головна сторінка' ) {
 	ob_start();
 	?>
 	<section class="cta-section" id="contact-form">
@@ -127,7 +131,7 @@ function koval_legal_render_cta_section() {
 				<div class="form-card">
 					<h3>Заявка на консультацію</h3>
 					<p>Залишіть контакти — підберемо оптимальний варіант супроводу саме для вашої ситуації.</p>
-					<?php koval_legal_consultation_form( 'Головна сторінка' ); ?>
+					<?php koval_legal_consultation_form( $locked_service ); ?>
 				</div>
 			</div>
 		</div>

@@ -160,13 +160,7 @@ while ( have_posts() ) :
 
 		<?php endif; ?>
 
-		<?php
-		get_template_part( 'template-parts/section', 'cta', array(
-			'locked_service' => get_the_title(),
-			'response_text'  => $koval_rich ? "Юрист відповість протягом робочого дня і оцінить вашу ситуацію без зобов'язань." : '',
-			'show_messengers' => $koval_rich,
-		) );
-		?>
+		<?php echo koval_legal_render_cta_section( get_the_title() ); ?>
 
 		<?php if ( $koval_rich ) : ?>
 			<div class="sticky-cta">
