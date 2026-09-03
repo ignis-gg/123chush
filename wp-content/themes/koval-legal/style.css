@@ -1028,7 +1028,7 @@ footer#site-footer{background:var(--navy);color:#9aa0ab;padding:70px 0 34px;font
 /* Price + guarantee: same width, tighter rhythm, no more 380px card
    floating in a sea of whitespace next to a full-width guarantee row. */
 .svc-body .price-single{max-width:720px;}
-.svc-body .price-section{padding-bottom:0;}
+.svc-body .price-section{padding-bottom:0;display:flow-root;} /* flow-root: contain price-legend's own bottom margin so it doesn't collapse through the section and expose the page background as a seam before .guarantee-section */
 .svc-body .guarantee-section{padding-top:32px;}
 .svc-body .guarantee-card{max-width:720px;margin:0 auto;}
 
