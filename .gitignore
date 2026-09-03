@@ -17,3 +17,6 @@ Thumbs.db
 # Internal legal/compliance doc -- not for the public repo.
 design-mockups/koval legal.xlsx
 wp-content/debug.log
+
+# wrangler CLI local cache/state
+.wrangler/
