@@ -54,6 +54,13 @@ function koval_legal_register_acf_fields() {
 		'fields'     => array(
 
 			array(
+				'key'     => 'field_koval_service_editor_notice',
+				'label'   => '',
+				'name'    => 'koval_service_editor_notice',
+				'type'    => 'message',
+				'message' => 'Весь контент цієї сторінки редагується тут, у полях нижче (розкладені по вкладках). Стандартний редактор WordPress для цієї сторінки не використовується.',
+			),
+			array(
 				'key'   => 'field_koval_hero_tab',
 				'label' => 'Верхній блок сторінки',
 				'type'  => 'tab',
@@ -307,6 +314,13 @@ function koval_legal_register_acf_fields() {
 		'position'   => 'normal',
 		'fields'     => array(
 			array(
+				'key'     => 'field_koval_pillar_editor_notice',
+				'label'   => '',
+				'name'    => 'koval_pillar_editor_notice',
+				'type'    => 'message',
+				'message' => 'Весь контент цієї сторінки редагується тут, у полях нижче. Стандартний редактор WordPress для цієї сторінки не використовується.',
+			),
+			array(
 				'key'          => 'field_koval_pillar_crosslinks',
 				'label'        => 'Посилання на суміжні послуги (рядок посилань зверху)',
 				'name'         => 'pillar_crosslinks',
@@ -356,6 +370,68 @@ function koval_legal_register_acf_fields() {
 					array( 'key' => 'field_koval_pfaq_q', 'label' => 'Питання', 'name' => 'question', 'type' => 'text' ),
 					array( 'key' => 'field_koval_pfaq_a', 'label' => 'Відповідь', 'name' => 'answer', 'type' => 'textarea', 'rows' => 3 ),
 				),
+			),
+		),
+	) );
+
+	// Ціна / строк — раніше звичайні custom fields (потрібно було знати
+	// точну назву поля через приховану панель "Довільні поля"); тепер
+	// підписані поля, показуються для будь-якої послуги (не лише
+	// rich/pillar), бо їх також показує проста бічна панель послуги.
+	acf_add_local_field_group( array(
+		'key'      => 'group_koval_service_price_duration',
+		'title'    => 'Ціна та строк послуги',
+		'location' => array(
+			array(
+				array(
+					'param'    => 'post_type',
+					'operator' => '==',
+					'value'    => 'service',
+				),
+			),
+		),
+		'menu_order' => 2,
+		'position'   => 'side',
+		'fields'     => array(
+			array(
+				'key'          => 'field_koval_service_price',
+				'label'        => 'Вартість',
+				'name'         => 'service_price',
+				'type'         => 'text',
+				'instructions' => 'Напр.: «від 3 900 грн»',
+			),
+			array(
+				'key'          => 'field_koval_service_duration',
+				'label'        => 'Строк виконання',
+				'name'         => 'service_duration',
+				'type'         => 'text',
+				'instructions' => 'Напр.: «від 1-2 робочих днів»',
+			),
+		),
+	) );
+
+	// Місто клієнта у відгуку — та сама причина: раніше звичайний custom
+	// field без підпису, легко було помилитись у назві поля.
+	acf_add_local_field_group( array(
+		'key'      => 'group_koval_testimonial_meta',
+		'title'    => 'Місто клієнта',
+		'location' => array(
+			array(
+				array(
+					'param'    => 'post_type',
+					'operator' => '==',
+					'value'    => 'testimonial',
+				),
+			),
+		),
+		'position' => 'side',
+		'fields'   => array(
+			array(
+				'key'          => 'field_koval_testimonial_city',
+				'label'        => 'Місто',
+				'name'         => 'testimonial_city',
+				'type'         => 'text',
+				'instructions' => "Показується поруч з ім'ям клієнта, напр. «Київ». Необов'язково.",
 			),
 		),
 	) );

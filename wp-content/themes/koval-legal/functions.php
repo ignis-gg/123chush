@@ -196,5 +196,7 @@ function koval_legal_default_menu() {
 require get_theme_file_path( 'inc/shortcodes.php' );
 require get_theme_file_path( 'inc/services-catalog.php' );
 require get_theme_file_path( 'inc/homepage-sections.php' );
+require get_theme_file_path( 'inc/service-lists.php' );
 require get_theme_file_path( 'inc/acf-fields.php' );
 require get_theme_file_path( 'inc/acf-render.php' );
+require get_theme_file_path( 'inc/acf-admin-ux.php' );
