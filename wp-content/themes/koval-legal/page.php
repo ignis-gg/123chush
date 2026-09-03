@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 get_header();
 the_post();
 
-$koval_full_width_slugs = array( 'pro-nas', 'pro-nas-2', 'kontakty', 'kontakty-2', 'tsiny' );
+$koval_full_width_slugs = array( 'pro-nas', 'kontakty', 'tsiny' );
 $koval_is_full          = in_array( get_post_field( 'post_name' ), $koval_full_width_slugs, true );
 ?>
 <main id="main">
@@ -31,7 +31,7 @@ $koval_is_full          = in_array( get_post_field( 'post_name' ), $koval_full_w
 		$koval_h1     = get_the_title();
 		$koval_lead   = get_the_excerpt();
 
-		if ( is_page( array( 'pro-nas', 'pro-nas-2' ) ) ) {
+		if ( is_page( 'pro-nas' ) ) {
 			$koval_kicker = 'Про нас';
 			$koval_h1     = 'Хто ми і чому нам довіряють';
 			$koval_lead   = "Ми — юридична компанія повного циклу, що працює з 1998 року. За цей час напрацювали досвід у роботі з ДРАЦС, судами, консульствами та державними реєстрами — і продовжуємо ним ділитися з кожним клієнтом особисто.";
@@ -53,7 +53,7 @@ $koval_is_full          = in_array( get_post_field( 'post_name' ), $koval_full_w
 		add_filter( 'the_content', 'wpautop' );
 		?>
 
-		<?php if ( is_page( array( 'pro-nas', 'pro-nas-2', 'kontakty', 'kontakty-2' ) ) ) : ?>
+		<?php if ( is_page( array( 'pro-nas', 'kontakty' ) ) ) : ?>
 			<?php echo koval_legal_render_cta_section(); ?>
 		<?php endif; ?>
 
