@@ -31,3 +31,8 @@ HTTP status or grep page text. If the extension isn't connected, say so
 explicitly and ask the user to connect it (chrome extension installed,
 logged into claude.ai with the same account) rather than silently falling
 back to a text-only check and calling the work verified.
+
+Do **not** close the browser tab(s)/window after verifying — there is no
+way to relaunch Chrome itself (only to control it once it's already
+running), so closing it means the user has to manually reopen Chrome
+before the extension can reconnect next time. Leave tabs open when done.
