@@ -291,6 +291,75 @@ function koval_legal_register_acf_fields() {
 		),
 	) );
 
+	acf_add_local_field_group( array(
+		'key'      => 'group_koval_pillar_content',
+		'title'    => 'Контент pillar-сторінки (категорії)',
+		'location' => array(
+			array(
+				array(
+					'param'    => 'post_type',
+					'operator' => '==',
+					'value'    => 'service',
+				),
+			),
+		),
+		'menu_order' => 1,
+		'position'   => 'normal',
+		'fields'     => array(
+			array(
+				'key'          => 'field_koval_pillar_crosslinks',
+				'label'        => 'Посилання на суміжні послуги (рядок посилань зверху)',
+				'name'         => 'pillar_crosslinks',
+				'type'         => 'repeater',
+				'layout'       => 'table',
+				'button_label' => 'Додати посилання',
+				'sub_fields'   => array(
+					array( 'key' => 'field_koval_xlink_label', 'label' => 'Текст посилання', 'name' => 'label', 'type' => 'text' ),
+					array( 'key' => 'field_koval_xlink_url', 'label' => 'URL', 'name' => 'url', 'type' => 'url' ),
+				),
+			),
+			array(
+				'key'          => 'field_koval_pillar_groups',
+				'label'        => 'Групи карток послуг',
+				'name'         => 'pillar_card_groups',
+				'type'         => 'repeater',
+				'layout'       => 'block',
+				'button_label' => 'Додати групу',
+				'instructions' => 'Якщо на сторінці одна група без підзаголовка (більшість випадків) — залиште назву групи порожньою.',
+				'sub_fields'   => array(
+					array( 'key' => 'field_koval_group_heading', 'label' => 'Назва групи (необов\'язково)', 'name' => 'heading', 'type' => 'text' ),
+					array(
+						'key'          => 'field_koval_group_cards',
+						'label'        => 'Картки',
+						'name'         => 'cards',
+						'type'         => 'repeater',
+						'layout'       => 'block',
+						'button_label' => 'Додати картку',
+						'sub_fields'   => array(
+							array( 'key' => 'field_koval_gc_name', 'label' => 'Назва послуги', 'name' => 'name', 'type' => 'text' ),
+							array( 'key' => 'field_koval_gc_desc', 'label' => 'Опис', 'name' => 'description', 'type' => 'text' ),
+							array( 'key' => 'field_koval_gc_price', 'label' => 'Ціна (необов\'язково)', 'name' => 'price', 'type' => 'text' ),
+							array( 'key' => 'field_koval_gc_duration', 'label' => 'Строк (необов\'язково)', 'name' => 'duration', 'type' => 'text' ),
+							array( 'key' => 'field_koval_gc_link', 'label' => 'Посилання', 'name' => 'link_url', 'type' => 'url' ),
+						),
+					),
+				),
+			),
+			array(
+				'key'          => 'field_koval_pillar_faq',
+				'label'        => 'FAQ напряму',
+				'name'         => 'pillar_faq_items',
+				'type'         => 'repeater',
+				'layout'       => 'block',
+				'button_label' => 'Додати питання',
+				'sub_fields'   => array(
+					array( 'key' => 'field_koval_pfaq_q', 'label' => 'Питання', 'name' => 'question', 'type' => 'text' ),
+					array( 'key' => 'field_koval_pfaq_a', 'label' => 'Відповідь', 'name' => 'answer', 'type' => 'textarea', 'rows' => 3 ),
+				),
+			),
+		),
+	) );
+
 	// Site-wide settings (photo, currently-hardcoded texts) as an ACF
 	// Options page — one place, no code, for things that used to live only
 	// in PHP.

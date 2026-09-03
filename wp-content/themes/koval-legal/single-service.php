@@ -126,7 +126,11 @@ while ( have_posts() ) :
 			// fill in through the admin without touching HTML; posts not yet
 			// migrated fall back to the old hand-authored HTML in
 			// post_content so nothing breaks mid-migration.
-			$koval_acf_html = function_exists( 'koval_legal_render_service_acf' ) ? koval_legal_render_service_acf( get_the_ID() ) : '';
+			if ( $koval_pillar && function_exists( 'koval_legal_render_pillar_acf' ) ) {
+					$koval_acf_html = koval_legal_render_pillar_acf( get_the_ID() );
+				} else {
+					$koval_acf_html = function_exists( 'koval_legal_render_service_acf' ) ? koval_legal_render_service_acf( get_the_ID() ) : '';
+				}
 			echo '<div class="svc-body">';
 			if ( $koval_acf_html ) {
 				// the_content() normally runs post_content through

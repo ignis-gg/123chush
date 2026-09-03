@@ -162,11 +162,11 @@ function koval_render_process( $steps ) {
 	return $out;
 }
 
-function koval_render_faq( $items ) {
+function koval_render_faq( $items, $heading = 'Питання щодо послуги' ) {
 	if ( empty( $items ) ) {
 		return '';
 	}
-	$out = '<section class="faq"><div class="wrap"><div class="eyebrow">Питання</div><h2>Питання щодо послуги</h2><div class="faq-list">';
+	$out = '<section class="faq"><div class="wrap"><div class="eyebrow">Питання</div><h2>' . koval_text( $heading ) . '</h2><div class="faq-list">';
 	foreach ( $items as $q ) {
 		$out .= '<div class="faq-item"><button class="faq-q">' . koval_text( $q['question'] ) . '<span class="plus">+</span></button><div class="faq-a"><p>' . koval_text( $q['answer'] ) . '</p></div></div>';
 	}
@@ -174,6 +174,71 @@ function koval_render_faq( $items ) {
 		. '<a href="https://t.me/shlyakh_do_mriyi" class="btn btn-wine" target="_blank" rel="noopener">'
 		. '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.6 20c-.2 1-1 1.3-1.9.8l-5.3-3.9-2.6 2.5c-.3.3-.5.5-1 .5l.4-5.4L18 6.4c.5-.4-.1-.6-.7-.2L6.5 13.2l-5.3-1.7c-1.1-.4-1.1-1.1.3-1.6L20.6 3.1c1-.3 1.8.2 1.3 1.2z"/></svg> Написати в Telegram</a></div></div></section>';
 	return $out;
+}
+
+function koval_render_pillar_crosslinks( $links ) {
+	if ( empty( $links ) ) {
+		return '';
+	}
+	$out = '<p class="section-lead" style="display:flex;gap:24px;flex-wrap:wrap;margin-bottom:8px;">';
+	foreach ( $links as $l ) {
+		$out .= '<a class="service-link" style="margin:0;" href="' . esc_url( $l['url'] ) . '">' . koval_text( $l['label'] ) . '</a>';
+	}
+	$out .= '</p>';
+	return $out;
+}
+
+function koval_render_pillar_card( $c ) {
+	$href = esc_url( $c['link_url'] );
+	$out  = '<div class="svc-card"><h4><a href="' . $href . '">' . koval_text( $c['name'] ) . '</a></h4><p>' . koval_text( $c['description'] ) . '</p>';
+	if ( ! empty( $c['price'] ) || ! empty( $c['duration'] ) ) {
+		$out .= '<div class="svc-meta">';
+		if ( ! empty( $c['price'] ) ) {
+			$out .= '<span>Вартість <b>' . koval_text( $c['price'] ) . '</b></span>';
+		}
+		if ( ! empty( $c['duration'] ) ) {
+			$out .= '<span>Строк <b>' . koval_text( $c['duration'] ) . '</b></span>';
+		}
+		$out .= '</div>';
+	}
+	$out .= '<a href="' . $href . '" class="service-link">Детальніше →</a></div>';
+	return $out;
+}
+
+function koval_render_pillar_groups( $groups ) {
+	if ( empty( $groups ) ) {
+		return '';
+	}
+	$out = '';
+	foreach ( $groups as $g ) {
+		if ( ! empty( $g['heading'] ) ) {
+			$out .= '<h3 class="section-h2" style="font-size:19px;margin:36px 0 14px;">' . koval_text( $g['heading'] ) . '</h3>';
+		}
+		$out .= '<div class="svc-grid" style="margin-top:8px;max-height:none;overflow:visible;">';
+		foreach ( (array) $g['cards'] as $c ) {
+			$out .= koval_render_pillar_card( $c );
+		}
+		$out .= '</div>';
+	}
+	return $out;
+}
+
+/**
+ * @return string '' when the pillar post has no migrated ACF data yet
+ *                (caller falls back to the_content()).
+ */
+function koval_legal_render_pillar_acf( $post_id ) {
+	if ( ! function_exists( 'get_field' ) ) {
+		return '';
+	}
+	$groups = get_field( 'pillar_card_groups', $post_id );
+	if ( empty( $groups ) ) {
+		return '';
+	}
+	$inner = koval_render_pillar_crosslinks( get_field( 'pillar_crosslinks', $post_id ) ) . koval_render_pillar_groups( $groups );
+	$html  = '<section style="padding:8px 0 20px;"><div class="wrap">' . $inner . '</div></section>';
+	$html .= koval_render_faq( get_field( 'pillar_faq_items', $post_id ), 'Питання щодо напряму' );
+	return $html;
 }
 
 /**
