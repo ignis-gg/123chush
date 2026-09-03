@@ -26,34 +26,46 @@ $koval_rich_services = array(
 	112 => '', // Легалізація документів в Мін'юсті.
 );
 
+/**
+ * Pillar (category hub) pages — compact layout: H1 + lead only (no
+ * quick-facts pills, no hero CTA button), then hand-authored body
+ * (intro + service cards + short FAQ) same as rich services below.
+ */
+$koval_pillar_services = array();
+
 while ( have_posts() ) :
 	the_post();
-	$price      = koval_legal_field( 'service_price' );
-	$duration   = koval_legal_field( 'service_duration' );
-	$koval_rich = array_key_exists( get_the_ID(), $koval_rich_services );
+	$price        = koval_legal_field( 'service_price' );
+	$duration     = koval_legal_field( 'service_duration' );
+	$cta_text     = koval_legal_field( 'service_cta_text' );
+	$location     = koval_legal_field( 'service_location' );
+	$koval_rich   = array_key_exists( get_the_ID(), $koval_rich_services );
+	$koval_pillar = array_key_exists( get_the_ID(), $koval_pillar_services );
 	?>
 	<main id="main">
 		<div class="single-hero">
 			<div class="wrap">
-				<div class="eyebrow on-dark">Послуга</div>
+				<div class="eyebrow on-dark"><?php echo esc_html( $koval_pillar ? 'Напрям' : 'Послуга' ); ?></div>
 				<h1><?php echo esc_html( $koval_rich ? get_the_title() . $koval_rich_services[ get_the_ID() ] : get_the_title() ); ?></h1>
 
-				<?php if ( $koval_rich ) : ?>
+				<?php if ( $koval_rich || $koval_pillar ) : ?>
 					<?php if ( has_excerpt() ) : ?>
 						<p class="lead"><?php echo esc_html( get_the_excerpt() ); ?></p>
 					<?php endif; ?>
 
-					<div class="hero-ctas">
-						<a href="#contact-form" class="btn btn-wine">Дізнатись вартість для мого випадку →</a>
-					</div>
+					<?php if ( $koval_rich ) : ?>
+						<div class="hero-ctas">
+							<a href="#contact-form" class="btn btn-wine"><?php echo esc_html( $cta_text ? $cta_text : 'Дізнатись вартість для мого випадку →' ); ?></a>
+						</div>
 
-					<?php if ( $price || $duration ) : ?>
-						<ul class="trust-row">
-							<?php if ( $price ) : ?><li>Вартість <?php echo esc_html( $price ); ?></li><?php endif; ?>
-							<?php if ( $duration ) : ?><li>Строк <?php echo esc_html( $duration ); ?></li><?php endif; ?>
-							<li>Подання у м. Київ</li>
-							<li>15+ років досвіду</li>
-						</ul>
+						<?php if ( $price || $duration ) : ?>
+							<ul class="trust-row">
+								<?php if ( $price ) : ?><li>Вартість <?php echo esc_html( $price ); ?></li><?php endif; ?>
+								<?php if ( $duration ) : ?><li>Строк <?php echo esc_html( $duration ); ?></li><?php endif; ?>
+								<li><?php echo esc_html( $location ? $location : 'Подання у м. Київ' ); ?></li>
+								<li>15+ років досвіду</li>
+							</ul>
+						<?php endif; ?>
 					<?php endif; ?>
 				<?php endif; ?>
 			</div>
@@ -61,7 +73,7 @@ while ( have_posts() ) :
 
 		<?php koval_legal_breadcrumbs(); ?>
 
-		<?php if ( $koval_rich ) : ?>
+		<?php if ( $koval_rich || $koval_pillar ) : ?>
 
 			<?php
 			// Content here is hand-authored, already-block-level HTML (sections,
