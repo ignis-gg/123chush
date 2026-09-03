@@ -170,8 +170,10 @@ function koval_render_faq( $items, $heading = 'Питання щодо посл�
 	foreach ( $items as $q ) {
 		$out .= '<div class="faq-item"><button class="faq-q">' . koval_text( $q['question'] ) . '<span class="plus">+</span></button><div class="faq-a"><p>' . koval_text( $q['answer'] ) . '</p></div></div>';
 	}
+	$telegram_url = function_exists( 'get_field' ) ? get_field( 'telegram_url', 'option' ) : '';
+	$telegram_url = $telegram_url ?: 'https://t.me/shlyakh_do_mriyi';
 	$out .= '</div><div class="faq-more"><p>Не знайшли відповідь? Напишіть нам у Telegram — відповімо протягом 15 хвилин.</p>'
-		. '<a href="https://t.me/shlyakh_do_mriyi" class="btn btn-wine" target="_blank" rel="noopener">'
+		. '<a href="' . esc_url( $telegram_url ) . '" class="btn btn-wine" target="_blank" rel="noopener">'
 		. '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.6 20c-.2 1-1 1.3-1.9.8l-5.3-3.9-2.6 2.5c-.3.3-.5.5-1 .5l.4-5.4L18 6.4c.5-.4-.1-.6-.7-.2L6.5 13.2l-5.3-1.7c-1.1-.4-1.1-1.1.3-1.6L20.6 3.1c1-.3 1.8.2 1.3 1.2z"/></svg> Написати в Telegram</a></div></div></section>';
 	return $out;
 }
