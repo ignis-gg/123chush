@@ -6,12 +6,12 @@
  * (privacy-policy, umovy-garantii, sample-page) gets a plain narrow
  * column.
  *
- * RECOVERY REBUILD (2026-09-03) — hero kicker/H1/lead text reconstructed
- * from the static export of this exact site. Kontakty/tsiny use the
- * page's own title+excerpt for H1/lead (confirmed matching the static
- * export exactly); "pro-nas" has a distinct hardcoded H1/lead that does
- * NOT match its post_title/excerpt in the DB — copied verbatim from the
- * static export since it can't be derived from post fields.
+ * Hero H1/lead prefer the hero_h1/hero_lead ACF fields (inc/acf-fields.php
+ * group_koval_page_hero) so an editor can set page-hero copy independently
+ * of the page's actual title/excerpt (which still drive the browser tab
+ * title and breadcrumb) — falls back to get_the_title()/get_the_excerpt()
+ * when empty, which is exactly what all three pages showed before these
+ * fields existed.
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -28,13 +28,11 @@ $koval_is_full          = in_array( get_post_field( 'post_name' ), $koval_full_w
 
 		<?php
 		$koval_kicker = 'Юридична компанія · Київ';
-		$koval_h1     = get_the_title();
-		$koval_lead   = get_the_excerpt();
+		$koval_h1     = get_field( 'hero_h1' ) ?: get_the_title();
+		$koval_lead   = get_field( 'hero_lead' ) ?: get_the_excerpt();
 
 		if ( is_page( 'pro-nas' ) ) {
 			$koval_kicker = 'Про нас';
-			$koval_h1     = 'Хто ми і чому нам довіряють';
-			$koval_lead   = "Ми — юридична компанія повного циклу, що працює з 1998 року. За цей час напрацювали досвід у роботі з ДРАЦС, судами, консульствами та державними реєстрами — і продовжуємо ним ділитися з кожним клієнтом особисто.";
 		}
 		?>
 		<div class="page-hero">

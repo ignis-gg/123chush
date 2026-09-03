@@ -496,6 +496,39 @@ function koval_legal_register_acf_fields() {
 		),
 	) );
 
+	// Про нас / Контакти / Ціни show a big hero H1+lead above the_content()
+	// (page.php's "full-width" branch). Кontakty/tsiny already read it from
+	// the page's own title/excerpt — these fields let an editor override
+	// that per-page with a punchier headline without changing the page's
+	// actual title (used for the browser tab and breadcrumb). Empty =
+	// falls back to title/excerpt, so leaving them blank changes nothing.
+	acf_add_local_field_group( array(
+		'key'      => 'group_koval_page_hero',
+		'title'    => 'Заголовок і лід зверху сторінки',
+		'location' => array(
+			array( array( 'param' => 'page', 'operator' => '==', 'value' => 21 ) ), // Про нас.
+			array( array( 'param' => 'page', 'operator' => '==', 'value' => 22 ) ), // Контакти.
+			array( array( 'param' => 'page', 'operator' => '==', 'value' => 44 ) ), // Ціни.
+		),
+		'fields'   => array(
+			array(
+				'key'          => 'field_koval_hero_h1',
+				'label'        => 'Заголовок (H1)',
+				'name'         => 'hero_h1',
+				'type'         => 'text',
+				'instructions' => "Порожньо — покаже звичайний заголовок сторінки.",
+			),
+			array(
+				'key'          => 'field_koval_hero_lead',
+				'label'        => 'Підзаголовок під H1',
+				'name'         => 'hero_lead',
+				'type'         => 'textarea',
+				'rows'         => 2,
+				'instructions' => "Порожньо — покаже короткий опис (excerpt) сторінки.",
+			),
+		),
+	) );
+
 	// Місто клієнта у відгуку — та сама причина: раніше звичайний custom
 	// field без підпису, легко було помилитись у назві поля.
 	acf_add_local_field_group( array(
