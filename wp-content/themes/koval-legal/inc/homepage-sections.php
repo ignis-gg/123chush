@@ -119,6 +119,9 @@ function koval_legal_render_cta_section() {
 					<div class="eyebrow">Готові розпочати?</div>
 					<h2>Перша консультація — безкоштовно</h2>
 					<p>Юрист відповість протягом 30 хвилин у робочий час і оцінить вашу ситуацію без зобов'язань.</p>
+					<div class="cta-photo">
+						<img src="<?php echo esc_url( content_url( '/uploads/2026/08/contract.jpg' ) ); ?>" alt="Підготовка документів" loading="eager">
+					</div>
 					<div class="cta-disclaimer">Заповнюючи форму, ви звертаєтесь до приватної юридичної компанії за консультаційними послугами — не до державного органу.</div>
 				</div>
 				<div class="form-card">
