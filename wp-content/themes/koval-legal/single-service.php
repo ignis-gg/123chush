@@ -36,7 +36,14 @@ $koval_rich_services = array(
  * quick-facts pills, no hero CTA button), then hand-authored body
  * (intro + service cards + short FAQ) same as rich services below.
  */
-$koval_pillar_services = array();
+$koval_pillar_services = array(
+	121 => '', // Документи ДРАЦС.
+	122 => '', // Легалізація документів.
+	123 => '', // Сімейні відносини.
+	124 => '', // ІПН.
+	125 => '', // Освітні документи.
+	126 => '', // Суд.
+);
 
 while ( have_posts() ) :
 	the_post();
