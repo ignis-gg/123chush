@@ -1006,13 +1006,24 @@ footer#site-footer{background:var(--navy);color:#9aa0ab;padding:70px 0 34px;font
    the numbered-card rhythm already used by "Що входить".
    ========================================================================== */
 
-/* Testimonial: light card with a wine accent border instead of a second
-   full-width dark-navy band (hero stays the only dark intro zone). */
+/* Testimonial: light cards with a wine accent border instead of a second
+   full-width dark-navy band (hero stays the only dark intro zone). Laid
+   out as one row of 3 matched cards — same card language as the rest of
+   the page, flex column so the citation lines up at the bottom regardless
+   of how long each quote runs. */
 .svc-body .about-quote{background:var(--cream);padding:64px 0;}
-.svc-body .about-quote-card{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--wine);border-radius:var(--radius);box-shadow:var(--card-shadow);padding:36px 40px;}
+.svc-body .about-quote .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch;}
+.svc-body .about-quote-card{display:flex;flex-direction:column;background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--wine);border-radius:var(--radius);box-shadow:var(--card-shadow);padding:30px 28px;}
 .svc-body .about-quote-mark{color:var(--wine);}
-.svc-body .about-quote-card p{color:var(--ink);}
-.svc-body .about-quote-card .cite{color:var(--muted);}
+.svc-body .about-quote-card p{color:var(--ink);flex-grow:1;}
+.svc-body .about-quote-card .cite{color:var(--muted);margin-top:14px;}
+
+@media(max-width:960px){
+  .svc-body .about-quote .wrap{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:640px){
+  .svc-body .about-quote .wrap{grid-template-columns:1fr;}
+}
 
 /* Price + guarantee: same width, tighter rhythm, no more 380px card
    floating in a sea of whitespace next to a full-width guarantee row. */
