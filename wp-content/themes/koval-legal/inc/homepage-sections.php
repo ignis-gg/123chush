@@ -116,15 +116,22 @@ function koval_legal_render_faq() {
  * before without needing to touch them.
  */
 function koval_legal_render_cta_section( $locked_service = 'Головна сторінка' ) {
+	$koval_cta_eyebrow      = get_field( 'cta_eyebrow', 'option' ) ?: 'Готові розпочати?';
+	$koval_cta_heading      = get_field( 'cta_heading', 'option' ) ?: 'Перша консультація — безкоштовно';
+	$koval_cta_lead         = get_field( 'cta_lead', 'option' ) ?: "Юрист відповість протягом 30 хвилин у робочий час і оцінить вашу ситуацію без зобов'язань.";
+	$koval_cta_disclaimer   = get_field( 'cta_disclaimer', 'option' ) ?: 'Заповнюючи форму, ви звертаєтесь до приватної юридичної компанії за консультаційними послугами — не до державного органу.';
+	$koval_cta_form_heading = get_field( 'cta_form_heading', 'option' ) ?: 'Заявка на консультацію';
+	$koval_cta_form_lead    = get_field( 'cta_form_lead', 'option' ) ?: 'Залишіть контакти — підберемо оптимальний варіант супроводу саме для вашої ситуації.';
+
 	ob_start();
 	?>
 	<section class="cta-section" id="contact-form">
 		<div class="wrap">
 			<div class="cta-grid">
 				<div class="cta-left">
-					<div class="eyebrow">Готові розпочати?</div>
-					<h2>Перша консультація — безкоштовно</h2>
-					<p>Юрист відповість протягом 30 хвилин у робочий час і оцінить вашу ситуацію без зобов'язань.</p>
+					<div class="eyebrow"><?php echo esc_html( $koval_cta_eyebrow ); ?></div>
+					<h2><?php echo esc_html( $koval_cta_heading ); ?></h2>
+					<p><?php echo esc_html( $koval_cta_lead ); ?></p>
 					<?php
 					$koval_cta_photo = function_exists( 'get_field' ) ? get_field( 'cta_photo', 'option' ) : '';
 					if ( ! $koval_cta_photo ) {
@@ -134,11 +141,11 @@ function koval_legal_render_cta_section( $locked_service = 'Головна ст�
 					<div class="cta-photo">
 						<img src="<?php echo esc_url( $koval_cta_photo ); ?>" alt="Підготовка документів" loading="eager">
 					</div>
-					<div class="cta-disclaimer">Заповнюючи форму, ви звертаєтесь до приватної юридичної компанії за консультаційними послугами — не до державного органу.</div>
+					<div class="cta-disclaimer"><?php echo esc_html( $koval_cta_disclaimer ); ?></div>
 				</div>
 				<div class="form-card">
-					<h3>Заявка на консультацію</h3>
-					<p>Залишіть контакти — підберемо оптимальний варіант супроводу саме для вашої ситуації.</p>
+					<h3><?php echo esc_html( $koval_cta_form_heading ); ?></h3>
+					<p><?php echo esc_html( $koval_cta_form_lead ); ?></p>
 					<?php koval_legal_consultation_form( $locked_service ); ?>
 				</div>
 			</div>

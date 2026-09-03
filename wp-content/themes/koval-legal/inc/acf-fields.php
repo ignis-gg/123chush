@@ -625,6 +625,51 @@ function koval_legal_register_acf_fields() {
 				'name'         => 'youtube_url',
 				'type'         => 'url',
 			),
+			array(
+				'key'   => 'field_koval_cta_tab',
+				'label' => 'Блок "Заявка на консультацію"',
+				'type'  => 'tab',
+			),
+			array(
+				'key'          => 'field_koval_cta_eyebrow',
+				'label'        => 'Наднапис над заголовком',
+				'name'         => 'cta_eyebrow',
+				'type'         => 'text',
+				'instructions' => 'Показується на всіх сторінках сайту, де є форма заявки.',
+			),
+			array(
+				'key'          => 'field_koval_cta_heading',
+				'label'        => 'Заголовок',
+				'name'         => 'cta_heading',
+				'type'         => 'text',
+			),
+			array(
+				'key'          => 'field_koval_cta_lead',
+				'label'        => 'Текст під заголовком',
+				'name'         => 'cta_lead',
+				'type'         => 'textarea',
+				'rows'         => 2,
+			),
+			array(
+				'key'          => 'field_koval_cta_disclaimer',
+				'label'        => 'Дисклеймер під фото',
+				'name'         => 'cta_disclaimer',
+				'type'         => 'textarea',
+				'rows'         => 2,
+			),
+			array(
+				'key'          => 'field_koval_cta_form_heading',
+				'label'        => 'Заголовок форми',
+				'name'         => 'cta_form_heading',
+				'type'         => 'text',
+			),
+			array(
+				'key'          => 'field_koval_cta_form_lead',
+				'label'        => 'Текст над формою',
+				'name'         => 'cta_form_lead',
+				'type'         => 'textarea',
+				'rows'         => 2,
+			),
 		),
 	) );
 }
