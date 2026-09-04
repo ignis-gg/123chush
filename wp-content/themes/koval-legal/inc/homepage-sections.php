@@ -141,7 +141,10 @@ function koval_legal_render_cta_section( $locked_service = 'Головна ст�
 					$koval_cta_photo_size = @getimagesize( str_replace( content_url(), WP_CONTENT_DIR, $koval_cta_photo ) );
 					?>
 					<div class="cta-photo">
-						<img src="<?php echo esc_url( $koval_cta_photo ); ?>" alt="Підготовка документів" loading="lazy"<?php echo $koval_cta_photo_size ? ' width="' . (int) $koval_cta_photo_size[0] . '" height="' . (int) $koval_cta_photo_size[1] . '"' : ''; ?>>
+						<?php
+						$koval_cta_img = '<img src="' . esc_url( $koval_cta_photo ) . '" alt="Підготовка документів" loading="lazy"' . ( $koval_cta_photo_size ? ' width="' . (int) $koval_cta_photo_size[0] . '" height="' . (int) $koval_cta_photo_size[1] . '"' : '' ) . '>';
+						echo koval_wrap_webp_picture( $koval_cta_img );
+						?>
 					</div>
 					<div class="cta-disclaimer"><?php echo esc_html( $koval_cta_disclaimer ); ?></div>
 				</div>

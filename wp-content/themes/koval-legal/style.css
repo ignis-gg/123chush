@@ -9,6 +9,10 @@ Requires PHP: 7.4
 Text Domain: koval-legal
 */
 
+/* <picture> is used for WebP+fallback; keep it out of the box model so the
+   <img> inside sizes against the real container, same as before it was added. */
+picture{display:contents;}
+
 /* =========================================================
    FONTS — самохостинг Lora + Manrope (assets/fonts)
    Підмножини: latin, latin-ext, cyrillic (без vietnamese/math/symbols)
