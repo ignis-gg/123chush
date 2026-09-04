@@ -71,8 +71,8 @@ $koval_cat  = ! empty( $koval_cats ) ? $koval_cats[0] : null;
 				?>
 				<div class="share-buttons">
 					<span class="share-buttons-label">Поділитися:</span>
-					<a href="https://t.me/share/url?url=<?php echo $koval_share_url; ?>&text=<?php echo $koval_share_text; ?>" class="icon-circle" aria-label="Поділитися в Telegram" target="_blank" rel="noopener"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.6 20c-.2 1-1 1.3-1.9.8l-5.3-3.9-2.6 2.5c-.3.3-.5.5-1 .5l.4-5.4L18 6.4c.5-.4-.1-.6-.7-.2L6.5 13.2l-5.3-1.7c-1.1-.4-1.1-1.1.3-1.6L20.6 3.1c1-.3 1.8.2 1.3 1.2z"/></svg></a>
-					<a href="https://wa.me/?text=<?php echo $koval_share_text; ?>%20<?php echo $koval_share_url; ?>" class="icon-circle" aria-label="Поділитися в WhatsApp" target="_blank" rel="noopener"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.44-1.36a9.9 9.9 0 0 0 4.6 1.14h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.8 14.14c-.24.68-1.19 1.25-1.95 1.4-.52.11-1.2.2-3.5-.75-2.94-1.22-4.83-4.2-4.98-4.4-.14-.19-1.19-1.58-1.19-3.02 0-1.43.75-2.14 1.02-2.43.24-.27.55-.34.73-.34h.53c.17 0 .4-.03.62.48.24.55.8 1.9.87 2.04.07.14.11.31.02.5-.09.19-.14.31-.28.47-.14.16-.29.36-.42.48-.14.13-.28.28-.12.55.16.27.71 1.17 1.53 1.9 1.05.94 1.94 1.24 2.21 1.38.27.14.43.12.6-.07.16-.19.7-.81.88-1.09.18-.27.36-.23.6-.14.24.09 1.55.73 1.82.87.27.14.45.2.51.32.07.11.07.65-.17 1.33z"/></svg></a>
+					<a href="https://t.me/share/url?url=<?php echo esc_attr( $koval_share_url ); ?>&text=<?php echo esc_attr( $koval_share_text ); ?>" class="icon-circle" aria-label="Поділитися в Telegram" target="_blank" rel="noopener"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.6 20c-.2 1-1 1.3-1.9.8l-5.3-3.9-2.6 2.5c-.3.3-.5.5-1 .5l.4-5.4L18 6.4c.5-.4-.1-.6-.7-.2L6.5 13.2l-5.3-1.7c-1.1-.4-1.1-1.1.3-1.6L20.6 3.1c1-.3 1.8.2 1.3 1.2z"/></svg></a>
+					<a href="https://wa.me/?text=<?php echo esc_attr( $koval_share_text ); ?>%20<?php echo esc_attr( $koval_share_url ); ?>" class="icon-circle" aria-label="Поділитися в WhatsApp" target="_blank" rel="noopener"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.44-1.36a9.9 9.9 0 0 0 4.6 1.14h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.8 14.14c-.24.68-1.19 1.25-1.95 1.4-.52.11-1.2.2-3.5-.75-2.94-1.22-4.83-4.2-4.98-4.4-.14-.19-1.19-1.58-1.19-3.02 0-1.43.75-2.14 1.02-2.43.24-.27.55-.34.73-.34h.53c.17 0 .4-.03.62.48.24.55.8 1.9.87 2.04.07.14.11.31.02.5-.09.19-.14.31-.28.47-.14.16-.29.36-.42.48-.14.13-.28.28-.12.55.16.27.71 1.17 1.53 1.9 1.05.94 1.94 1.24 2.21 1.38.27.14.43.12.6-.07.16-.19.7-.81.88-1.09.18-.27.36-.23.6-.14.24.09 1.55.73 1.82.87.27.14.45.2.51.32.07.11.07.65-.17 1.33z"/></svg></a>
 				</div>
 
 				<?php
@@ -118,7 +118,7 @@ $koval_cat  = ! empty( $koval_cats ) ? $koval_cats[0] : null;
 						?>
 						<article class="blog-card">
 							<?php if ( has_post_thumbnail( $koval_post->ID ) ) : ?>
-								<div class="blog-card-thumb"><?php echo get_the_post_thumbnail( $koval_post->ID, 'medium_large', array( 'loading' => 'eager' ) ); ?></div>
+								<div class="blog-card-thumb"><?php echo get_the_post_thumbnail( $koval_post->ID, 'medium_large', array( 'loading' => 'lazy' ) ); ?></div>
 							<?php endif; ?>
 							<div class="blog-meta">
 								<?php if ( ! empty( $koval_rel_cats ) ) : ?><span class="blog-badge"><?php echo esc_html( $koval_rel_cats[0]->name ); ?></span><?php endif; ?>

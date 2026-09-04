@@ -53,7 +53,7 @@ usort( $koval_categories, fn( $a, $b ) => array_search( $a->slug, $koval_cat_ord
 				<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 					<article class="blog-card">
 						<?php if ( has_post_thumbnail() ) : ?>
-							<div class="blog-card-thumb"><?php the_post_thumbnail( 'medium_large', array( 'loading' => 'eager', 'alt' => koval_legal_thumbnail_alt() ) ); ?></div>
+							<div class="blog-card-thumb"><?php the_post_thumbnail( 'medium_large', array( 'loading' => 'lazy', 'alt' => koval_legal_thumbnail_alt() ) ); ?></div>
 						<?php endif; ?>
 						<div class="blog-meta">
 							<span class="blog-badge"><?php echo esc_html( $koval_current_cat->name ); ?></span>

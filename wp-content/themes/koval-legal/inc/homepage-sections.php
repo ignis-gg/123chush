@@ -137,9 +137,11 @@ function koval_legal_render_cta_section( $locked_service = 'Головна ст�
 					if ( ! $koval_cta_photo ) {
 						$koval_cta_photo = content_url( '/uploads/2026/08/contract.jpg' ); // fallback until set in Налаштування сайту.
 					}
+					// Dimensions read from the actual file so the reserved space matches whatever photo is set in Options — avoids layout shift regardless of which image the admin uploads.
+					$koval_cta_photo_size = @getimagesize( str_replace( content_url(), WP_CONTENT_DIR, $koval_cta_photo ) );
 					?>
 					<div class="cta-photo">
-						<img src="<?php echo esc_url( $koval_cta_photo ); ?>" alt="Підготовка документів" loading="eager">
+						<img src="<?php echo esc_url( $koval_cta_photo ); ?>" alt="Підготовка документів" loading="lazy"<?php echo $koval_cta_photo_size ? ' width="' . (int) $koval_cta_photo_size[0] . '" height="' . (int) $koval_cta_photo_size[1] . '"' : ''; ?>>
 					</div>
 					<div class="cta-disclaimer"><?php echo esc_html( $koval_cta_disclaimer ); ?></div>
 				</div>
