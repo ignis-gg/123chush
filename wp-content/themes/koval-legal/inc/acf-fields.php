@@ -683,6 +683,27 @@ function koval_legal_register_acf_fields() {
 				'rows'         => 3,
 				'instructions' => 'Показується помітним блоком одразу під заголовком на кожній сторінці групи "Легалізація документів" (список ID — inc/service-lists.php, koval_legal_legalization_group_ids()).',
 			),
+			array(
+				'key'   => 'field_koval_analytics_tab',
+				'label' => 'Аналітика',
+				'type'  => 'tab',
+			),
+			array(
+				'key'          => 'field_koval_gtm_id',
+				'label'        => 'Google Tag Manager ID',
+				'name'         => 'gtm_id',
+				'type'         => 'text',
+				'placeholder'  => 'GTM-XXXXXXX',
+				'instructions' => 'Порожнє поле — код GTM взагалі не завантажується на сайті. Заповніть, коли отримаєте реальний контейнер, і він одразу зʼявиться на всіх сторінках.',
+			),
+			array(
+				'key'          => 'field_koval_meta_pixel_id',
+				'label'        => 'Meta Pixel ID',
+				'name'         => 'meta_pixel_id',
+				'type'         => 'text',
+				'placeholder'  => '000000000000000',
+				'instructions' => 'Порожнє поле — Pixel взагалі не завантажується на сайті.',
+			),
 		),
 	) );
 }

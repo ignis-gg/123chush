@@ -11,11 +11,13 @@
 			document.querySelectorAll('.faq-item.open').forEach(function (open) {
 				open.classList.remove('open');
 				open.querySelector('.faq-a').style.maxHeight = null;
+				open.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
 			});
 
 			if (!isOpen) {
 				item.classList.add('open');
 				answer.style.maxHeight = answer.scrollHeight + 'px';
+				btn.setAttribute('aria-expanded', 'true');
 			}
 		});
 	});
@@ -49,6 +51,13 @@
 		toggle.addEventListener('click', function () {
 			var isOpen = mobileNav.classList.toggle('is-open');
 			toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+		});
+		document.addEventListener('keydown', function (e) {
+			if (e.key === 'Escape' && mobileNav.classList.contains('is-open')) {
+				mobileNav.classList.remove('is-open');
+				toggle.setAttribute('aria-expanded', 'false');
+				toggle.focus();
+			}
 		});
 	}
 

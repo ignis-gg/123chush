@@ -43,7 +43,7 @@ function koval_text( $s ) {
 
 function koval_icon_svg( $key, $size = 20 ) {
 	$paths = $GLOBALS['koval_icon_svgs'][ $key ] ?? $GLOBALS['koval_icon_svgs']['docq'];
-	return '<svg width="' . $size . '" height="' . $size . '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' . $paths . '</svg>';
+	return '<svg width="' . $size . '" height="' . $size . '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">' . $paths . '</svg>';
 }
 
 const KOVAL_GUARANTEE_HTML = '<section class="guarantee-section"><div class="wrap"><div class="eyebrow">Гарантія</div><div class="guarantee-card">'
@@ -166,9 +166,12 @@ function koval_render_faq( $items, $heading = 'Питання щодо посл�
 	if ( empty( $items ) ) {
 		return '';
 	}
+	static $koval_faq_counter = 0;
 	$out = '<section class="faq"><div class="wrap"><div class="eyebrow">Питання</div><h2>' . koval_text( $heading ) . '</h2><div class="faq-list">';
 	foreach ( $items as $q ) {
-		$out .= '<div class="faq-item"><button class="faq-q">' . koval_text( $q['question'] ) . '<span class="plus">+</span></button><div class="faq-a"><p>' . koval_text( $q['answer'] ) . '</p></div></div>';
+		$koval_faq_counter++;
+		$panel_id = 'faq-a-' . $koval_faq_counter;
+		$out .= '<div class="faq-item"><button class="faq-q" aria-expanded="false" aria-controls="' . esc_attr( $panel_id ) . '">' . koval_text( $q['question'] ) . '<span class="plus">+</span></button><div class="faq-a" id="' . esc_attr( $panel_id ) . '" role="region">' . '<p>' . koval_text( $q['answer'] ) . '</p></div></div>';
 	}
 	$telegram_url = function_exists( 'get_field' ) ? get_field( 'telegram_url', 'option' ) : '';
 	$telegram_url = $telegram_url ?: 'https://t.me/shlyakh_do_mriyi';
