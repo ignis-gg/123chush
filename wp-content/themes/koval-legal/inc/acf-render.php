@@ -247,6 +247,17 @@ function koval_legal_render_pillar_acf( $post_id ) {
  * @return string '' when the post has no migrated ACF data yet (caller
  *                should fall back to the_content()).
  */
+function koval_render_legal_notice( $post_id ) {
+	if ( ! in_array( (int) $post_id, koval_legal_legalization_group_ids(), true ) ) {
+		return '';
+	}
+	$text = get_field( 'legalization_disclaimer', 'option' );
+	if ( ! $text ) {
+		$text = "KOVAL Legal Group — приватна юридична компанія. Ми не є державним органом, консульством чи офіційним провайдером легалізації чи апостилю, не видаємо і не гарантуємо видачу документа. Наші консультаційні послуги та супровід підготовки документів не замінюють звернення до відповідного державного органу чи консульства — саме він ухвалює остаточне рішення щодо засвідчення чи видачі документа.";
+	}
+	return '<section style="padding:28px 0 0;"><div class="wrap"><div class="legal-notice"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 8v5"/><circle cx="12" cy="16.3" r=".6" fill="currentColor" stroke="none"/></svg><p><strong>Важливо:</strong> ' . koval_text( $text ) . '</p></div></div></section>';
+}
+
 function koval_legal_render_service_acf( $post_id ) {
 	if ( ! function_exists( 'get_field' ) ) {
 		return '';
@@ -256,7 +267,8 @@ function koval_legal_render_service_acf( $post_id ) {
 		return '';
 	}
 
-	$html  = koval_render_scenarios( $scenarios );
+	$html  = koval_render_legal_notice( $post_id );
+	$html .= koval_render_scenarios( $scenarios );
 	$html .= koval_render_advantages(
 		get_field( 'advantages_lead', $post_id ),
 		get_field( 'advantages_steps', $post_id ),

@@ -91,6 +91,17 @@ function koval_legal_acf_content_ids() {
 }
 
 /**
+ * The 22 apostille/legalization landing pages (service_category term
+ * "legalization") — these get a prominent not-a-government-body /
+ * not-guaranteed-issuance notice injected right under the hero (see
+ * koval_render_legal_notice() in inc/acf-render.php), per the 2026-09-04
+ * Google Ads exclusion-request prep pass.
+ */
+function koval_legal_legalization_group_ids() {
+	return array( 99, 147, 149, 148, 150, 151, 111, 152, 153, 154, 164, 155, 157, 101, 158, 159, 160, 161, 162, 163, 112, 156 );
+}
+
+/**
  * The /poslugy/ catalog (archive-service.php) and homepage services grid
  * (inc/homepage-sections.php) used to read this shape — slug/label/
  * description/mini_cta + cards[] (name/desc/price/duration/permalink/
