@@ -118,13 +118,22 @@ function koval_legal_register_post_types() {
 
 	// case_study was explicitly retired sitewide — keep the CPT (content
 	// stays manageable in wp-admin) but 301 any front-end URL to the
-	// homepage and drop it from the core XML sitemap.
+	// homepage and drop it from the sitemap.
 	add_action( 'template_redirect', function () {
 		if ( is_singular( 'case_study' ) || is_post_type_archive( 'case_study' ) ) {
 			wp_safe_redirect( home_url( '/' ), 301 );
 			exit;
 		}
 	} );
+	// wp_sitemaps_post_types only matters if Rank Math is ever deactivated —
+	// Rank Math replaces WP core's sitemap entirely and ignores this filter.
+	// The actual live exclusion is the `pt_case_study_sitemap` = 'off' row in
+	// the rank-math-options-sitemap option (Titles & Meta > Sitemap Settings
+	// UI, or `wp option patch update rank-math-options-sitemap
+	// pt_case_study_sitemap off` + `RankMath\Sitemap\Cache::invalidate_storage()`
+	// to bust its cached XML) — found missing 2026-09-05, case_study was
+	// still 301-ing correctly but still listed in sitemap_index.xml because
+	// this filter alone doesn't reach Rank Math's sitemap generator.
 	add_filter( 'wp_sitemaps_post_types', function ( $post_types ) {
 		unset( $post_types['case_study'] );
 		return $post_types;
