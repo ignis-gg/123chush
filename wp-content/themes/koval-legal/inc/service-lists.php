@@ -122,24 +122,38 @@ function koval_legal_catalog_categories() {
 		return array();
 	}
 
+	// Fetch every service post in one query instead of one get_posts() per
+	// term (was up to 8x redundant queries — see perf audit, 2026-09-05),
+	// then group by term in PHP using the term cache the query already primes.
+	$all_posts = get_posts( array(
+		'post_type'      => 'service',
+		'posts_per_page' => -1,
+		'orderby'        => 'menu_order title',
+		'order'          => 'ASC',
+		'tax_query'      => array(
+			array(
+				'taxonomy' => 'service_category',
+				'field'    => 'term_id',
+				'terms'    => wp_list_pluck( $terms, 'term_id' ),
+			),
+		),
+	) );
+
+	$posts_by_term = array();
+	foreach ( $all_posts as $post ) {
+		$post_terms = get_the_terms( $post, 'service_category' );
+		if ( is_wp_error( $post_terms ) || ! $post_terms ) {
+			continue;
+		}
+		foreach ( $post_terms as $post_term ) {
+			$posts_by_term[ $post_term->term_id ][] = $post;
+		}
+	}
+
 	$categories = array();
 	foreach ( $terms as $term ) {
-		$posts = get_posts( array(
-			'post_type'      => 'service',
-			'posts_per_page' => -1,
-			'orderby'        => 'menu_order title',
-			'order'          => 'ASC',
-			'tax_query'      => array(
-				array(
-					'taxonomy' => 'service_category',
-					'field'    => 'term_id',
-					'terms'    => $term->term_id,
-				),
-			),
-		) );
-
 		$cards = array();
-		foreach ( $posts as $post ) {
+		foreach ( $posts_by_term[ $term->term_id ] ?? array() as $post ) {
 			$catalog_title = get_field( 'catalog_title', $post->ID );
 			$cards[] = array(
 				'name'      => $catalog_title ? $catalog_title : get_the_title( $post ),
