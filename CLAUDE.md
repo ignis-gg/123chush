@@ -36,3 +36,24 @@ Do **not** close the browser tab(s)/window after verifying — there is no
 way to relaunch Chrome itself (only to control it once it's already
 running), so closing it means the user has to manually reopen Chrome
 before the extension can reconnect next time. Leave tabs open when done.
+
+# Project status tracking (docs/)
+
+Project state lives in `docs/migration-status.md`, `docs/known-issues.md`,
+and `docs/next-session.md` — read these before re-deriving project state
+from memory or re-explaining it in chat. This is the source of truth on
+what's done/pending, not something to re-litigate each session.
+
+Before the final commit of any session that changed project state or
+found a new environment/tooling gotcha:
+- Update `docs/migration-status.md` — move anything that moved from
+  "Не начато"/"В процессе" to "Готово", with the correct verification tag
+  ([код]/[curl]/[browser] — never claim a higher tag than what was
+  actually checked this session).
+- Append to `docs/known-issues.md` if a new environment/tool workaround
+  was found (don't let a future session rediscover the same thing).
+- Rewrite `docs/next-session.md` to reflect the current actual priority
+  list — don't accumulate stale entries for work that's already done.
+
+This is part of finishing the work, not a separate request that needs to
+be asked for each time.
