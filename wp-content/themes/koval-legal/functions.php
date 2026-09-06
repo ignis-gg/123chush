@@ -142,6 +142,49 @@ function koval_legal_register_post_types() {
 add_action( 'init', 'koval_legal_register_post_types' );
 
 /**
+ * 301 redirects for the 13 service pages retired 2026-09-06 (Google Ads
+ * "Government documents and services" compliance — ІПН/ДРАЦС group had no
+ * certification path for a private company; 4 legalization-of-svidotstvo
+ * pages carried an independently-established HIGH risk per the project's
+ * earlier risk-tier audit, see docs/google-ads-gov-services-classification.md
+ * and the linked artifact). Unlike the 5 pages retired 2026-09-05 (which
+ * got no redirect, plain 404), this round explicitly wants old URLs to land
+ * somewhere useful rather than dead-end.
+ *
+ * ІПН/ДРАЦС group has no surviving hub/category to redirect to (both pillar
+ * pages are retired in the same pass) — sent to the catalog root. The 4
+ * legalization pages still have a live, relevant parent (the legalization
+ * pillar), so they go there instead of the generic catalog.
+ */
+function koval_legal_retired_service_redirects() {
+	if ( ! is_404() ) {
+		return;
+	}
+	$map = array(
+		'ipn-dlya-ukrayintsya'                     => '/poslugy/',
+		'vidmova-vid-ipn'                           => '/poslugy/',
+		'ipn-dlya-inozemtsya'                       => '/poslugy/',
+		'ipn'                                       => '/poslugy/',
+		'dublikat-svidotstva-dratss'                => '/poslugy/',
+		'vnesennya-zmin-v-aktovyy-zapys'            => '/poslugy/',
+		'ponovlennya-aktovoho-zapysu-dratss'        => '/poslugy/',
+		'vytyah-z-reyestru-drats'                   => '/poslugy/',
+		'dokumenty-drats'                           => '/poslugy/',
+		'legalizatsiya-svidotstva-pro-zminu-pib'    => '/poslugy/legalizatsiya-dokumentiv/',
+		'legalizatsiya-svidotstva-pro-narodzhennya' => '/poslugy/legalizatsiya-dokumentiv/',
+		'legalizatsiya-svidotstva-pro-smert'        => '/poslugy/legalizatsiya-dokumentiv/',
+		'legalizatsiya-dovidky-pro-nesudymist'      => '/poslugy/legalizatsiya-dokumentiv/',
+	);
+	$path = trim( (string) parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH ), '/' );
+	$slug = preg_replace( '#^poslugy/#', '', $path );
+	if ( isset( $map[ $slug ] ) ) {
+		wp_safe_redirect( home_url( $map[ $slug ] ), 301 );
+		exit;
+	}
+}
+add_action( 'template_redirect', 'koval_legal_retired_service_redirects' );
+
+/**
  * Small helpers used across templates.
  */
 function koval_legal_field( $field_name, $post_id = null ) {
