@@ -1,9 +1,10 @@
-# Карта страниц сайта KOVAL Legal Group
+# Карта страниц сайта KOVAL Legal Group — 2026-09-06 (сессия 8)
 
-Снято с живой БД (ddev), 2026-09-06. Показывает текущее состояние **после**
-удаления 5 страниц услуг 2026-09-05 (Google Ads compliance).
+Снято с живой БД (ddev), 2026-09-06, после удаления ещё 13 страниц
+(ІПН/ДРАЦС группа + 4 страницы легалізації свідоцтв — Google Ads
+compliance, второй раунд). Заменяет предыдущую версию от того же дня.
 
-## Служебные страницы (не входят в счёт 47 услуг)
+## Служебные страницы (не входят в счёт 34 услуг)
 
 | Страница | URL |
 |---|---|
@@ -25,20 +26,21 @@
 | Як відновити диплом, якщо ЗВО ліквідовано | https://law-firm.ddev.site/як-відновити-диплом-якщо-зво-ліквідов/ |
 | Дублікат свідоцтва про народження: як і де отримати | https://law-firm.ddev.site/дублікат-свідоцтва-про-народження-як/ |
 
-## 6 Pillar-хабов (обзорные страницы-разделы)
+## 4 Pillar-хабов (обзорные страницы-разделы)
 
 | ID | Заголовок | URL |
 |---|---|---|
-| 121 | Документи ДРАЦС — консультації та супровід оформлення | https://law-firm.ddev.site/poslugy/dokumenty-drats/ |
 | 122 | Легалізація документів — апостиль і консульська легалізація | https://law-firm.ddev.site/poslugy/legalizatsiya-dokumentiv/ |
 | 123 | Сімейні відносини — реєстрація шлюбу, розлучення, шлюбний контракт | https://law-firm.ddev.site/poslugy/simeyni-vidnosyny/ |
-| 124 | ІПН — реєстрація та відмова від номера платника податків | https://law-firm.ddev.site/poslugy/ipn/ |
 | 125 | Освітні документи — дублікати, довідки, документи з-за кордону | https://law-firm.ddev.site/poslugy/osvitni-dokumenty/ |
 | 126 | Судові послуги — позови, копії рішень, адвокатські запити | https://law-firm.ddev.site/poslugy/sudovi-poslugy/ |
 
-## 41 услуга по категориям
+**Ліквідовано цим раундом**: хаб «Документи ДРАЦС» (121), хаб «ІПН» (124) —
+не лишилось жодної дитини, яку хабити.
 
-### Легалізація документів (21)
+## 30 услуг по категориям
+
+### Легалізація документів (18)
 
 | ID | Заголовок | URL |
 |---|---|---|
@@ -46,6 +48,7 @@
 | 101 | Легалізація диплома для роботи чи навчання за кордоном | https://law-firm.ddev.site/poslugy/lehalizatsiya-dyploma-dlya-roboty-chy-navchannya-za-kordonom/ |
 | 111 | Апостиль в Мін'юсті | https://law-firm.ddev.site/poslugy/apostyl-v-minyusti/ |
 | 112 | Легалізація документів в Мін'юсті | https://law-firm.ddev.site/poslugy/lehalizatsiya-dokumentiv-v-minyusti/ |
+| 146 | Апостиль на свідоцтва ДРАЦС — для використання за кордоном | https://law-firm.ddev.site/poslugy/apostyl-na-dokumenty-drats/ |
 | 147 | Подвійний апостиль — коли потрібне повторне засвідчення | https://law-firm.ddev.site/poslugy/podviynyy-apostyl/ |
 | 148 | Терміновий апостиль — коли виїзд чи дедлайн уже близько | https://law-firm.ddev.site/poslugy/terminovyy-apostyl/ |
 | 150 | Апостиль в Міністерстві освіти і науки — для освітніх документів | https://law-firm.ddev.site/poslugy/apostyl-v-mon/ |
@@ -55,24 +58,10 @@
 | 154 | Консульська легалізація українських документів для країн поза Гаазькою конвенцією | https://law-firm.ddev.site/poslugy/konsulska-legalizatsiya-v-ukrayini/ |
 | 155 | Легалізація документа безпосередньо за кордоном | https://law-firm.ddev.site/poslugy/legalizatsiya-za-kordonom/ |
 | 156 | Легалізація документів через Міністерство закордонних справ | https://law-firm.ddev.site/poslugy/legalizatsiya-v-mzs/ |
-| 157 | Легалізація довідки про несудимість для країн поза Гаазькою конвенцією | https://law-firm.ddev.site/poslugy/legalizatsiya-dovidky-pro-nesudymist/ |
 | 158 | Легалізація довіреності для використання за кордоном | https://law-firm.ddev.site/poslugy/legalizatsiya-dovirenosti/ |
-| 159 | Легалізація свідоцтва про народження для країн поза Гаазькою конвенцією | https://law-firm.ddev.site/poslugy/legalizatsiya-svidotstva-pro-narodzhennya/ |
 | 160 | Легалізація свідоцтва про шлюб для країн поза Гаазькою конвенцією | https://law-firm.ddev.site/poslugy/legalizatsiya-svidotstva-pro-shlyub/ |
 | 161 | Легалізація свідоцтва про розірвання шлюбу для країн поза Гаазькою конвенцією | https://law-firm.ddev.site/poslugy/legalizatsiya-svidotstva-pro-rozluchennya/ |
-| 162 | Легалізація свідоцтва про зміну імені для країн поза Гаазькою конвенцією | https://law-firm.ddev.site/poslugy/legalizatsiya-svidotstva-pro-zminu-pib/ |
-| 163 | Легалізація свідоцтва про смерть для країн поза Гаазькою конвенцією | https://law-firm.ddev.site/poslugy/legalizatsiya-svidotstva-pro-smert/ |
 | 164 | Легалізація іноземного документа для використання в Україні | https://law-firm.ddev.site/poslugy/legalizatsiya-inozemnyh-dokumentiv/ |
-
-### Документи ДРАЦС (5)
-
-| ID | Заголовок | URL |
-|---|---|---|
-| 100 | Дублікат свідоцтва ДРАЦС | https://law-firm.ddev.site/poslugy/dublikat-svidotstva-dratss/ |
-| 103 | Поновлення актового запису ДРАЦС | https://law-firm.ddev.site/poslugy/ponovlennya-aktovoho-zapysu-dratss/ |
-| 135 | Витяг з реєстру ДРАЦС — офіційне підтвердження запису | https://law-firm.ddev.site/poslugy/vytyah-z-reyestru-drats/ |
-| 136 | Виправлення помилок в актовому записі ДРАЦС | https://law-firm.ddev.site/poslugy/vnesennya-zmin-v-aktovyy-zapys/ |
-| 146 | Апостиль на свідоцтва ДРАЦС — для використання за кордоном | https://law-firm.ddev.site/poslugy/apostyl-na-dokumenty-drats/ |
 
 ### Сімейні відносини (4)
 
@@ -82,14 +71,6 @@
 | 119 | Розлучення через ДРАЦС — консультація і супровід оформлення | https://law-firm.ddev.site/poslugy/rozluchennya-cherez-drats/ |
 | 137 | Реєстрація шлюбу між громадянами України — консультація й супровід | https://law-firm.ddev.site/poslugy/reyestratsiya-shlyubu/ |
 | 138 | Шлюбний контракт — юридично грамотне оформлення майнових питань | https://law-firm.ddev.site/poslugy/shlyubnyy-kontrakt/ |
-
-### ІПН (3)
-
-| ID | Заголовок | URL |
-|---|---|---|
-| 118 | Отримання ІПН для іноземця в Україні — консультація і супровід подання | https://law-firm.ddev.site/poslugy/ipn-dlya-inozemtsya/ |
-| 133 | Отримання ІПН для українця — швидко, без черг у ДПС | https://law-firm.ddev.site/poslugy/ipn-dlya-ukrayintsya/ |
-| 134 | Відмова від ІПН — оформлення відмітки в паспорті | https://law-firm.ddev.site/poslugy/vidmova-vid-ipn/ |
 
 ### Освітні документи (4)
 
@@ -109,17 +90,35 @@
 | 144 | Отримання копії судового рішення — якщо оригінал втрачено | https://law-firm.ddev.site/poslugy/kopiya-sudovogo-rishennya/ |
 | 145 | Адвокатський запит до суду — офіційне отримання інформації у справі | https://law-firm.ddev.site/poslugy/advokatskyy-zapyt/ |
 
-**Итого услуг: 41 + 6 pillar-хабов = 47**
+**Итого услуг: 30 + 4 pillar-хаба = 34**
 
-## Удалено 2026-09-05 (Google Ads compliance, было 52 → стало 47)
+## Видалено 2026-09-05 (перший раунд, 52→47)
 
 | ID | Заголовок | Причина |
 |---|---|---|
-| 9 | Зміна ПІБ | Google Ads "Government documents" — пути нет |
-| 117 | ФОП/ТОВ | то же основание |
-| 139 | Допомога при народженні дитини | то же основание |
-| 149 | Довідка про несудимість з апостилем | то же основание |
-| 171 | Захист прав водія в суді | клиент подтвердил: такой послуги у KOVAL нет |
+| 9 | Зміна ПІБ | Google Ads NO PATH — Name/address changes |
+| 117 | ФОП/ТОВ | Google Ads NO PATH — Business identifiers |
+| 139 | Допомога при народженні дитини | Google Ads NO PATH — Health/welfare, child care |
+| 149 | Довідка про несудимість з апостилем | Google Ads NO PATH — Criminal background checks |
+| 171 | Захист прав водія в суді | клиент підтвердив: такої послуги у KOVAL немає |
 
-Подробности классификации всех 52 исходных страниц —
-`docs/google-ads-gov-services-classification.md` в репозитории.
+## Видалено 2026-09-06 (другий раунд, 47→34)
+
+| ID | Заголовок | Причина |
+|---|---|---|
+| 133 | ІПН для українця | Google Ads — regional ID numbers, клієнт підтвердив видалення |
+| 134 | Відмова від ІПН | те саме |
+| 118 | ІПН для іноземця | те саме |
+| 124 | ІПН (pillar-хаб) | дітей не лишилось |
+| 100 | Дублікат свідоцтва ДРАЦС | Google Ads — birth/death certificates, клієнт підтвердив |
+| 136 | Внесення змін в актовий запис | те саме |
+| 103 | Поновлення актового запису ДРАЦС | те саме |
+| 135 | Витяг з реєстру ДРАЦС | те саме |
+| 121 | Документи ДРАЦС (pillar-хаб) | дітей не лишилось |
+| 162 | Легалізація свідоцтва про зміну ПІБ | HIGH risk (легалізація + restricted-тип документа стекуються) |
+| 159 | Легалізація свідоцтва про народження | те саме |
+| 163 | Легалізація свідоцтва про смерть | те саме |
+| 157 | Легалізація довідки про несудимість | те саме (Criminal background checks) |
+
+Деталі обох раундів — `docs/google-ads-gov-services-classification.md`
+та пам'ять агента `project_koval_google_ads_compliance`.
