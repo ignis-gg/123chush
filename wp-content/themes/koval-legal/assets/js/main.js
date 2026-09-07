@@ -221,4 +221,35 @@
 			});
 		}
 	}
+
+	// "Дякуємо" popup — shown after a real, server-validated consultation-form
+	// submit. koval_legal_handle_consultation_submit() (inc/shortcodes.php)
+	// redirects back with ?koval_sent=1 only once the nonce + honeypot checks
+	// passed, so this never fires on a client-side-only "submit" (e.g. a
+	// failed required-field check never reaches the server at all).
+	var thanksPopup = document.getElementById('koval-thanks-popup');
+	if (thanksPopup && new URLSearchParams(window.location.search).get('koval_sent') === '1') {
+		thanksPopup.hidden = false;
+		document.body.style.overflow = 'hidden';
+
+		var closeThanksPopup = function () {
+			thanksPopup.hidden = true;
+			document.body.style.overflow = '';
+		};
+
+		document.getElementById('koval-thanks-close').addEventListener('click', closeThanksPopup);
+		document.getElementById('koval-thanks-ok').addEventListener('click', closeThanksPopup);
+		thanksPopup.addEventListener('click', function (e) {
+			if (e.target === thanksPopup) closeThanksPopup();
+		});
+		document.addEventListener('keydown', function (e) {
+			if (e.key === 'Escape' && !thanksPopup.hidden) closeThanksPopup();
+		});
+
+		// Strip koval_sent from the URL so a page refresh doesn't re-open the
+		// popup — the lead was already recorded server-side on first load.
+		var cleanUrl = new URL(window.location.href);
+		cleanUrl.searchParams.delete('koval_sent');
+		window.history.replaceState({}, '', cleanUrl.pathname + cleanUrl.search + cleanUrl.hash);
+	}
 })();

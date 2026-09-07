@@ -1079,3 +1079,21 @@ footer#site-footer{background:var(--navy);color:#9aa0ab;padding:70px 0 34px;font
   .svc-body .compare-row div:first-child{border-radius:var(--radius) var(--radius) 0 0;border-bottom:none;}
   .svc-body .compare-row div:last-child{border-radius:0 0 var(--radius) var(--radius);}
 }
+
+/* "Дякуємо" popup — shown after a real, server-validated consultation-form
+   submit (see koval_legal_handle_consultation_submit() in shortcodes.php,
+   which redirects back with ?koval_sent=1; assets/js/main.js watches for
+   that and toggles [hidden] on #koval-thanks-popup). */
+.koval-popup-overlay{position:fixed;inset:0;z-index:200;background:rgba(18,21,28,.72);display:flex;align-items:center;justify-content:center;padding:20px;}
+.koval-popup-overlay[hidden]{display:none;}
+.koval-popup{position:relative;background:var(--paper);border-radius:var(--radius);box-shadow:0 24px 60px rgba(0,0,0,.35);padding:40px 36px 34px;max-width:420px;width:100%;text-align:center;}
+.koval-popup-close{position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:50%;border:none;background:var(--cream);color:var(--muted);font-size:18px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.koval-popup-close:hover{background:var(--line);color:var(--ink);}
+.koval-popup-icon{width:64px;height:64px;border-radius:50%;background:var(--wine);color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;}
+.koval-popup h3{font-family:var(--serif);font-size:24px;font-weight:700;color:var(--ink);margin-bottom:12px;}
+.koval-popup p{font-size:14.5px;line-height:1.6;color:var(--muted);}
+.koval-popup .btn{margin-top:24px;}
+@media(max-width:480px){
+  .koval-popup{padding:32px 22px 28px;}
+  .koval-popup h3{font-size:21px;}
+}
