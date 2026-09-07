@@ -51,8 +51,8 @@ $koval_is_full          = in_array( get_post_field( 'post_name' ), $koval_full_w
 		add_filter( 'the_content', 'wpautop' );
 		?>
 
-		<?php if ( is_page( array( 'pro-nas', 'kontakty' ) ) ) : ?>
-			<?php echo koval_legal_render_cta_section(); ?>
+		<?php if ( is_page( array( 'pro-nas', 'kontakty', 'tsiny' ) ) ) : ?>
+			<?php echo koval_legal_render_cta_section( get_the_title() ); ?>
 		<?php endif; ?>
 
 	<?php else : ?>

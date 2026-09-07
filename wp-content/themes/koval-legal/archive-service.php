@@ -93,7 +93,7 @@ $koval_categories = koval_legal_catalog_categories();
 		</div>
 	</div>
 
-	<?php echo koval_legal_render_cta_section(); ?>
+	<?php echo koval_legal_render_cta_section( 'Каталог послуг' ); ?>
 </main>
 <?php
 get_footer();
