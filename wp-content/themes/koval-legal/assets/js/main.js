@@ -22,20 +22,6 @@
 		});
 	});
 
-	// Sticky mobile CTA bar — appears after scrolling past the hero, hides
-	// again near the very bottom (footer is right there anyway).
-	var stickyCta = document.querySelector('.sticky-cta');
-	if (stickyCta) {
-		var toggleSticky = function () {
-			var pastHero = window.scrollY > window.innerHeight * 0.6;
-			var nearBottom = window.scrollY + window.innerHeight > document.body.scrollHeight - 200;
-			stickyCta.classList.toggle('is-visible', pastHero && !nearBottom);
-			document.body.classList.toggle('has-sticky-cta', pastHero && !nearBottom);
-		};
-		window.addEventListener('scroll', toggleSticky, { passive: true });
-		toggleSticky();
-	}
-
 	// Article "print" button (single.php).
 	var printBtn = document.querySelector('.print-article-btn');
 	if (printBtn) {
