@@ -232,10 +232,13 @@
 			if (e.key === 'Escape' && !thanksPopup.hidden) closeThanksPopup();
 		});
 
-		// Strip koval_sent from the URL so a page refresh doesn't re-open the
-		// popup — the lead was already recorded server-side on first load.
+		// Strip koval_sent (and lt, the one-time GA4/Meta lead token) from
+		// the URL so a page refresh doesn't re-open the popup or leave the
+		// spent token visible — the lead was already recorded server-side
+		// on first load.
 		var cleanUrl = new URL(window.location.href);
 		cleanUrl.searchParams.delete('koval_sent');
+		cleanUrl.searchParams.delete('lt');
 		window.history.replaceState({}, '', cleanUrl.pathname + cleanUrl.search + cleanUrl.hash);
 	}
 })();

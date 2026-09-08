@@ -694,7 +694,15 @@ function koval_legal_register_acf_fields() {
 				'name'         => 'gtm_id',
 				'type'         => 'text',
 				'placeholder'  => 'GTM-XXXXXXX',
-				'instructions' => 'Порожнє поле — код GTM взагалі не завантажується на сайті. Заповніть, коли отримаєте реальний контейнер, і він одразу зʼявиться на всіх сторінках.',
+				'instructions' => 'Тільки для класичного GTM-контейнера з реальними тегами/тригерами всередині. Порожнє поле — код GTM взагалі не завантажується на сайті.',
+			),
+			array(
+				'key'          => 'field_koval_google_tag_id',
+				'label'        => 'Тег Google / GA4 ID',
+				'name'         => 'google_tag_id',
+				'type'         => 'text',
+				'placeholder'  => 'G-XXXXXXXXXX або GT-XXXXXXX',
+				'instructions' => 'ID з екрана "Тег Google" в Google Analytics/Ads (звичайний прямий gtag.js-тег — НЕ той самий механізм, що поле GTM ID вище). Порожнє поле — код не завантажується.',
 			),
 			array(
 				'key'          => 'field_koval_meta_pixel_id',

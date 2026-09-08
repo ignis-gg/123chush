@@ -97,7 +97,16 @@ function koval_legal_handle_consultation_submit() {
 	$body    = "Ім'я: $name\nТелефон: $phone\nEmail: $email\nПослуга: $service\nКоментар: $comment";
 	wp_mail( $to, $subject, $body );
 
-	wp_safe_redirect( add_query_arg( 'koval_sent', '1', $referer ) . '#contact-form' );
+	// One-time token for the GA4 generate_lead conversion event (see
+	// koval_analytics_ga4_events() in inc/analytics.php) — ?koval_sent=1
+	// alone would let a refresh, a bookmarked/shared link, or a page cache
+	// re-fire the same conversion for free (nobody re-submitted anything).
+	// The transient is single-use: analytics.php deletes it the moment it
+	// fires the event, so a repeat visit to the same URL fires nothing.
+	$lead_token = wp_generate_password( 20, false, false );
+	set_transient( 'koval_lead_' . $lead_token, 1, 5 * MINUTE_IN_SECONDS );
+
+	wp_safe_redirect( add_query_arg( array( 'koval_sent' => '1', 'lt' => $lead_token ), $referer ) . '#contact-form' );
 	exit;
 }
 add_action( 'admin_post_koval_legal_consultation', 'koval_legal_handle_consultation_submit' );
