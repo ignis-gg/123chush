@@ -97,7 +97,7 @@ function koval_render_compare( $heading, $lead, $rows ) {
 	}
 	$out = '<section class="cases"><div class="wrap">'
 		. '<div class="eyebrow">Чому ми</div><h2 class="section-h2">' . koval_text( $heading ) . '</h2><p class="section-lead">' . koval_text( $lead ) . '</p>'
-		. '<div class="compare-table"><div class="compare-head"><div>Самостійно</div><div>З KOVAL</div></div>';
+		. '<div class="compare-table"><div class="compare-head"><div>Самостійно</div><div>З KOVAL Legal Group</div></div>';
 	foreach ( $rows as $r ) {
 		$out .= '<div class="compare-row"><div><span class="x-icon">✕</span>' . koval_text( $r['self_text'] ) . '</div><div><span class="check-icon">✓</span>' . koval_text( $r['koval_text'] ) . '</div></div>';
 	}
