@@ -76,7 +76,7 @@ $koval_youtube   = $koval_youtube ?: 'https://www.youtube.com/@kovallegalgroup';
 
 			<div class="footer-col">
 				<h5>Партнери</h5>
-				<p class="footer-partner-text">Result Law Company — супровід іноземців в Україні</p>
+				<p class="footer-partner-text">Result Law Company — консультування іноземців в Україні</p>
 				<h6>Написати в месенджер</h6>
 				<div class="icon-row">
 					<a href="<?php echo esc_url( $koval_telegram ); ?>" class="icon-circle" aria-label="Telegram"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.6 20c-.2 1-1 1.3-1.9.8l-5.3-3.9-2.6 2.5c-.3.3-.5.5-1 .5l.4-5.4L18 6.4c.5-.4-.1-.6-.7-.2L6.5 13.2l-5.3-1.7c-1.1-.4-1.1-1.1.3-1.6L20.6 3.1c1-.3 1.8.2 1.3 1.2z"/></svg></a>
@@ -97,7 +97,7 @@ $koval_youtube   = $koval_youtube ?: 'https://www.youtube.com/@kovallegalgroup';
 			<div>Зв'язатись інакше: <?php echo esc_html( $koval_phone ); ?></div>
 		</div>
 
-		<div class="footer-disclaimer">KOVAL Legal Group — приватна юридична компанія, яка надає консультаційні та представницькі послуги. Ми не є державним органом, не входимо до структури ДРАЦС, Мін'юсту, МЗС чи МОН України та не видаємо офіційні документи самостійно.</div>
+		<div class="footer-disclaimer">KOVAL Legal Group — приватна юридична компанія, яка надає консультаційні та інформаційні послуги. Ми не є державним органом, не входимо до структури ДРАЦС, Мін'юсту, МЗС чи МОН України та не видаємо офіційні документи самостійно.</div>
 	</div>
 </footer>
 

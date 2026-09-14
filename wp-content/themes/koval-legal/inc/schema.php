@@ -1,7 +1,9 @@
 <?php
 /**
  * JSON-LD structured data. One combined @graph per page, output in wp_head:
- * Organization/LegalService always; Service + FAQPage on service posts (both
+ * Organization/ProfessionalService always (deliberately not LegalService —
+ * this site positions as informational/consultation-only for Google Ads
+ * compliance, see docs/known-issues.md); Service + FAQPage on service posts (both
  * the 46 rich landings and the 6 pillar hubs use the same faq_items shape);
  * BlogPosting on the 4 real blog posts.
  *
@@ -27,7 +29,7 @@ function koval_schema_organization() {
 	) ) );
 
 	return array(
-		'@type'        => 'LegalService',
+		'@type'        => 'ProfessionalService',
 		'@id'          => home_url( '/#organization' ),
 		'name'         => 'KOVAL Legal Group',
 		'url'          => home_url( '/' ),
