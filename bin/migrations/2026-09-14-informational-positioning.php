@@ -231,6 +231,19 @@ if ( get_post( 143 ) && get_post( 143 )->post_name === 'podannya-pozovu-do-sudu'
 	echo "WARN: post 143 slug mismatch or missing — SKIPPED for safety\n";
 }
 
+echo "=== 2b. post 21 (/pro-nas/) hero_lead — separate ACF field, missed by the \$pairs pass in section 1 the first time this migration ran on prod (2026-09-14); fixed live via a one-off `wp eval`, folded back in here so a fresh run is complete and idempotent ===\n";
+if ( get_post( 21 ) && get_post( 21 )->post_name === 'pro-nas' ) {
+	$hero_lead_final = 'Ми — консультаційна юридична компанія, яка працює з 1998 року. За цей час ми здобули великий досвід консультування з питань ДРАЦС, судових справ, консульств та державних реєстрів — і застосовуємо його для кожного клієнта.';
+	if ( get_post_meta( 21, 'hero_lead', true ) === $hero_lead_final ) {
+		echo "OK (already correct): post 21 hero_lead\n";
+	} else {
+		update_post_meta( 21, 'hero_lead', $hero_lead_final );
+		echo "Updated post 21 hero_lead\n";
+	}
+} else {
+	echo "WARN: post 21 slug mismatch or missing — SKIPPED for safety\n";
+}
+
 echo "=== 3. service_category term descriptions ===\n";
 $term_desc = array(
 	26 => array( 'Бізнес та реєстрація', 'Консультації щодо реєстрації бізнесу, інформаційна підтримка щодо державних виплат.' ),
