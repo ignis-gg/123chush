@@ -116,6 +116,8 @@ $koval_youtube   = $koval_youtube ?: 'https://www.youtube.com/@kovallegalgroup';
 	<span>Подзвонити</span>
 </a>
 
+<script src="https://widgets.binotel.com/getcall/widgets/xzcao5s8l0chc86m3rgm.js" async></script>
+
 <?php wp_footer(); ?>
 </body>
 </html>
