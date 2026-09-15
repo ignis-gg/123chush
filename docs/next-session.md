@@ -51,11 +51,27 @@ kopiya-sudovogo-rishennya, advokatskyy-zapyt). Метод, что сработа
 
 - **Binotel call-widget** — `<script src=".../xzcao5s8l0chc86m3rgm.js" async>`
   добавлен перед `</body>` в `footer.php`, задеплоено, подтверждено live
-  скриптом на `/` — **[curl]**.
+  скриптом на `/` — **[curl]**. Сделано и на koval-group.pp.ua (свой
+  widget-id `ts3570g0oh38d0ksck8g`, отдельный standalone-репозиторий
+  `koval-group-live`, `/home/guru/123chush-standalone`) — **[curl]**.
 - **Иконка категории "Довідки"** — отсутствовала (`.svc-icon-dovidky`
   не было в `style.css`, единственная категория без иконки в аккордеоне
   `/poslugy/`), добавлена (document-check SVG), задеплоено, подтверждено
-  визуально — **[browser]**.
+  визуально — **[browser]**. Тот же баг и фикс сделаны на
+  koval-group.pp.ua тоже — **[browser]**.
+- **Плаваюча кнопка "Подзвонити" → 3 кружка-месенджера** — за прямим
+  проханням користувача замінено на вертикальну колонку circular-кнопок
+  Telegram/WhatsApp/Viber (`.koval-float-messengers`/`.koval-float-msg`
+  в `footer.php`+`style.css`). Telegram і WhatsApp — диплінк з
+  предзаповненим текстом ("Добрий день! Пишу з сайту {домен}. Хочу
+  отримати консультацію.", домен підставляється динамічно через
+  `home_url()`). Viber — офіційно не підтримує предзаповнення тексту
+  для звичайного номера (тільки Public Account), тому відкриває чат без
+  тексту — свідоме рішення користувача, не недогляд. Зроблено на обох
+  сайтах (koval-legal.pp.ua і koval-group.pp.ua), задеплоєно,
+  підтверджено — **[browser]** на десктопі й на 375px (iframe-трюк,
+  `resize_window` сам по собі не працює в цій пісочниці, див.
+  known-issues.md).
 
 ## Приоритет 2 — доробити наступного разу
 
