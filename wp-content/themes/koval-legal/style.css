@@ -422,13 +422,6 @@ nav.main-nav a:hover,nav.main-nav .current-menu-item>a{opacity:1;}
 .faq-more p{font-size:14.5px;color:var(--muted);}
 .faq-more .btn{white-space:nowrap;}
 
-/* Sitewide floating messenger buttons — see .koval-float-messengers
-   further down (replaces the old .sticky-cta, which was scroll-triggered,
-   mobile-only, and limited to rich-service pages; then the single
-   "Подзвонити" call button 2026-09-08–2026-09-15; the new one is 3
-   circular deep-links to Telegram/WhatsApp/Viber, always visible, on
-   every page, on every viewport width). */
-
 /* ---------- rich service content (headings/lists/tables/FAQ inside .single-content) ---------- */
 .single-content h2{font-family:var(--serif);font-size:24px;font-weight:700;margin:40px 0 16px;}
 .single-content h3{font-family:var(--serif);font-size:18px;font-weight:700;margin:28px 0 12px;}
@@ -1098,19 +1091,13 @@ footer#site-footer{background:var(--navy);color:#9aa0ab;padding:70px 0 34px;font
   .koval-popup h3{font-size:21px;}
 }
 
-/* Sitewide floating "Подзвонити" button — always visible (no scroll-based
-   show/hide, unlike the old .sticky-cta it replaces), on every page, on
-   every viewport. Mobile: full-width bar at the very bottom (familiar
-   pattern, easy thumb reach). Desktop/tablet: compact pill anchored
-   bottom-right so it doesn't compete with page content on wide screens. */
-.koval-float-messengers{position:fixed;z-index:80;right:16px;bottom:16px;display:flex;flex-direction:column;gap:10px;}
-.koval-float-msg{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;box-shadow:0 6px 18px rgba(18,21,28,.28);transition:transform .15s,box-shadow .15s;}
-.koval-float-msg:hover{transform:scale(1.08);box-shadow:0 8px 22px rgba(18,21,28,.34);color:#fff;}
-.koval-float-msg-telegram{background:#29A9EA;}
-.koval-float-msg-whatsapp{background:#25D366;}
-.koval-float-msg-viber{background:#7360F2;}
-
-@media(min-width:641px){
-  .koval-float-messengers{right:28px;bottom:28px;gap:12px;}
-  .koval-float-msg{width:52px;height:52px;}
+/* Binotel chat widget (#bwc-widget-action, 3rd-party script markup, added
+   2026-09-18) auto-shows a text "invitation" bubble (.bwc-invitations) on
+   load that on narrow screens overlaps the hero CTA buttons ("Отримати
+   консультацію", "Написати в Telegram") — confirmed visually at 375px.
+   Hiding just the text teaser, not the round chat button itself, keeps
+   the widget fully functional (still clickable) without covering CTAs. */
+@media(max-width:640px){
+  #bwc-widget-action .bwc-invitations{display:none!important;}
 }
+
