@@ -1101,3 +1101,12 @@ footer#site-footer{background:var(--navy);color:#9aa0ab;padding:70px 0 34px;font
   #bwc-widget-action .bwc-invitations{display:none!important;}
 }
 
+/* Same widget's account-configured "welcome message" cloud
+   (#bwc-chat-cloud-message, .bwc-welcome-message — operator avatar,
+   greeting text, quick-reply buttons) auto-opens a few seconds after
+   load at ANY viewport width, confirmed live on koval-legal.pp.ua
+   covering hero paragraph text and the "Отримати консультацію" button
+   even on desktop. Hiding it (not the round chat icon) keeps chat
+   fully usable on click, just removes the unrequested auto-popup. */
+#bwc-chat-cloud-message{display:none!important;}
+
