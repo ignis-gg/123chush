@@ -62,7 +62,7 @@ $koval_cat  = ! empty( $koval_cats ) ? $koval_cats[0] : null;
 					<div class="author-label">Автор статті</div>
 					<span class="author-name">Олег Коваль</span>
 					<span class="author-role">Засновник та керівник KOVAL Legal Group</span>
-					<p class="author-bio">Надає юридичні консультації з 1998 року, спеціалізується на документах ДРАЦС, судових питаннях та легалізації документів.</p>
+					<p class="author-bio">Надає юридичні консультації з 2020 року, спеціалізується на документах ДРАЦС, судових питаннях та легалізації документів.</p>
 				</div>
 
 				<?php

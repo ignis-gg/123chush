@@ -35,7 +35,7 @@ function koval_schema_organization() {
 		'url'          => home_url( '/' ),
 		'telephone'    => $phone,
 		'email'        => $email,
-		'foundingDate' => '1998',
+		'foundingDate' => '2020',
 		'address'      => array(
 			'@type'           => 'PostalAddress',
 			'streetAddress'   => $address,
