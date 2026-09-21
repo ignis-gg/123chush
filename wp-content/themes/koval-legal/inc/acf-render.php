@@ -251,12 +251,19 @@ function koval_legal_render_pillar_acf( $post_id ) {
  *                should fall back to the_content()).
  */
 function koval_render_legal_notice( $post_id ) {
-	if ( ! in_array( (int) $post_id, koval_legal_legalization_group_ids(), true ) ) {
+	$post_id             = (int) $post_id;
+	$is_legalization     = in_array( $post_id, koval_legal_legalization_group_ids(), true );
+	$is_criminal_record  = in_array( $post_id, koval_legal_criminal_record_ids(), true );
+	if ( ! $is_legalization && ! $is_criminal_record ) {
 		return '';
 	}
-	$text = get_field( 'legalization_disclaimer', 'option' );
-	if ( ! $text ) {
-		$text = "KOVAL Legal Group — приватна юридична компанія. Ми не є державним органом, консульством чи офіційним провайдером легалізації чи апостилю, не видаємо і не гарантуємо видачу документа. Наші консультаційні та інформаційні послуги щодо підготовки документів не замінюють звернення до відповідного державного органу чи консульства — саме він ухвалює остаточне рішення щодо засвідчення чи видачі документа.";
+	if ( $is_criminal_record ) {
+		$text = "KOVAL Legal Group — приватна юридична компанія. Ми не є Національною поліцією чи іншим державним органом, не видаємо довідку про несудимість і не проводимо перевірку на судимість. Надаємо винятково консультаційні та інформаційні послуги щодо порядку звернення — видачу довідки здійснює виключно уповноважений державний орган.";
+	} else {
+		$text = get_field( 'legalization_disclaimer', 'option' );
+		if ( ! $text ) {
+			$text = "KOVAL Legal Group — приватна юридична компанія. Ми не є державним органом, консульством чи офіційним провайдером легалізації чи апостилю, не видаємо і не гарантуємо видачу документа. Наші консультаційні та інформаційні послуги щодо підготовки документів не замінюють звернення до відповідного державного органу чи консульства — саме він ухвалює остаточне рішення щодо засвідчення чи видачі документа.";
+		}
 	}
 	return '<section style="padding:28px 0 0;"><div class="wrap"><div class="legal-notice"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 8v5"/><circle cx="12" cy="16.3" r=".6" fill="currentColor" stroke="none"/></svg><p><strong>Важливо:</strong> ' . koval_text( $text ) . '</p></div></div></section>';
 }

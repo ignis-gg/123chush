@@ -43,6 +43,7 @@ function koval_legal_rich_services() {
 		161 => '', // Легалізація свідоцтва про розлучення.
 		164 => '', // Консульська легалізація іноземних документів в Україні.
 		361 => '', // Довідки (загальний лендінг, без переліку конкретних видів) — 2026-09-08.
+		394 => '', // Довідка про несудимість (dev ID) — 2026-09-21, див. koval_legal_criminal_record_ids().
 		// 100, 103, 118, 133, 134, 135, 136, 157, 159, 162, 163 — retired
 		// 2026-09-06 (Google Ads compliance, ІПН/ДРАЦС group + 4 legalization-
 		// of-svidotstvo pages), see docs/google-ads-gov-services-classification.md.
@@ -88,6 +89,22 @@ function koval_legal_acf_content_ids() {
 function koval_legal_legalization_group_ids() {
 	// 157, 159, 162, 163 removed 2026-09-06 (Google Ads compliance).
 	return array( 99, 147, 148, 150, 151, 111, 152, 153, 154, 164, 155, 101, 158, 160, 161, 112, 156 );
+}
+
+/**
+ * "Довідка про несудимість" — same elevated-risk notice treatment as the
+ * legalization group above (prominent private-company / not-a-government-
+ * body disclaimer injected under the hero), because this document type is
+ * a direct, literal match for Google Ads' "Criminal background checks"
+ * restricted category (see docs/google-ads-gov-services-classification.md,
+ * page 149 was retired 2026-09-05 for exactly this reason). Re-added
+ * 2026-09-21 after KOVAL received Google certification to advertise this
+ * as a consultation/informational service specifically — wording on the
+ * page and this notice both keep the consultation-only framing (KOVAL
+ * does not issue the certificate, only consults on how to obtain it).
+ */
+function koval_legal_criminal_record_ids() {
+	return array( 394 ); // dev ID — prod ID differs, see docs/migration-status.md.
 }
 
 /**
