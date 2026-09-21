@@ -16,6 +16,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 define( 'KOVAL_LEGAL_VERSION', '1.0-recovery' );
 
+// Fallback recipients for duplicate copies of consultation-form leads,
+// used when the `company_email_cc` theme_mod isn't set (i.e. on any
+// install whose DB hasn't been touched — prod included). Comma-separated.
+if ( ! defined( 'KOVAL_LEAD_CC_DEFAULT' ) ) {
+	define( 'KOVAL_LEAD_CC_DEFAULT', 'mishura08@gmail.com' );
+}
+
 /**
  * Theme setup.
  */
@@ -243,6 +250,18 @@ function koval_legal_customize_register( $wp_customize ) {
 
 	$wp_customize->add_setting( 'company_email', array( 'default' => '' ) );
 	$wp_customize->add_control( 'company_email', array( 'label' => 'Email', 'section' => 'koval_legal_contacts', 'type' => 'text' ) );
+
+	// Duplicate copies of every consultation-form lead, sent as separate
+	// wp_mail() calls (see koval_legal_handle_consultation_submit()). The
+	// default keeps this working on prod without a DB edit; a value set
+	// here in Customizer overrides it. Empty value = no duplicates.
+	$wp_customize->add_setting( 'company_email_cc', array( 'default' => KOVAL_LEAD_CC_DEFAULT ) );
+	$wp_customize->add_control( 'company_email_cc', array(
+		'label'       => 'Email для дублів заявок',
+		'description' => 'Копія кожної заявки з форми. Кілька адрес — через кому.',
+		'section'     => 'koval_legal_contacts',
+		'type'        => 'text',
+	) );
 }
 add_action( 'customize_register', 'koval_legal_customize_register' );
 

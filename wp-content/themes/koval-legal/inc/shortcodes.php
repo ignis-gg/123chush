@@ -55,6 +55,27 @@ function koval_legal_consultation_form( $locked_service = '' ) {
 }
 
 /**
+ * Extra recipients that get their own copy of every lead, from the
+ * `company_email_cc` theme_mod (comma-separated, Customizer → Контакти
+ * компанії), falling back to KOVAL_LEAD_CC_DEFAULT. $primary is skipped
+ * so nobody gets the same lead twice.
+ */
+function koval_legal_lead_cc_recipients( $primary = '' ) {
+	$raw = get_theme_mod( 'company_email_cc', defined( 'KOVAL_LEAD_CC_DEFAULT' ) ? KOVAL_LEAD_CC_DEFAULT : '' );
+	$out = array();
+	foreach ( explode( ',', (string) $raw ) as $candidate ) {
+		$candidate = sanitize_email( trim( $candidate ) );
+		if ( ! $candidate || 0 === strcasecmp( $candidate, (string) $primary ) ) {
+			continue;
+		}
+		if ( ! in_array( $candidate, $out, true ) ) {
+			$out[] = $candidate;
+		}
+	}
+	return $out;
+}
+
+/**
  * admin-post.php handler for the form above: nonce check, honeypot check,
  * koval_lead CPT entry, wp_mail() notification (falls back to
  * admin_email if company_email theme_mod isn't set, same as before).
@@ -96,6 +117,15 @@ function koval_legal_handle_consultation_submit() {
 	$subject = 'Нова заявка з сайту' . ( $service ? ' — ' . $service : '' );
 	$body    = "Ім'я: $name\nТелефон: $phone\nEmail: $email\nПослуга: $service\nКоментар: $comment";
 	wp_mail( $to, $subject, $body );
+
+	// Duplicate copies (2026-09-21, client request). Deliberately separate
+	// wp_mail() calls rather than extra To:/Bcc: recipients on the one
+	// above: with SMTP a single rejected recipient can fail the whole
+	// send, and the primary lead notification must not depend on a
+	// secondary address staying deliverable.
+	foreach ( koval_legal_lead_cc_recipients( $to ) as $cc ) {
+		wp_mail( $cc, $subject, $body );
+	}
 
 	// One-time token for the GA4 generate_lead conversion event (see
 	// koval_analytics_ga4_events() in inc/analytics.php) — ?koval_sent=1
