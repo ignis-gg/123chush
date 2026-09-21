@@ -601,3 +601,36 @@ Apache/LiteSpeed-хостинге будет так же (может быть л
   проді) — команда мала бути `wp eval-file bin/X.php`. Перш ніж
   запускати `wp eval-file`, звірити реальний шлях файлу в File Manager,
   а не копіювати шлях 1:1 з локального репозиторію.
+
+- **На cPanel-акаунті `kovallegalgroup` ЖИВЕ 5 сайтів — каталог по імені
+  вгадувати не можна** — зафіксовано 2026-09-21 (користувач окремо
+  попередив). Поруч лежать `koval-group.pp.ua`, `koval-legal-group.pp.ua`
+  і `koval-legal.pp.ua` — назви різняться одним дефісом. Дешева й
+  надійна перевірка прямо з вкладки cPanel через `javascript_tool`
+  (read-only, класифікатор не блокує): `fetch('<cpsess>/execute/
+  DomainInfo/domains_data?format=hash')` дає domain → documentroot, а
+  `fetch('<cpsess>/execute/Fileman/get_file_content?dir=...&file=
+  wp-config.php')` — `DB_NAME` цього каталогу (у koval-legal.pp.ua це
+  `kovallegalgroup_koval_google`, у koval-group.pp.ua —
+  `kovallegalgroup_facebook_koval`). Третій сайт `koval-legal-group.pp.ua`
+  порожній (тільки `cgi-bin` і `php.ini`).
+- **Той самий `get_file_content` + SHA-256 у браузері = перевірка деплою
+  без Terminal** — 2026-09-21: до заливки порівняти хеш прод-файлу з
+  `git show <commit>:<path> | sha256sum` (ловить дрейф прод-правок мимо
+  гіта), після заливки — з локальним файлом (ловить недовантаження й
+  перейменування замість overwrite). Галочку «Overwrite existing files»
+  на upload-сторінці ставити ОБОВ'ЯЗКОВО, інакше cPanel створює файл під
+  іншим іменем, а стара версія лишається робочою.
+- **UAPI-модуля `EmailTrack` на цьому сервері немає** (`Failed to load
+  module "EmailTrack"`), хоча UI «Track Delivery» працює — його сторінка
+  лежить за `frontend/jupiter/mail/route.html` (НЕ `emailtrack/
+  index.html`, там 404). Таблиця доставок — найшвидший спосіб довести,
+  що лист із форми реально пішов із сервера і був `Accepted`, без
+  доступу до чужої поштової скриньки.
+- **Скріншот, знятий одразу після скролу, може повернутись порожнім
+  білим кадром** — 2026-09-21 на проді: `computer screenshot` віддав
+  повністю білу картинку, хоча сторінка ціла (перевірено
+  `document.documentElement.scrollHeight` і `getBoundingClientRect()`
+  форми, повторний скріншот показав нормальний рендер). Не приймати
+  такий кадр за «зламаний сайт/білий екран смерті» — спершу перезняти й
+  звірити з метриками DOM.
