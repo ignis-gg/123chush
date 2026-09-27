@@ -5,6 +5,14 @@ Standing authorization for this project — act without asking for confirmation 
 - `git add` / `commit` / `push` (any branch)
 - Deploying the demo site (`wrangler pages deploy` → koval-legal-demo.pages.dev)
 - `ddev` / `wp-cli` commands (via `sg docker -c "ddev ..."`)
+- Production deploy of koval-legal.pp.ua / koval-group.pp.ua over SSH
+  (`ssh`/`scp -i ~/.ssh/migration_ed25519 root@185.230.88.199`, VPS TheHost,
+  since 2026-09-26): reading/comparing files, backups, uploading theme
+  files, running `sudo -u perenos82 wp ...` (incl. migrations via
+  `wp eval-file`). Only inside `/var/www/perenos82/` — the other sites on
+  this VPS (`perenos74`, `perenos83`, …) are not ours, never touch them.
+  Take a backup to `/var/www/perenos82/data/claude-backups/` before any
+  DB/content change. Details: `docs/known-issues.md`, «Новий хостинг».
 
 Exception — still confirm first, every time, with an isolated confirmation step:
 - Any `rm -rf`, `rmtree`, or bulk-delete of files/directories in this project.
