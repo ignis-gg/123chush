@@ -101,7 +101,7 @@ $desktop_picture = function ( $attachment_id, $class, $sizes ) {
 						<li><?php echo koval_legal_ads_svg( 'check', 16, 2.2 ); ?>Без зобов'язань</li>
 					<?php else : ?>
 						<li class="al-chips__main"><?php echo koval_legal_ads_svg( 'check', 20, 2.2 ); ?>Перша консультація — безкоштовно</li>
-						<li class="al-chips__mobile"><?php echo koval_legal_ads_svg( 'check', 18, 2.2 ); ?>15+ років практики · 1000+ консультацій</li>
+						<li class="al-chips__mobile"><?php echo koval_legal_ads_svg( 'check', 18, 2.2 ); ?>15+ років · 57&nbsp;000+ консультацій</li>
 						<?php if ( $chip ) : ?>
 							<li><?php echo koval_legal_ads_svg( 'check', 18, 2.2 ); ?><?php echo esc_html( $chip ); ?></li>
 						<?php endif; ?>
@@ -122,7 +122,7 @@ $desktop_picture = function ( $attachment_id, $class, $sizes ) {
 				<div class="al-hero__media" aria-hidden="true">
 					<?php echo $desktop_picture( $hero_img, 'al-hero__photo', '(min-width: 1200px) 560px, 46vw' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 					<?php if ( ! $delicate ) : ?>
-						<div class="al-float al-float--a"><span class="al-float__num">1000+</span><span class="al-float__label">наданих<br>консультацій</span></div>
+						<div class="al-float al-float--a"><span class="al-float__num">57&nbsp;000+</span><span class="al-float__label">наданих<br>консультацій</span></div>
 						<div class="al-float al-float--b"><span class="al-float__num">15+</span><span class="al-float__label">років<br>практики</span></div>
 					<?php endif; ?>
 				</div>
@@ -189,7 +189,7 @@ $desktop_picture = function ( $attachment_id, $class, $sizes ) {
 					<li><span class="al-steps__num">3</span><span class="al-steps__txt"><strong><?php echo $delicate ? 'Ви знаєте, що робити далі' : 'Ви знаєте, як діяти далі'; ?></strong><?php if ( $step3 ) : ?><span><?php echo esc_html( $step3 ); ?></span><?php endif; ?></span></li>
 				</ol>
 				<?php if ( $delicate ) : ?>
-					<p class="al-quiet-stats">15+ років юридичної практики · 1000+ наданих консультацій</p>
+					<p class="al-quiet-stats">15+ років юридичної практики · 57&nbsp;000+ наданих консультацій</p>
 				<?php else : ?>
 					<?php echo $call_btn( 'Передзвоніть мені' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 				<?php endif; ?>
@@ -201,7 +201,7 @@ $desktop_picture = function ( $attachment_id, $class, $sizes ) {
 		<section class="al-stats">
 			<div class="wrap al-stats__grid">
 				<div class="al-stat"><span class="al-stat__num">15+</span><span class="al-stat__label">років юридичної практики</span></div>
-				<div class="al-stat"><span class="al-stat__num">1000+</span><span class="al-stat__label">наданих консультацій</span></div>
+				<div class="al-stat"><span class="al-stat__num">57&nbsp;000+</span><span class="al-stat__label">наданих консультацій</span></div>
 				<div class="al-stat al-stat--world">
 					<span class="al-ico al-ico--dark"><?php echo koval_legal_ads_svg( 'globe', 24, 1.7 ); ?></span>
 					<p><strong>Консультуємо українців по всьому світу</strong> — тих, хто в Україні, і тих, хто виїхав за кордон.</p>
