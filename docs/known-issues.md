@@ -667,3 +667,41 @@ Apache/LiteSpeed-хостинге будет так же (может быть л
   files" не спрацює (нема що оверрайтити) і на проді лишається сторонній
   файл, який потім треба вручну видаляти через File Manager (правою
   кнопкою → Delete → підтвердити саме той шлях, що у діалозі).
+
+## Новий хостинг (з ~2026-09-26): VPS TheHost, SSH замість cPanel
+
+Усе вище про cPanel File Manager/Terminal (`kovallegalgroup`) — **застаріло
+для проду**. Сайт перенесено на VPS TheHost (VMmanager-панель
+`vm-cloud.thehost.ua`, VM 8996, IP `185.230.88.199`, ISPmanager на
+сервері, домен за Cloudflare).
+
+- Доступ: `ssh -i ~/.ssh/migration_ed25519 root@185.230.88.199` (ключ вже
+  доданий, пароль не потрібен).
+- Корінь сайту: `/var/www/perenos82/data/www/koval-legal.pp.ua`, власник
+  файлів `perenos82`. koval-group.pp.ua — поруч у тому ж `perenos82`.
+  **На VPS ще 5 чужих сайтів** (`perenos74`, `perenos83`) — не чіпати.
+- wp-cli: `cd <корінь> && sudo -u perenos82 wp ...` (не від root —
+  зберегти власника файлів). `wp db export` пише попередження
+  `mysql.cnf ... Permission denied` — нешкідливо, дамп повний (перевіряти
+  останній рядок `-- Dump completed`).
+- Файли теми заливати `scp` у `/tmp`, потім `install -o perenos82 -g
+  perenos82 -m 644` у тему; звірка — `sha256sum` локально vs на сервері.
+  Міграції класти ПОЗА docroot: `/var/www/perenos82/data/claude-migrations/`.
+- Бекапи перед правкою: `/var/www/perenos82/data/claude-backups/<дата-задача>/`.
+- `inc/service-lists.php` на проді свідомо відрізняється від гіта (прод-ID
+  362/421 замість dev 361/394) — при заливці цей файл НЕ перезаписувати
+  dev-версією.
+- Класифікатор auto mode блокує SSH-читання/деплой на прод («Production
+  Reads»/«Production Deploy») навіть після усного «так» — потрібне
+  allow-правило в `.claude/settings.local.json` або запуск скрипта
+  користувачем через `! bash <script>`.
+
+## `wp_update_post()` у міграціях під WP-CLI може різати HTML через kses
+
+Під `wp eval-file` немає поточного користувача → немає `unfiltered_html`
+→ `wp_insert_post()` проганяє `post_content` через `wp_filter_post_kses`,
+який видаляє `<svg>`, `<button>` та інше з ручної HTML-розмітки послуг.
+Для правок `post_content` у міграціях писати через `$wpdb->update()` +
+`clean_post_cache()` (див. `2026-09-27-remove-contacts.php`). Старі
+міграції (2026-09-15) використовували `wp_update_post` — якщо в тих
+постах колись зникнуть іконки, причина ймовірно тут.
