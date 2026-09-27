@@ -8,11 +8,13 @@
  * `_koval_ads_asset` meta, so a re-run just refreshes the copy. Photos
  * (Unsplash License, free commercial use) live next to this file in
  * assets/2026-09-27-ads-landings/ — copy that folder along when running
- * on another server. The v3-* set (in use, per the user: photos must
- * convey expertise, not "someone at home after work") is one office shoot
- * by Vitaly Gariev — specialists in business wear, consultations at a
- * desk — cropped around the person to the desktop hero ratio and given
- * one shared warm-muted grade. v2-* and the unprefixed files are earlier
+ * on another server. The v4-* set (in use) follows two user rules:
+ * photos must convey EXPERTISE (specialist in business wear, office,
+ * consultations — not "a client at home") and show ONE AND THE SAME
+ * person from different angles. All seven are the same blonde specialist
+ * in a grey suit from a single Vitaly Gariev office shoot (Unsplash
+ * License), cropped around her to the desktop hero ratio and given one
+ * shared warm-muted grade. v3-*, v2-* and unprefixed files are earlier
  * sets, kept only as history.
  *
  * Run: wp eval-file bin/migrations/2026-09-27-ads-landings.php
@@ -68,7 +70,7 @@ $koval_blog_by_title = function ( $title ) {
 	return $p ? (int) $p[0] : 0;
 };
 
-$photo_steps = $koval_photo( 'v3-steps-specialist-phone-notes.jpg', 'Фахівець розмовляє з клієнтом по телефону й робить нотатки' );
+$photo_steps = $koval_photo( 'v4-steps-expert-desk-notes.jpg', 'Фахівчиня KOVAL за робочим столом робить нотатки' );
 
 // Constant FAQ items (TZ §3).
 $faq_cost = array( 'question' => 'Скільки коштує консультація?', 'answer' => 'Перша консультація безкоштовна. Залиште номер — і ми передзвонимо.' );
@@ -103,7 +105,7 @@ $pages = array(
 		'slug'     => 'dublikat-svidotstva-pro-narodzhennya',
 		'title'    => 'Дублікат свідоцтва про народження',
 		'category' => 'dovidky',
-		'hero'     => array( 'v3-hero-specialist-woman-desk.jpg', 'Фахівчиня за робочим столом в офісі' ),
+		'hero'     => array( 'v4-hero-expert-portrait.jpg', 'Фахівчиня в діловому костюмі в офісі' ),
 		'fields'   => array(
 			'ads_variant'    => 'standard',
 			'ads_eyebrow'    => 'Консультація · ДРАЦС',
@@ -142,7 +144,7 @@ $pages = array(
 		'slug'     => 'dokumenty-dlya-rozluchennya',
 		'title'    => 'Документи для розлучення',
 		'category' => 'family',
-		'hero'     => array( 'v3-hero-lawyer-consultation.jpg', 'Юристка консультує клієнтів за столом в офісі' ),
+		'hero'     => array( 'v4-hero-expert-clients-table.jpg', 'Фахівчиня консультує клієнтів за столом в офісі' ),
 		'fields'   => array(
 			'ads_variant'    => 'standard',
 			'ads_eyebrow'    => 'Консультація · сімейне право',
@@ -182,7 +184,7 @@ $pages = array(
 		'slug'     => 'dokumenty-drats-z-za-kordonu',
 		'title'    => 'Повторні свідоцтва ДРАЦС з-за кордону',
 		'category' => 'dovidky',
-		'hero'     => array( 'v3-hero-specialist-man-phone.jpg', 'Фахівець у діловому костюмі розмовляє по телефону біля офісу' ),
+		'hero'     => array( 'v4-hero-expert-lobby-above.jpg', 'Фахівчиня з документами обговорює питання з клієнтами в холі офісу' ),
 		'fields'   => array(
 			'ads_variant'    => 'standard',
 			'ads_eyebrow'    => 'Консультація · для українців за кордоном',
@@ -222,7 +224,7 @@ $pages = array(
 		'slug'     => 'dovidka-pro-nesudymist-z-za-kordonu',
 		'title'    => 'Довідка про несудимість з-за кордону',
 		'category' => 'dovidky',
-		'hero'     => array( 'v3-hero-specialist-man-portrait.jpg', 'Усміхнений фахівець у діловому костюмі в офісі' ),
+		'hero'     => array( 'v4-hero-expert-handshake-side.jpg', 'Фахівчиня потискає руку клієнту після консультації' ),
 		'fields'   => array(
 			'ads_variant'    => 'standard',
 			'ads_eyebrow'    => 'Консультація · для українців за кордоном',
@@ -262,7 +264,7 @@ $pages = array(
 		'slug'     => 'zmina-pib',
 		'title'    => 'Зміна прізвища, імені чи по батькові',
 		'category' => 'dovidky',
-		'hero'     => array( 'v3-hero-office-consultation.jpg', 'Консультація з клієнтами в офісі' ),
+		'hero'     => array( 'v4-hero-expert-meeting-hall.jpg', 'Фахівчиня на зустрічі з клієнтами в офісі' ),
 		'fields'   => array(
 			'ads_variant'    => 'standard',
 			'ads_eyebrow'    => 'Консультація · ДРАЦС',
@@ -302,7 +304,7 @@ $pages = array(
 		'slug'     => 'svidotstvo-pro-smert',
 		'title'    => 'Свідоцтво про смерть',
 		'category' => 'dovidky',
-		'hero'     => array( 'v3-hero-calm-conversation.jpg', 'Спокійна розмова фахівчині з клієнткою за столом' ),
+		'hero'     => array( 'v4-hero-expert-desk-calm.jpg', 'Фахівчиня за робочим столом в офісі' ),
 		'fields'   => array(
 			'ads_variant'    => 'delicate',
 			'ads_eyebrow'    => 'Консультація · ДРАЦС',
