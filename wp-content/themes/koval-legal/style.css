@@ -1078,3 +1078,21 @@ footer#site-footer{background:var(--navy);color:#9aa0ab;padding:70px 0 34px;font
    fully usable on click, just removes the unrequested auto-popup. */
 #bwc-chat-cloud-message{display:none!important;}
 
+
+/* "Back to top" button (footer.php + main.js), every page. Sits right above
+   Binotel's round call button (56px, 30px from the bottom-right corner) so
+   the two never overlap; hidden until the page is scrolled. */
+.to-top{
+  position:fixed;right:36px;bottom:108px;z-index:99999997;
+  width:44px;height:44px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--navy);color:#fff;border:1px solid rgba(217,189,130,.55);
+  box-shadow:0 6px 18px rgba(18,21,28,.25);
+  opacity:0;visibility:hidden;transform:translateY(8px);
+  transition:opacity .2s ease,transform .2s ease,visibility .2s,background .15s;
+}
+.to-top.is-visible{opacity:1;visibility:visible;transform:none;}
+.to-top:hover{background:var(--wine);color:#fff;}
+.to-top:focus-visible{outline:3px solid var(--gold);outline-offset:3px;}
+@media (prefers-reduced-motion:reduce){.to-top{transition:none;}}
+@media print{.to-top{display:none;}}

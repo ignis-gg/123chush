@@ -150,9 +150,10 @@
 /* Binotel chat launcher (sitewide widget, bottom-left): on phones lift it
    above the sticky call bar while the bar is shown, so they don't overlap.
    `translate` (not `transform`) so Binotel's own transforms stay intact. */
-body.ads-landing #bwc-widget-action{transition:translate .25s ease;}
+body.ads-landing #bwc-widget-action,body.ads-landing .to-top{transition:translate .25s ease,opacity .2s ease,transform .2s ease,visibility .2s;}
 @media (max-width:960px){
-  body.ads-landing.al-sticky-on #bwc-widget-action{translate:0 calc(-1 * (var(--al-sticky-h, 100px) - 16px));}
+  body.ads-landing.al-sticky-on #bwc-widget-action,
+  body.ads-landing.al-sticky-on .to-top{translate:0 calc(-1 * (var(--al-sticky-h, 100px) - 16px));}
 }
 
 /* shown when the Binotel window can't open (blocked / not loaded yet) */

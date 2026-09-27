@@ -75,6 +75,8 @@ $koval_address = get_theme_mod( 'company_address', "м. Київ, вул. Іоа
 	</div>
 </div>
 
+<a href="#" class="to-top" id="to-top" aria-label="Прокрутити нагору" title="Нагору"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 19V5M5 12l7-7 7 7"/></svg></a>
+
 <?php
 // Google Ads landings: the page's own buttons open GetCall, so they need to
 // know when it's ready (onReady). The chat widget stays, same as sitewide

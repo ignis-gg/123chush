@@ -242,3 +242,30 @@
 		window.history.replaceState({}, '', cleanUrl.pathname + cleanUrl.search + cleanUrl.hash);
 	}
 })();
+
+// "Back to top" button (footer.php): shown once the page is scrolled,
+// smooth-scrolls to the top (instant when the user prefers reduced motion).
+(function () {
+	var btn = document.getElementById('to-top');
+	if (!btn) {
+		return;
+	}
+	var ticking = false;
+	var update = function () {
+		btn.classList.toggle('is-visible', window.scrollY > 600);
+		ticking = false;
+	};
+	window.addEventListener('scroll', function () {
+		if (!ticking) {
+			ticking = true;
+			window.requestAnimationFrame(update);
+		}
+	}, { passive: true });
+	update();
+	btn.addEventListener('click', function (e) {
+		e.preventDefault();
+		var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+		window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+		btn.blur();
+	});
+})();
