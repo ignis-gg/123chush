@@ -131,31 +131,6 @@
 .al-related__item svg{color:var(--wine);flex-shrink:0;}
 .al-related__item:hover{border-color:var(--gold);color:var(--ink);}
 
-/* ---------- sticky bottom bar (mobile only, after the hero) ---------- */
-.al-sticky{
-  position:fixed;left:0;right:0;bottom:0;z-index:60;
-  background:#fff;border-top:1px solid var(--line);box-shadow:0 -6px 24px rgba(18,21,28,.14);
-  padding:10px 14px calc(12px + env(safe-area-inset-bottom));
-  display:flex;flex-direction:column;gap:6px;
-  transform:translateY(110%);transition:transform .25s ease;
-}
-.al-sticky[hidden]{display:none;}
-.al-sticky:not(.is-visible){visibility:hidden;}
-.al-sticky.is-visible{transform:none;visibility:visible;}
-.al-sticky__note{text-align:center;font-size:12.5px;font-weight:600;color:#5b606b;}
-.al-btn--sticky{min-height:52px;}
-/* keep the footer's last lines reachable above the fixed bar */
-@media (max-width:960px){body.ads-landing.al-has-sticky #site-footer{padding-bottom:110px;}}
-
-/* Binotel chat launcher (sitewide widget, bottom-left): on phones lift it
-   above the sticky call bar while the bar is shown, so they don't overlap.
-   `translate` (not `transform`) so Binotel's own transforms stay intact. */
-body.ads-landing #bwc-widget-action,body.ads-landing .to-top{transition:translate .25s ease,opacity .2s ease,transform .2s ease,visibility .2s;}
-@media (max-width:960px){
-  body.ads-landing.al-sticky-on #bwc-widget-action,
-  body.ads-landing.al-sticky-on .to-top{translate:0 calc(-1 * (var(--al-sticky-h, 100px) - 16px));}
-}
-
 /* shown when the Binotel window can't open (blocked / not loaded yet) */
 .al-toast[hidden]{display:none;}
 .al-toast{position:fixed;left:16px;right:16px;bottom:120px;z-index:70;margin:0 auto;max-width:420px;background:var(--ink);color:#fff;border-radius:12px;padding:14px 16px;font-size:14px;line-height:1.45;box-shadow:0 12px 30px rgba(0,0,0,.3);}
@@ -277,12 +252,11 @@ body.ads-landing #bwc-widget-action,body.ads-landing .to-top{transition:translat
   .al-related__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:18px;}
   .al-related__item{min-height:64px;padding:12px 22px;border-radius:14px;font-size:16px;}
 
-  .al-sticky{display:none !important;}
 
   .al--delicate .al-hero__title{font-size:44px;}
   .al--delicate .al-chips li{border:none;padding:0 16px 0 0;}
 }
 
 @media (prefers-reduced-motion:reduce){
-  .al-sticky,.al-btn,.al-faq__icon{transition:none;}
+  .al-btn,.al-faq__icon{transition:none;}
 }

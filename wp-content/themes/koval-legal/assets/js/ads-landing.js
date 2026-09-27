@@ -7,9 +7,9 @@
  * code 2026-09-27; Binotel itself sends the GA4 event
  * binotel_gc_opened_passive_form). The widget script loads async, so a
  * click that comes before it's ready waits a few seconds for it.
- *
- * Mobile: the sticky bottom bar shows once the hero button has scrolled
- * away, and hides again over the final CTA block (no two buttons at once).
+
+ * (A mobile sticky "Передзвоніть мені" bar was removed 2026-09-27 at the
+ * user's request — Binotel's own call button is always on screen anyway.)
  */
 (function () {
 	'use strict';
@@ -86,34 +86,4 @@
 		e.stopPropagation();
 		setTimeout(openCallback, 0);
 	}, true);
-
-	// ---- sticky bottom bar (CSS hides it on desktop) ----
-	var sticky = document.querySelector('[data-al-sticky]');
-	var heroCta = document.querySelector('.al-hero__cta');
-	var finalBlock = document.querySelector('.al-final');
-	if (!sticky || !heroCta || !('IntersectionObserver' in window)) {
-		return;
-	}
-	sticky.hidden = false;
-	document.body.classList.add('al-has-sticky');
-
-	var heroVisible = true;
-	var finalVisible = false;
-	function update() {
-		var visible = !heroVisible && !finalVisible;
-		sticky.classList.toggle('is-visible', visible);
-		// Lets the CSS lift the Binotel chat launcher above the bar.
-		document.body.classList.toggle('al-sticky-on', visible);
-		document.body.style.setProperty('--al-sticky-h', sticky.offsetHeight + 'px');
-	}
-	new IntersectionObserver(function (entries) {
-		heroVisible = entries[0].isIntersecting || entries[0].boundingClientRect.top > 0;
-		update();
-	}).observe(heroCta);
-	if (finalBlock) {
-		new IntersectionObserver(function (entries) {
-			finalVisible = entries[0].isIntersecting;
-			update();
-		}).observe(finalBlock);
-	}
 })();

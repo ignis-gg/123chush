@@ -299,10 +299,5 @@ $desktop_picture = function ( $attachment_id, $class, $sizes ) {
 		</section>
 	<?php endif; ?>
 
-	<div class="al-sticky" data-al-sticky hidden>
-		<p class="al-sticky__note">Перша консультація безкоштовна</p>
-		<?php echo $call_btn( 'Передзвоніть мені', 'al-btn al-btn--primary al-btn--sticky' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
-	</div>
-
 	<div class="al-toast" data-al-toast role="status" aria-live="polite" hidden></div>
 </main>

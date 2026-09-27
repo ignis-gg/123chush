@@ -104,8 +104,7 @@ function koval_legal_ads_landing_assets() {
 /**
  * Binotel on these pages: every page button opens GetCall; its own floating
  * phone button stays hidden (the chat widget hides it sitewide too). The
- * chat widget loads as on every page (footer.php); on phones its launcher
- * is lifted above the sticky call bar (assets/css/ads-landing.css).
+ * chat widget loads as on every page (footer.php).
  * onReady flags the page so our buttons know the window can be opened.
  */
 function koval_legal_ads_binotel_settings_script() {
