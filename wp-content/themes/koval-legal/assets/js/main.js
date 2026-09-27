@@ -269,3 +269,70 @@
 		btn.blur();
 	});
 })();
+
+// Every "consultation" CTA on the site (header "Консультація", service hero
+// buttons, blog/catalog/price CTAs — all link to #contact-form) opens the
+// Binotel "Передзвоніть мені" callback window instead of scrolling to the
+// form (user request 2026-09-27; the forms themselves stay on the pages).
+// Without JS, or if Binotel never loads, the link still leads to the form.
+// Google Ads landings have their own handler (assets/js/ads-landing.js).
+(function () {
+	if (document.body.classList.contains('ads-landing')) {
+		return;
+	}
+	var WIDGET_ID = '88044'; // BinotelGetCall id of the footer.php GetCall widget
+	var getWidget = function () {
+		var all = window.BinotelGetCall;
+		if (!all) {
+			return null;
+		}
+		var w = all[WIDGET_ID];
+		if (!w) {
+			for (var key in all) {
+				if (Object.prototype.hasOwnProperty.call(all, key)) {
+					w = all[key];
+					break;
+				}
+			}
+		}
+		return w && typeof w.openPassiveForm === 'function' ? w : null;
+	};
+	var pending = null;
+	document.addEventListener('click', function (e) {
+		var link = e.target.closest('a[href*="#contact-form"], [data-binotel-call]');
+		if (!link) {
+			return;
+		}
+		var w = getWidget();
+		if (!w && !window.BinotelGetCall) {
+			return; // widget script blocked or not there: fall back to the form
+		}
+		e.preventDefault();
+		// Open after this click finishes bubbling — Binotel closes its window
+		// on any document click outside it, including this one.
+		e.stopPropagation();
+		if (w) {
+			setTimeout(function () { w.openPassiveForm(); }, 0);
+			return;
+		}
+		if (pending) {
+			return;
+		}
+		var started = Date.now();
+		pending = setInterval(function () {
+			var ready = getWidget();
+			if (ready || Date.now() - started > 5000) {
+				clearInterval(pending);
+				pending = null;
+				if (ready) {
+					ready.openPassiveForm();
+				} else {
+					var form = document.getElementById('contact-form');
+					if (form) {
+						form.scrollIntoView({ behavior: 'smooth' });
+					}
+				}
+			}
+		}, 200);
+	}, true);
+})();

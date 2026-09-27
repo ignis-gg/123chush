@@ -735,3 +735,10 @@ Apache/LiteSpeed-хостинге будет так же (может быть л
   `el.scrollIntoView({behavior:'instant'})`.
 - `install -D` при заливці на прод створює нові каталоги від root —
   після нього `chown perenos82:perenos82` на створений каталог.
+
+## Rank Math sitemap не бачить сторінок, створених міграцією через wp-cli
+
+Знайдено 2026-09-27: 6 Ads-лендингів, створених `wp eval-file`, кілька годин
+не з'являлись у `/service-sitemap.xml` — Rank Math віддає закешовану карту.
+Після створення/видалення записів міграцією скидати кеш:
+`sudo -u perenos82 wp eval 'RankMath\Sitemap\Cache::invalidate_storage();'`.
