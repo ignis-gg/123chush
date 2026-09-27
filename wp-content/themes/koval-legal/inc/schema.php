@@ -103,6 +103,9 @@ function koval_schema_output() {
 		if ( empty( $faq_items ) ) {
 			$faq_items = get_field( 'pillar_faq_items', $post_id );
 		}
+		if ( function_exists( 'koval_legal_is_ads_landing' ) && koval_legal_is_ads_landing( $post_id ) ) {
+			$faq_items = get_field( 'ads_faq', $post_id );
+		}
 		$entities = koval_schema_faq_entities( $faq_items );
 		if ( $entities ) {
 			$graph[] = array(

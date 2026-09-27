@@ -290,3 +290,4 @@ require get_theme_file_path( 'inc/schema.php' );
 require get_theme_file_path( 'inc/security-hardening.php' );
 require get_theme_file_path( 'inc/analytics.php' );
 require get_theme_file_path( 'inc/performance.php' );
+require get_theme_file_path( 'inc/ads-landing.php' );

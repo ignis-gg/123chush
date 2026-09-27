@@ -15,6 +15,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 get_header();
 
+// Google Ads landings (ACF toggle "ads_landing") have their own full-page
+// template — one call-back CTA flow, no form. See inc/ads-landing.php.
+if ( koval_legal_is_ads_landing() ) {
+	while ( have_posts() ) :
+		the_post();
+		get_template_part( 'template-parts/ads-landing' );
+	endwhile;
+	get_footer();
+	return;
+}
+
 // ID lists live in inc/service-lists.php — shared with inc/acf-admin-ux.php
 // so the "which posts are ACF-driven" answer never drifts between them.
 $koval_rich_services   = koval_legal_rich_services();
