@@ -6,9 +6,9 @@
  *
  * The page's single job is to get the visitor's phone number to the sales
  * manager: every CTA opens the Binotel GetCall "Передзвоніть мені" window,
- * there is no form and no chat on these pages. A service post opts in via
- * the "ads_landing" ACF toggle (not an ID list — dev and prod IDs differ,
- * see koval_legal_criminal_record_ids()).
+ * no form and no chat buttons (the sitewide Binotel chat widget stays). A
+ * service post opts in via the "ads_landing" ACF toggle (not an ID list —
+ * dev and prod IDs differ, see koval_legal_criminal_record_ids()).
  *
  * Text that is the same on every landing (steps, stats, hours, final CTA)
  * lives in template-parts/ads-landing.php; everything page-specific is an
@@ -102,11 +102,11 @@ function koval_legal_ads_landing_assets() {
 }
 
 /**
- * Binotel on these pages: GetCall only (calls-only rule), its own floating
- * phone button hidden (our buttons + mobile sticky bar replace it) — the
- * chat widget, which elsewhere hides that button for us, is not loaded
- * here (see footer.php). onReady flags the page so our buttons know the
- * window can be opened.
+ * Binotel on these pages: every page button opens GetCall; its own floating
+ * phone button stays hidden (the chat widget hides it sitewide too). The
+ * chat widget loads as on every page (footer.php); on phones its launcher
+ * is lifted above the sticky call bar (assets/css/ads-landing.css).
+ * onReady flags the page so our buttons know the window can be opened.
  */
 function koval_legal_ads_binotel_settings_script() {
 	return '<script>window.BinotelGetCallSettings=Object.assign(window.BinotelGetCallSettings||{},{phoneButtonDisplay:0,onReady:function(){document.documentElement.classList.add("binotel-gc-ready");}});</script>';

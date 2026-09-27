@@ -100,7 +100,11 @@
 	var heroVisible = true;
 	var finalVisible = false;
 	function update() {
-		sticky.classList.toggle('is-visible', !heroVisible && !finalVisible);
+		var visible = !heroVisible && !finalVisible;
+		sticky.classList.toggle('is-visible', visible);
+		// Lets the CSS lift the Binotel chat launcher above the bar.
+		document.body.classList.toggle('al-sticky-on', visible);
+		document.body.style.setProperty('--al-sticky-h', sticky.offsetHeight + 'px');
 	}
 	new IntersectionObserver(function (entries) {
 		heroVisible = entries[0].isIntersecting || entries[0].boundingClientRect.top > 0;

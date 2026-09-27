@@ -76,17 +76,15 @@ $koval_address = get_theme_mod( 'company_address', "м. Київ, вул. Іоа
 </div>
 
 <?php
-// Google Ads landings are calls-only: GetCall with its floating button
-// hidden (the page's own buttons open it), no chat widget. inc/ads-landing.php.
-$koval_ads_landing = is_singular( 'service' ) && function_exists( 'koval_legal_is_ads_landing' ) && koval_legal_is_ads_landing();
-if ( $koval_ads_landing ) {
+// Google Ads landings: the page's own buttons open GetCall, so they need to
+// know when it's ready (onReady). The chat widget stays, same as sitewide
+// (user decision 2026-09-27). inc/ads-landing.php.
+if ( is_singular( 'service' ) && function_exists( 'koval_legal_is_ads_landing' ) && koval_legal_is_ads_landing() ) {
 	echo koval_legal_ads_binotel_settings_script(); // phpcs:ignore WordPress.Security.EscapeOutput
 }
 ?>
 <script src="https://widgets.binotel.com/getcall/widgets/xzcao5s8l0chc86m3rgm.js" async></script>
-<?php if ( ! $koval_ads_landing ) : ?>
 <script src="https://widgets.binotel.com/chat/widgets/SBkjqYQDD5PrzD5ErAjC.js" async></script>
-<?php endif; ?>
 
 <?php wp_footer(); ?>
 </body>

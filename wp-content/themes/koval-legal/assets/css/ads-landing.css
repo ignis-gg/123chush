@@ -147,6 +147,14 @@
 /* keep the footer's last lines reachable above the fixed bar */
 @media (max-width:960px){body.ads-landing.al-has-sticky #site-footer{padding-bottom:110px;}}
 
+/* Binotel chat launcher (sitewide widget, bottom-left): on phones lift it
+   above the sticky call bar while the bar is shown, so they don't overlap.
+   `translate` (not `transform`) so Binotel's own transforms stay intact. */
+body.ads-landing #bwc-widget-action{transition:translate .25s ease;}
+@media (max-width:960px){
+  body.ads-landing.al-sticky-on #bwc-widget-action{translate:0 calc(-1 * (var(--al-sticky-h, 100px) - 16px));}
+}
+
 /* shown when the Binotel window can't open (blocked / not loaded yet) */
 .al-toast[hidden]{display:none;}
 .al-toast{position:fixed;left:16px;right:16px;bottom:120px;z-index:70;margin:0 auto;max-width:420px;background:var(--ink);color:#fff;border-radius:12px;padding:14px 16px;font-size:14px;line-height:1.45;box-shadow:0 12px 30px rgba(0,0,0,.3);}
