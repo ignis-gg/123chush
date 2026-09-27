@@ -17,24 +17,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 function koval_schema_organization() {
-	$phone   = get_theme_mod( 'company_phone', '+380 97 192 07 26' );
-	$email   = get_theme_mod( 'company_email', 'callcenter.via.klg@gmail.com' );
 	$address = get_theme_mod( 'company_address', "м. Київ, вул. Іоанна Павла ІІ, 23/35, під'їзд 1, офіс 1" );
-
-	$same_as = array_values( array_filter( array(
-		function_exists( 'get_field' ) ? get_field( 'facebook_url', 'option' ) : '',
-		function_exists( 'get_field' ) ? get_field( 'instagram_url', 'option' ) : '',
-		function_exists( 'get_field' ) ? get_field( 'youtube_url', 'option' ) : '',
-		function_exists( 'get_field' ) ? get_field( 'telegram_url', 'option' ) : '',
-	) ) );
 
 	return array(
 		'@type'        => 'ProfessionalService',
 		'@id'          => home_url( '/#organization' ),
 		'name'         => 'KOVAL Legal Group',
 		'url'          => home_url( '/' ),
-		'telephone'    => $phone,
-		'email'        => $email,
 		'foundingDate' => '2020',
 		'address'      => array(
 			'@type'           => 'PostalAddress',
@@ -43,7 +32,6 @@ function koval_schema_organization() {
 			'addressCountry'  => 'UA',
 		),
 		'areaServed'   => 'UA',
-		'sameAs'       => $same_as,
 	);
 }
 

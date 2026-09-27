@@ -263,7 +263,6 @@ nav.main-nav a:hover,nav.main-nav .current-menu-item>a{opacity:1;}
 .cta-photo{border-radius:var(--radius);overflow:hidden;aspect-ratio:4/3;background:var(--cream);}
 .cta-photo img{width:100%;height:100%;object-fit:cover;display:block;}
 .cta-disclaimer{margin-top:24px;font-size:12px;color:var(--muted);line-height:1.6;max-width:400px;border-left:2px solid var(--gold);padding-left:14px;}
-.cta-messengers{display:flex;align-items:center;gap:10px;margin-top:20px;font-size:12.5px;color:var(--muted);flex-wrap:wrap;}
 
 .form-card{background:var(--navy);border-radius:var(--radius);padding:38px;color:#fff;}
 .form-card h3{font-family:var(--serif);font-size:19px;font-weight:700;margin-bottom:6px;}
@@ -417,11 +416,6 @@ nav.main-nav a:hover,nav.main-nav .current-menu-item>a{opacity:1;}
 .price-card .price-desc{font-size:14px;color:var(--ink);line-height:1.5;margin-bottom:14px;}
 .price-card .price-term{font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px;}
 
-/* FAQ -> Telegram CTA */
-.faq-more{margin-top:32px;padding-top:28px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
-.faq-more p{font-size:14.5px;color:var(--muted);}
-.faq-more .btn{white-space:nowrap;}
-
 /* ---------- rich service content (headings/lists/tables/FAQ inside .single-content) ---------- */
 .single-content h2{font-family:var(--serif);font-size:24px;font-weight:700;margin:40px 0 16px;}
 .single-content h3{font-family:var(--serif);font-size:18px;font-weight:700;margin:28px 0 12px;}
@@ -555,15 +549,7 @@ nav.main-nav a:hover,nav.main-nav .current-menu-item>a{opacity:1;}
 }
 .article-tags a:hover{ color:var(--wine); }
 
-/* Messenger share row + print button */
-.share-buttons{ display:flex; align-items:center; gap:12px; margin:28px 0; }
-/* .icon-circle is tuned for the dark navy surfaces it's normally on
-   (footer, about-contact) -- .single-content sits on the light --paper
-   background, so it needs its own border/icon color here or the icons
-   are nearly invisible (light gray on off-white). */
-.share-buttons .icon-circle{ border-color:var(--line); color:var(--muted); }
-.share-buttons .icon-circle:hover{ border-color:var(--wine); color:var(--wine); }
-.share-buttons-label{ font-size:12.5px; color:var(--muted); margin-right:4px; }
+/* Print button */
 .print-article-btn{
   display:inline-flex;
   align-items:center;
@@ -581,7 +567,7 @@ nav.main-nav a:hover,nav.main-nav .current-menu-item>a{opacity:1;}
 
 @media print{
   #site-header, #site-footer, .breadcrumbs, .cta-strip,
-  .related-posts, .share-buttons, .print-article-btn{ display:none; }
+  .related-posts, .print-article-btn{ display:none; }
 }
 .archive-head{background:var(--navy);color:#fff;padding:56px 0;}
 .archive-head h1{font-family:var(--serif);font-size:36px;font-weight:700;margin-top:12px;}
@@ -692,12 +678,6 @@ footer#site-footer{background:var(--navy);color:#9aa0ab;padding:70px 0 34px;font
 .footer-nav-link:hover,.footer-col li a:hover{color:#fff;}
 .footer-partner-text{font-size:13.5px;line-height:1.55;margin-bottom:24px;}
 .footer-col h6{color:#fff;font-size:13.5px;font-weight:600;margin-bottom:14px;}
-.icon-row{display:flex;gap:10px;margin-bottom:26px;}
-.icon-circle{
-  width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.18);
-  display:flex;align-items:center;justify-content:center;color:#cfd2d8;transition:border-color .15s, color .15s;
-}
-.icon-circle:hover{border-color:var(--gold-light);color:var(--gold-light);}
 .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:26px;flex-wrap:wrap;gap:14px;font-size:13px;}
 .footer-disclaimer{font-size:12px;color:#8b92a0;line-height:1.6;max-width:640px;margin-top:20px;} /* was #6f7580 (3.94:1 on --ink footer bg, below WCAG AA 4.5:1) — 5.84:1 now */
 
@@ -776,8 +756,6 @@ footer#site-footer{background:var(--navy);color:#9aa0ab;padding:70px 0 34px;font
 .about-contact-details{display:flex;flex-direction:column;gap:10px;margin-bottom:34px;font-size:15px;color:#e4e6ea;}
 .about-contact-details a{color:#fff;}
 .about-contact-details a:hover{color:var(--gold-light);}
-.about-contact-messengers{display:flex;justify-content:center;gap:16px;}
-.icon-circle.lg{width:52px;height:52px;}
 
 @media(max-width:640px){
   .about-founder-name{font-size:26px;}
@@ -790,16 +768,6 @@ footer#site-footer{background:var(--navy);color:#9aa0ab;padding:70px 0 34px;font
 .office-list{display:flex;flex-direction:column;gap:16px;margin:24px 0 36px;}
 .office-list li{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;color:var(--ink);}
 .office-list a{color:var(--wine);}
-.messenger-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:22px;}
-.messenger-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:var(--radius-pill);font-weight:700;font-size:14px;color:#fff;background:var(--wine);transition:background-color .15s;}
-.messenger-btn:hover{background:var(--wine-dark);}
-.messenger-btn svg{flex-shrink:0;}
-.messenger-btn.telegram svg{color:#29A9EA;}
-.messenger-btn.whatsapp svg{color:#25D366;}
-.messenger-btn.viber svg{color:#7360F2;}
-.messenger-card{display:flex;justify-content:space-between;align-items:center;gap:16px;border:1px solid var(--line);border-radius:var(--radius);padding:18px 22px;flex-wrap:wrap;}
-.messenger-card .label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
-.messenger-card .handle{font-weight:700;font-size:15px;}
 
 .form-card-light{background:var(--card-bg);box-shadow:var(--card-shadow);border:1px solid var(--line);border-radius:var(--radius);padding:38px;}
 .form-card-light h3{font-family:var(--serif);font-size:19px;font-weight:700;margin-bottom:6px;color:var(--ink);}
@@ -1093,8 +1061,8 @@ footer#site-footer{background:var(--navy);color:#9aa0ab;padding:70px 0 34px;font
 
 /* Binotel chat widget (#bwc-widget-action, 3rd-party script markup, added
    2026-09-18) auto-shows a text "invitation" bubble (.bwc-invitations) on
-   load that on narrow screens overlaps the hero CTA buttons ("Отримати
-   консультацію", "Написати в Telegram") — confirmed visually at 375px.
+   load that on narrow screens overlaps the hero CTA button ("Отримати
+   консультацію") — confirmed visually at 375px.
    Hiding just the text teaser, not the round chat button itself, keeps
    the widget fully functional (still clickable) without covering CTAs. */
 @media(max-width:640px){

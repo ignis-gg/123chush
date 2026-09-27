@@ -89,23 +89,18 @@ function koval_analytics_consume_lead_token() {
 }
 
 /**
- * GA4 conversion tracking — two events, both markable as "key events" in
- * GA4 (Admin → Events) so they show up as conversions:
+ * GA4 conversion tracking — generate_lead, markable as a "key event" in
+ * GA4 (Admin → Events) so it shows up as a conversion. Fired only on the
+ * server-validated, single-use `lt` token set by
+ * koval_legal_handle_consultation_submit() (shortcodes.php) right after a
+ * real, nonce+honeypot-validated form submit — see
+ * koval_analytics_consume_lead_token() above. `koval_sent=1` alone is not
+ * proof of a fresh submission (a refresh/bookmark/cache replay could carry
+ * it), so this alone gates the event.
  *
- * - contact_click: delegated click listener, catches ANY link anywhere on
- *   the site whose href looks like a phone/Viber/WhatsApp/Telegram
- *   contact method (footer icons, header CTA, the floating call button —
- *   one listener covers all of them, including ones added later, no
- *   per-button wiring needed). `method` comes from the aria-label when
- *   present (so the Viber icon, which happens to use a tel: href, is
- *   labeled correctly instead of as "phone"), falling back to a pattern
- *   match on the href otherwise.
- * - generate_lead: fired only on the server-validated, single-use `lt`
- *   token set by koval_legal_handle_consultation_submit() (shortcodes.php)
- *   right after a real, nonce+honeypot-validated form submit — see
- *   koval_analytics_consume_lead_token() above. `koval_sent=1` alone is
- *   not proof of a fresh submission (a refresh/bookmark/cache replay
- *   could carry it), so this alone gates the event.
+ * (A contact_click listener for tel:/Viber/WhatsApp/Telegram links used to
+ * live here too — removed 2026-09-27 along with the last such links; the
+ * Binotel widgets are the only contact channel now.)
  */
 function koval_analytics_ga4_events() {
 	$tag_id = function_exists( 'get_field' ) ? trim( (string) get_field( 'google_tag_id', 'option' ) ) : '';
@@ -113,38 +108,15 @@ function koval_analytics_ga4_events() {
 		return;
 	}
 
-	$fire_lead = koval_analytics_consume_lead_token();
+	if ( ! koval_analytics_consume_lead_token() ) {
+		return;
+	}
 	?>
 	<script>
 	document.addEventListener('DOMContentLoaded', function () {
-		document.addEventListener('click', function (e) {
-			if (typeof gtag !== 'function') return;
-			var link = e.target.closest && e.target.closest('a[href]');
-			if (!link) return;
-			var href = link.getAttribute('href') || '';
-			var label = (link.getAttribute('aria-label') || '').toLowerCase();
-			var method = null;
-			if (label.indexOf('viber') !== -1) {
-				method = 'viber';
-			} else if (label.indexOf('telegram') !== -1) {
-				method = 'telegram';
-			} else if (label.indexOf('whatsapp') !== -1) {
-				method = 'whatsapp';
-			} else if (/^tel:/i.test(href)) {
-				method = 'phone';
-			} else if (/wa\.me|whatsapp/i.test(href)) {
-				method = 'whatsapp';
-			} else if (/t\.me|telegram/i.test(href)) {
-				method = 'telegram';
-			}
-			if (!method) return;
-			gtag('event', 'contact_click', { method: method, link_url: href });
-		});
-		<?php if ( $fire_lead ) : ?>
 		if (typeof gtag === 'function') {
 			gtag('event', 'generate_lead');
 		}
-		<?php endif; ?>
 	});
 	</script>
 	<?php

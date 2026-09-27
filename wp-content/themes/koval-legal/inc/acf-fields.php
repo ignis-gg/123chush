@@ -590,42 +590,6 @@ function koval_legal_register_acf_fields() {
 				'instructions' => "Показується поруч із формою заявки на консультацію на всіх сторінках.",
 			),
 			array(
-				'key'   => 'field_koval_socials_tab',
-				'label' => 'Соцмережі та месенджери',
-				'type'  => 'tab',
-			),
-			array(
-				'key'          => 'field_koval_telegram_url',
-				'label'        => 'Telegram',
-				'name'         => 'telegram_url',
-				'type'         => 'url',
-				'instructions' => 'Використовується у футері та в кнопці "Написати в Telegram" під FAQ.',
-			),
-			array(
-				'key'          => 'field_koval_whatsapp_url',
-				'label'        => 'WhatsApp',
-				'name'         => 'whatsapp_url',
-				'type'         => 'url',
-			),
-			array(
-				'key'          => 'field_koval_facebook_url',
-				'label'        => 'Facebook',
-				'name'         => 'facebook_url',
-				'type'         => 'url',
-			),
-			array(
-				'key'          => 'field_koval_instagram_url',
-				'label'        => 'Instagram',
-				'name'         => 'instagram_url',
-				'type'         => 'url',
-			),
-			array(
-				'key'          => 'field_koval_youtube_url',
-				'label'        => 'YouTube',
-				'name'         => 'youtube_url',
-				'type'         => 'url',
-			),
-			array(
 				'key'   => 'field_koval_cta_tab',
 				'label' => 'Блок "Заявка на консультацію"',
 				'type'  => 'tab',
