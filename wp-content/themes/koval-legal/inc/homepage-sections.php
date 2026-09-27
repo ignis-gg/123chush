@@ -118,7 +118,7 @@ function koval_legal_render_faq() {
 function koval_legal_render_cta_section( $locked_service = 'Головна сторінка' ) {
 	$koval_cta_eyebrow      = get_field( 'cta_eyebrow', 'option' ) ?: 'Готові розпочати?';
 	$koval_cta_heading      = get_field( 'cta_heading', 'option' ) ?: 'Перша консультація — безкоштовно';
-	$koval_cta_lead         = get_field( 'cta_lead', 'option' ) ?: "Юрист відповість протягом 30 хвилин у робочий час і оцінить вашу ситуацію без зобов'язань.";
+	$koval_cta_lead         = get_field( 'cta_lead', 'option' ) ?: "Фахівець оперативно зв'яжеться з вами в робочий час і оцінить вашу ситуацію без зобов'язань.";
 	$koval_cta_disclaimer   = get_field( 'cta_disclaimer', 'option' ) ?: 'Заповнюючи форму, ви звертаєтесь до приватної юридичної компанії за консультаційними послугами — не до державного органу.';
 	$koval_cta_form_heading = get_field( 'cta_form_heading', 'option' ) ?: 'Заявка на консультацію';
 	$koval_cta_form_lead    = get_field( 'cta_form_lead', 'option' ) ?: 'Залишіть контакти — підберемо оптимальний варіант супроводу саме для вашої ситуації.';

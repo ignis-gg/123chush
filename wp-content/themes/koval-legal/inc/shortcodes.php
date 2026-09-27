@@ -20,7 +20,7 @@ function koval_legal_contact_form_shortcode( $atts = array() ) {
 	?>
 	<div class="form-card" id="contact-form">
 		<h3>Заявка на консультацію</h3>
-		<p>Заповніть форму — юрист зв'яжеться протягом 30 хвилин.</p>
+		<p>Заповніть форму — фахівець оперативно зв'яжеться з вами.</p>
 		<?php koval_legal_consultation_form( $atts['service'] ); ?>
 	</div>
 	<?php

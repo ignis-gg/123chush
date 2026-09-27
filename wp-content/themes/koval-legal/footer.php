@@ -70,7 +70,7 @@ $koval_address = get_theme_mod( 'company_address', "м. Київ, вул. Іоа
 		<button type="button" class="koval-popup-close" id="koval-thanks-close" aria-label="Закрити">&times;</button>
 		<div class="koval-popup-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
 		<h3 id="koval-thanks-title">Дякуємо за вашу заявку!</h3>
-		<p>Ми зв'яжемось з вами найближчим часом — зазвичай протягом 30 хвилин у робочий час.</p>
+		<p>Ми зв'яжемося з вами найближчим часом у робочий час.</p>
 		<button type="button" class="btn btn-wine" id="koval-thanks-ok">Добре</button>
 	</div>
 </div>
