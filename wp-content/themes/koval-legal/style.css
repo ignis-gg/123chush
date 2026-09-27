@@ -1096,3 +1096,26 @@ footer#site-footer{background:var(--navy);color:#9aa0ab;padding:70px 0 34px;font
 .to-top:focus-visible{outline:3px solid var(--gold);outline-offset:3px;}
 @media (prefers-reduced-motion:reduce){.to-top{transition:none;}}
 @media print{.to-top{display:none;}}
+
+/* ---------- phones: header + footer tidy-up (2026-09-27) ----------
+   Header: Binotel's call/chat buttons are always on screen, so the
+   "Консультація" pill only squeezed the logo onto two lines — hidden on
+   phones (kept on tablet/desktop). Footer: two columns instead of one long
+   stack, less top padding, and bottom room so copyright + the
+   "not a government body" disclaimer aren't hidden under Binotel's
+   floating buttons (on real phones they stack two-high at the left). */
+@media(max-width:600px){
+  header#site-header .header-right > .btn{display:none;}
+  .logo-row{white-space:nowrap;}
+}
+@media(max-width:640px){
+  footer#site-footer{padding:44px 0 170px;}
+  .footer-top{grid-template-columns:1fr 1fr;gap:30px 20px;padding-bottom:28px;}
+  .footer-top > div:first-child,
+  .footer-top > .footer-col:last-child{grid-column:1 / -1;}
+  .footer-top p{max-width:none;margin-bottom:18px;}
+  .footer-col h5{margin-bottom:12px;}
+  .footer-nav-link,.footer-col li a{margin-bottom:9px;line-height:1.4;}
+  .footer-partner-text{margin-bottom:0;}
+  .footer-bottom{padding-top:20px;}
+}
