@@ -980,3 +980,35 @@ ACF-поля «Соцмережі та месенджери» + їх options, м
 kses, ідемпотентна). Dev і прод: однаковий результат (7/22/21 оновлено,
 34/36 послуг очищено, «remaining mentions: none»). Бекап проду до правки:
 `/var/www/perenos82/data/claude-backups/2026-09-27-remove-contacts/`.
+
+## Сесія 2026-09-27 (18) — 6 Google Ads-лендингів: шаблон + сторінки (прод)
+
+Дизайн і тексти — `mocup/TZ_dyzajn_shablon_ads_landing.md` (прототип у
+Claude Design). Мета сторінок — лише номер телефону для менеджера; тільки
+дзвінки (Binotel GetCall), без форми й без чату.
+
+- **Готово [browser]** — новий шаблон `template-parts/ads-landing.php` +
+  `inc/ads-landing.php` (ACF-група «Ads-лендинг», перемикач `ads_landing`
+  замість списку ID) + `assets/css/ads-landing.css` + `assets/js/ads-landing.js`;
+  гілка в `single-service.php`, у `footer.php` на цих сторінках не
+  вантажиться чат-віджет і прихована плаваюча кнопка GetCall,
+  `inc/schema.php` бере FAQ з `ads_faq`. Перевірено на ddev і на проді:
+  десктоп 1568px, моб. 375/390px і 768px (iframe), нижня sticky-панель,
+  клік по кнопці в hero / рядку ситуації / «Консультація» в шапці / sticky
+  відкриває вікно «Передзвоніть мені» Binotel (на проді теж).
+- **Готово [curl]+[browser]** — 6 сторінок на проді (ID 425–430), міграція
+  `bin/migrations/2026-09-27-ads-landings.php` (ідемпотентна, фото Unsplash
+  у `bin/migrations/assets/2026-09-27-ads-landings/`):
+  `/poslugy/dublikat-svidotstva-pro-narodzhennya/`,
+  `/poslugy/dokumenty-dlya-rozluchennya/`, `/poslugy/dokumenty-drats-z-za-kordonu/`,
+  `/poslugy/dovidka-pro-nesudymist-z-za-kordonu/`, `/poslugy/zmina-pib/`,
+  `/poslugy/svidotstvo-pro-smert/` (делікатний варіант). Усі 200, без PHP-
+  помилок, FAQPage у JSON-LD, Rank Math title/description. Інші сторінки
+  не зачеплені (чат на них є). Бекап до змін:
+  `/var/www/perenos82/data/claude-backups/2026-09-27-ads-landings/`.
+- Відступ від ТЗ: точних годин роботи на сторінці немає (у футері
+  «Пн–Пт 09:00–18:00», у Binotel 9:30–18:30 + Сб — дві різні цифри на
+  одній сторінці); на стор. 6 немає фото колл-центру в «Як це відбувається».
+- **Не начато** — конечні URL у Google Ads (окремо, за словом користувача);
+  реальні відгуки (блок схований, поки поле порожнє); іноземні номери в
+  GetCall (див. known-issues).

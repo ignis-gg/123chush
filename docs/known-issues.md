@@ -722,3 +722,16 @@ Apache/LiteSpeed-хостинге будет так же (может быть л
   не використовуємо — тільки дзвінки).
 - Чат-віджет ставить `BinotelGetCallSettings.phoneButtonDisplay=0`, тому
   окремої кнопки дзвінка Binotel на сайті немає — лише кругла іконка чату.
+
+## Claude in Chrome: перший клік після navigate губиться; smooth-scroll заважає прокрутці iframe
+
+Знайдено 2026-09-27 при перевірці Ads-лендингів.
+- Перший `left_click` одразу після `navigate` часто не доходить до сторінки
+  (жодної події `click` у документі) — перед кліком зробити `screenshot`
+  (або клікнути вдруге). Інакше легко вирішити, що кнопка «не працює».
+- Тема має `scroll-behavior:smooth`, тому `iframe.contentWindow.scrollTo()`
+  у мобільному iframe-тесті (див. memory про iframe) «не прокручує». Робоче:
+  `doc.documentElement.style.scrollBehavior='auto'` +
+  `el.scrollIntoView({behavior:'instant'})`.
+- `install -D` при заливці на прод створює нові каталоги від root —
+  після нього `chown perenos82:perenos82` на створений каталог.

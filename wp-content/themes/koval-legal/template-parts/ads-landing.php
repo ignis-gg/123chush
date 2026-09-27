@@ -59,7 +59,7 @@ $call_btn = function ( $label, $class = 'al-btn al-btn--primary' ) {
 /**
  * Desktop-only photo: the <source> matches ≥961px, below that the <img>
  * keeps a 1×1 placeholder so phones never download the photo (speed on
- * mobile Ads traffic).
+ * mobile Ads traffic). Eager, not lazy: on desktop it's above the fold.
  */
 $desktop_picture = function ( $attachment_id, $class, $sizes ) {
 	if ( ! $attachment_id ) {
@@ -71,7 +71,7 @@ $desktop_picture = function ( $attachment_id, $class, $sizes ) {
 	$alt    = get_post_meta( $attachment_id, '_wp_attachment_image_alt', true );
 	return '<picture class="' . esc_attr( $class ) . '">'
 		. '<source media="(min-width: 961px)" srcset="' . esc_attr( $srcset ? $srcset : $src ) . '" sizes="' . esc_attr( $sizes ) . '">'
-		. '<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="' . esc_attr( $alt ) . '" width="' . (int) ( $meta['width'] ?? 1200 ) . '" height="' . (int) ( $meta['height'] ?? 800 ) . '" loading="lazy" decoding="async">'
+		. '<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="' . esc_attr( $alt ) . '" width="' . (int) ( $meta['width'] ?? 1200 ) . '" height="' . (int) ( $meta['height'] ?? 800 ) . '" loading="eager" decoding="async">'
 		. '</picture>';
 };
 ?>
