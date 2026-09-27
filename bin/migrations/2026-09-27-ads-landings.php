@@ -8,10 +8,12 @@
  * `_koval_ads_asset` meta, so a re-run just refreshes the copy. Photos
  * (Unsplash License, free commercial use) live next to this file in
  * assets/2026-09-27-ads-landings/ — copy that folder along when running
- * on another server. The v2-* set (in use) is one shared look: mostly
- * Vitaly Gariev shoots, cropped around the person to the desktop hero
- * ratio and given the same warm-muted grade; the unprefixed files are
- * the first set, kept only as history.
+ * on another server. The v3-* set (in use, per the user: photos must
+ * convey expertise, not "someone at home after work") is one office shoot
+ * by Vitaly Gariev — specialists in business wear, consultations at a
+ * desk — cropped around the person to the desktop hero ratio and given
+ * one shared warm-muted grade. v2-* and the unprefixed files are earlier
+ * sets, kept only as history.
  *
  * Run: wp eval-file bin/migrations/2026-09-27-ads-landings.php
  */
@@ -66,7 +68,7 @@ $koval_blog_by_title = function ( $title ) {
 	return $p ? (int) $p[0] : 0;
 };
 
-$photo_steps = $koval_photo( 'v2-steps-specialist-laptop.jpg', 'Фахівець консультує клієнта онлайн' );
+$photo_steps = $koval_photo( 'v3-steps-specialist-phone-notes.jpg', 'Фахівець розмовляє з клієнтом по телефону й робить нотатки' );
 
 // Constant FAQ items (TZ §3).
 $faq_cost = array( 'question' => 'Скільки коштує консультація?', 'answer' => 'Перша консультація безкоштовна. Залиште номер — і ми передзвонимо.' );
@@ -101,7 +103,7 @@ $pages = array(
 		'slug'     => 'dublikat-svidotstva-pro-narodzhennya',
 		'title'    => 'Дублікат свідоцтва про народження',
 		'category' => 'dovidky',
-		'hero'     => array( 'v2-hero-woman-glasses-phone.jpg', 'Жінка розмовляє по телефону за робочим столом' ),
+		'hero'     => array( 'v3-hero-specialist-woman-desk.jpg', 'Фахівчиня за робочим столом в офісі' ),
 		'fields'   => array(
 			'ads_variant'    => 'standard',
 			'ads_eyebrow'    => 'Консультація · ДРАЦС',
@@ -140,7 +142,7 @@ $pages = array(
 		'slug'     => 'dokumenty-dlya-rozluchennya',
 		'title'    => 'Документи для розлучення',
 		'category' => 'family',
-		'hero'     => array( 'v2-hero-woman-kitchen-phone.jpg', 'Жінка розмовляє по телефону на кухні вдома' ),
+		'hero'     => array( 'v3-hero-lawyer-consultation.jpg', 'Юристка консультує клієнтів за столом в офісі' ),
 		'fields'   => array(
 			'ads_variant'    => 'standard',
 			'ads_eyebrow'    => 'Консультація · сімейне право',
@@ -180,7 +182,7 @@ $pages = array(
 		'slug'     => 'dokumenty-drats-z-za-kordonu',
 		'title'    => 'Повторні свідоцтва ДРАЦС з-за кордону',
 		'category' => 'dovidky',
-		'hero'     => array( 'v2-hero-man-city-steps-phone.jpg', 'Чоловік розмовляє по телефону на сходах у місті' ),
+		'hero'     => array( 'v3-hero-specialist-man-phone.jpg', 'Фахівець у діловому костюмі розмовляє по телефону біля офісу' ),
 		'fields'   => array(
 			'ads_variant'    => 'standard',
 			'ads_eyebrow'    => 'Консультація · для українців за кордоном',
@@ -220,7 +222,7 @@ $pages = array(
 		'slug'     => 'dovidka-pro-nesudymist-z-za-kordonu',
 		'title'    => 'Довідка про несудимість з-за кордону',
 		'category' => 'dovidky',
-		'hero'     => array( 'v2-hero-man-street-phone.jpg', 'Чоловік розмовляє по телефону на вулиці ввечері' ),
+		'hero'     => array( 'v3-hero-specialist-man-portrait.jpg', 'Усміхнений фахівець у діловому костюмі в офісі' ),
 		'fields'   => array(
 			'ads_variant'    => 'standard',
 			'ads_eyebrow'    => 'Консультація · для українців за кордоном',
@@ -260,7 +262,7 @@ $pages = array(
 		'slug'     => 'zmina-pib',
 		'title'    => 'Зміна прізвища, імені чи по батькові',
 		'category' => 'dovidky',
-		'hero'     => array( 'v2-hero-man-desk-phone.jpg', 'Чоловік розмовляє по телефону за столом удома' ),
+		'hero'     => array( 'v3-hero-office-consultation.jpg', 'Консультація з клієнтами в офісі' ),
 		'fields'   => array(
 			'ads_variant'    => 'standard',
 			'ads_eyebrow'    => 'Консультація · ДРАЦС',
@@ -300,7 +302,7 @@ $pages = array(
 		'slug'     => 'svidotstvo-pro-smert',
 		'title'    => 'Свідоцтво про смерть',
 		'category' => 'dovidky',
-		'hero'     => array( 'v2-hero-woman-window-calm.jpg', 'Жінка спокійно дивиться у вікно з чашкою в руках' ),
+		'hero'     => array( 'v3-hero-calm-conversation.jpg', 'Спокійна розмова фахівчині з клієнткою за столом' ),
 		'fields'   => array(
 			'ads_variant'    => 'delicate',
 			'ads_eyebrow'    => 'Консультація · ДРАЦС',
