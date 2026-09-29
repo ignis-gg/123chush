@@ -1157,14 +1157,37 @@ footer#site-footer{padding-bottom:110px;}
 .call-fab-num{font-size:25px;font-weight:800;letter-spacing:.01em;white-space:nowrap;margin-top:3px;}
 @keyframes call-fab-ring{0%{transform:scale(1);opacity:.9;}100%{transform:scale(1.55);opacity:0;}}
 @keyframes call-fab-shake{0%,70%,100%{transform:rotate(0);}74%,82%,90%{transform:rotate(-14deg);}78%,86%,94%{transform:rotate(14deg);}}
+/* Phones (2026-09-30, from the user's real-phone screenshots): the pill
+   floated mid-screen over the hero text and, on koval-group, ran into
+   Binotel's buttons with the number cut off. Now it is a full-width bar
+   along the bottom edge, and Binotel's stack (left on koval-legal, right on
+   koval-group — set in each Binotel account) is lifted above it through
+   Binotel's own offset variable (set inline on <html> by its script, so
+   it needs !important). */
 @media(max-width:640px){
-  .to-top{bottom:176px;}
+  .to-top{right:16px;bottom:calc(86px + env(safe-area-inset-bottom,0px));}
   footer#site-footer{padding-bottom:240px;}
-  .call-fab{right:12px;bottom:96px;gap:10px;padding:6px 18px 6px 6px;}
-  .call-fab-icon{width:50px;height:50px;}
-  .call-fab-icon svg{width:23px;height:23px;}
+  .call-fab{
+    left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));
+    justify-content:center;gap:12px;padding:6px 18px 6px 6px;
+  }
+  .call-fab-icon{width:46px;height:46px;}
+  .call-fab-icon svg{width:22px;height:22px;}
   .call-fab-label{font-size:10.5px;}
   .call-fab-num{font-size:21px;}
+  html{--bwc-chat-mob-offset-vertical:calc(86px + env(safe-area-inset-bottom,0px))!important;}
+}
+
+/* Binotel buttons in the site's wine instead of the account's default blue
+   (#6890E4) — same inline-on-<html> variables, every screen width. */
+html{
+  --bwc-widget-main-color:#7d2a35!important;
+  --bwc-widget-main-color-h:352!important;--bwc-widget-main-color-s:49.7%!important;--bwc-widget-main-color-l:32.7%!important;
+  --bwc-widget-secondary-color:#5e1f28!important;
+  --bwc-widget-secondary-color-h:351!important;--bwc-widget-secondary-color-s:50.4%!important;--bwc-widget-secondary-color-l:24.5%!important;
+  --bwc-widget-submit-buttons-color:#7d2a35!important;
+  --bwc-widget-editor-buttons-color:#7d2a35!important;
+  --bwc-working-days-text-color:#7d2a35!important;
 }
 @media (prefers-reduced-motion:reduce){.call-fab-icon,.call-fab-icon::after{animation:none;}}
 @media print{.call-fab{display:none;}}
