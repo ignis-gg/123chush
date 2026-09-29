@@ -1135,8 +1135,12 @@ footer#site-footer{background:var(--navy);color:#9aa0ab;padding:70px 0 34px;font
   box-shadow:0 12px 30px rgba(94,31,40,.45),0 2px 6px rgba(0,0,0,.2);
   transition:background .15s,box-shadow .15s;
 }
-/* room at the page bottom so the footer's last lines can scroll clear of the floating buttons */
-footer#site-footer{padding-bottom:190px;}
+/* room at the page bottom so the footer's last lines can scroll clear of the
+   floating buttons. From 1000px the 640px-wide disclaimer ends left of the
+   call button, so only Binotel's chat pill (bottom-left, ~86px tall incl.
+   offset) needs clearing; narrower, the text runs under the buttons. */
+footer#site-footer{padding-bottom:110px;}
+@media(max-width:999px){footer#site-footer{padding-bottom:190px;}}
 .call-fab:hover{background:var(--wine-dark);color:#fff;box-shadow:0 14px 34px rgba(94,31,40,.55),0 2px 6px rgba(0,0,0,.2);}
 .call-fab:focus-visible{outline:3px solid var(--gold);outline-offset:3px;}
 .call-fab-icon{
