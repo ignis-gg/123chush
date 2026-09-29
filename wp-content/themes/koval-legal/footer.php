@@ -77,6 +77,9 @@ $koval_address = get_theme_mod( 'company_address', "м. Київ, вул. Іоа
 
 <a href="#" class="to-top" id="to-top" aria-label="Прокрутити нагору" title="Нагору"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 19V5M5 12l7-7 7 7"/></svg></a>
 
+<?php // Floating "call us" button, every page (user request 2026-09-29). Direct tel: link — works outside Binotel's working hours too, when its widgets hide. ?>
+<a href="tel:+380981383979" class="call-fab" aria-label="Зателефонувати: 098 138 39 79"><span class="call-fab-icon" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" focusable="false"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg></span><span class="call-fab-text"><span class="call-fab-label">Зателефонуйте нам</span><span class="call-fab-num">098 138 39 79</span></span></a>
+
 <?php
 // Google Ads landings: the page's own buttons open GetCall, so they need to
 // know when it's ready (onReady). The chat widget stays, same as sitewide
