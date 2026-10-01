@@ -410,8 +410,9 @@
 	});
 })();
 
-// Conversion tracking for the messenger buttons (footer.php .msg-fab):
-// GA4 contact_click with method = telegram | viber | whatsapp — the event
+// Conversion tracking for the floating contact buttons (footer.php):
+// GA4 contact_click with method = telegram | viber | whatsapp (.msg-fab) or
+// phone (the "Зателефонуйте нам" .call-fab tel: link) — the event
 // name the old messenger links used (removed 2026-09-27), still marked as a
 // key event in GA4 "koval google" (553165051), which Google Ads imports.
 // gtag() without send_to reaches every Google tag on the page (koval-legal
@@ -419,9 +420,9 @@
 // Meta Pixel, where installed (koval-group), gets its standard Contact event.
 // One click — one event; the Viber "didn't open?" hint doesn't add another.
 (function () {
-	var methods = { 'msg-fab-tg': 'telegram', 'msg-fab-vb': 'viber', 'msg-fab-wa': 'whatsapp' };
+	var methods = { 'msg-fab-tg': 'telegram', 'msg-fab-vb': 'viber', 'msg-fab-wa': 'whatsapp', 'call-fab': 'phone' };
 	document.addEventListener('click', function (e) {
-		var link = e.target.closest('.msg-fab-btn');
+		var link = e.target.closest('.msg-fab-btn, .call-fab');
 		if (!link) {
 			return;
 		}

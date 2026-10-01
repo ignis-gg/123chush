@@ -1231,3 +1231,13 @@ Claude Design). Мета сторінок — лише номер телефон
     доступом цього логіна). Подвійного рахунку в 553165051 немає.
   - Google Ads не чіпали (за рішенням користувача працюємо тільки в
     ресурсі 553165051). Ресурс зв'язаний з Ads «koval ads» 843-637-3323.
+  - Того ж дня (за рішенням користувача «всі конверсійні кнопки — в
+    ключові»): кнопка «Зателефонуйте нам» (`.call-fab`, `tel:`) теж шле
+    `contact_click` з `method=phone` (раніше не відстежувалась зовсім);
+    у GA4 553165051 ключовою позначено `binotel_gc_opened_passive_form`
+    (відкриття вікна «Передзвоніть мені» — CTA «Отримати консультацію»
+    та кнопка Binotel). Ключові тепер: generate_lead, form_submit,
+    contact_click, binotel_gc_call_requested, binotel_gc_opened_passive_form,
+    binotel_oc_chat_happened. Не позначено: `click` (усі вихідні
+    посилання), `form_start`, `manual_test*` (тестові). Бекап —
+    `claude-backups/2026-10-01-phone-tracking/`.
