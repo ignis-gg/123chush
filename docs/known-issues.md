@@ -758,3 +758,15 @@ Apache/LiteSpeed-хостинге будет так же (может быть л
 - kovallegalgroup.com.ua (старий сайт) не відкривається ні з цієї машини,
   ні з VPS, ні в Chrome (connection timeout); прочитати можна лише через
   TinyFish `fetch_content`.
+
+## Viber-посилання на номер: різний формат для desktop і телефона
+
+Знайдено 2026-10-01 (користувач: «кнопка Viber не переводить»).
+- Viber Desktop: `viber://chat?number=+380…` (буквальний `+`). З `%2B`
+  застосунок відкривається, але чат не відкриває.
+- Телефони (Android/iOS): `viber://chat?number=%2B380…`.
+- Без встановленого Viber браузер на `viber://` мовчки нічого не робить —
+  тому в `main.js` підказка з номером, якщо сторінка лишилась у фокусі.
+- Тестувати клік без відкриття застосунку: capture-лістенер з
+  `preventDefault()` на `.msg-fab-vb` + `document.hasFocus=()=>true`
+  (вкладка Claude in Chrome не у фокусі вікна, `hasFocus()` там false).

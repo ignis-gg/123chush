@@ -336,3 +336,76 @@
 		}, 200);
 	}, true);
 })();
+
+// Viber button (footer.php .msg-fab-vb). Its href has the phone-app format
+// (number with %2B, an encoded "+"); Viber Desktop only understands a
+// literal "+" — with %2B it opens but never switches to the chat — so
+// desktops get that format. Where Viber isn't installed the browser
+// silently does nothing: if the page is still in front ~1.5s after the
+// click (no app took over), a small hint offers the number to copy instead.
+(function () {
+	var btn = document.querySelector('.msg-fab-vb');
+	if (!btn) {
+		return;
+	}
+	var digits = (btn.getAttribute('href').match(/\d{10,}/) || [''])[0];
+	var mobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ||
+		(navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+	if (!mobile) {
+		btn.setAttribute('href', 'viber://chat?number=+' + digits);
+	}
+	var pretty = '+' + digits.replace(/^(\d{3})(\d{2})(\d{3})(\d{2})(\d{2})$/, '$1 $2 $3 $4 $5');
+	var hint = null;
+	var timer = null;
+	var hideTimer = null;
+	var hide = function () {
+		if (hint) {
+			hint.classList.remove('is-visible');
+		}
+	};
+	var show = function () {
+		if (!hint) {
+			hint = document.createElement('div');
+			hint.className = 'viber-hint';
+			hint.setAttribute('role', 'status');
+			hint.innerHTML = '<button type="button" class="viber-hint-close" aria-label="Закрити">&times;</button>' +
+				'<p>Якщо Viber не відкрився — напишіть нам у Viber на номер <strong>' + pretty + '</strong></p>' +
+				'<button type="button" class="viber-hint-copy">Скопіювати номер</button>';
+			document.body.appendChild(hint);
+			hint.querySelector('.viber-hint-close').addEventListener('click', hide);
+			hint.querySelector('.viber-hint-copy').addEventListener('click', function (e) {
+				var copyBtn = e.currentTarget;
+				if (navigator.clipboard && navigator.clipboard.writeText) {
+					navigator.clipboard.writeText('+' + digits).then(function () {
+						copyBtn.textContent = 'Скопійовано ✓';
+					}, function () {});
+				}
+			});
+		}
+		hint.querySelector('.viber-hint-copy').textContent = 'Скопіювати номер';
+		// next frame, so the fade-in transition runs on first show too
+		window.requestAnimationFrame(function () {
+			hint.classList.add('is-visible');
+		});
+		clearTimeout(hideTimer);
+		hideTimer = setTimeout(hide, 12000);
+	};
+	var cancel = function () {
+		clearTimeout(timer);
+	};
+	btn.addEventListener('click', function () {
+		hide();
+		cancel();
+		timer = setTimeout(function () {
+			if (!document.hidden && document.hasFocus()) {
+				show();
+			}
+		}, 1500);
+	});
+	window.addEventListener('blur', cancel);
+	document.addEventListener('visibilitychange', function () {
+		if (document.hidden) {
+			cancel();
+		}
+	});
+})();

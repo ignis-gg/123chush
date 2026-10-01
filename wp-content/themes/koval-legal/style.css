@@ -1284,3 +1284,31 @@ html{
   .call-fab-label{font-size:8.5px;}
   .call-fab-num{font-size:15px;}
 }
+
+/* "Viber didn't open?" hint (main.js, Viber button) — next to the Viber
+   button on desktop, above the bottom dock on phones; above Binotel's
+   buttons (their z-index is in the billions). */
+.viber-hint{
+  position:fixed;right:100px;bottom:236px;z-index:2147483000;max-width:290px;
+  padding:14px 40px 14px 16px;border-radius:var(--radius);
+  background:var(--navy);color:#fff;border:1px solid rgba(217,189,130,.5);
+  box-shadow:0 14px 34px rgba(18,21,28,.35);font:500 14px/1.45 var(--sans);
+  opacity:0;visibility:hidden;transform:translateX(8px);
+  transition:opacity .2s ease,transform .2s ease,visibility .2s;
+}
+.viber-hint.is-visible{opacity:1;visibility:visible;transform:none;}
+.viber-hint p{margin:0 0 10px;color:#fff;font-size:14px;line-height:1.45;}
+.viber-hint strong{color:var(--gold-light);white-space:nowrap;}
+.viber-hint-copy{
+  border:0;border-radius:var(--radius-pill);padding:9px 16px;cursor:pointer;
+  background:linear-gradient(180deg,#8a77f6,#7360f2);color:#fff;font:600 13px/1 var(--sans);
+}
+.viber-hint-copy:focus-visible,.viber-hint-close:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+.viber-hint-close{
+  position:absolute;top:6px;right:8px;padding:2px 6px;border:0;background:none;
+  color:#aeb4c0;font-size:22px;line-height:1;cursor:pointer;
+}
+@media(max-width:640px){
+  .viber-hint{left:12px;right:12px;max-width:none;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translateY(8px);}
+}
+@media (prefers-reduced-motion:reduce){.viber-hint{transition:none;}}
