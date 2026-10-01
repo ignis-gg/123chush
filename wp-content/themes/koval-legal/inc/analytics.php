@@ -98,9 +98,8 @@ function koval_analytics_consume_lead_token() {
  * proof of a fresh submission (a refresh/bookmark/cache replay could carry
  * it), so this alone gates the event.
  *
- * (A contact_click listener for tel:/Viber/WhatsApp/Telegram links used to
- * live here too — removed 2026-09-27 along with the last such links; the
- * Binotel widgets are the only contact channel now.)
+ * (contact_click — the other key event, for the Telegram/Viber/WhatsApp
+ * buttons — is sent from assets/js/main.js.)
  */
 function koval_analytics_ga4_events() {
 	$tag_id = function_exists( 'get_field' ) ? trim( (string) get_field( 'google_tag_id', 'option' ) ) : '';

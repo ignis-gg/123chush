@@ -1216,5 +1216,18 @@ Claude Design). Мета сторінок — лише номер телефон
   Перевірено на проді обох доменів: href, показ підказки (desktop + 375px
   на ddev); клік у справжній Viber не робився — не відкривав застосунок
   користувача. Бекап — `claude-backups/2026-10-01-viber-fix/`.
-- GA4-подій на кліки по месенджерах немає (лістенер `contact_click`
-  видалено 2026-09-27) — додати, якщо треба рахувати звернення.
+- **Конверсії по кліках на месенджери — готово [browser]** (2026-10-01):
+  `main.js` шле GA4 `contact_click` з `method` = telegram|viber|whatsapp і
+  `link_location=floating_buttons` (один клік — одна подія), а де є Meta
+  Pixel (koval-group) — ще `fbq('track','Contact')`. У GA4 «koval google»
+  (553165051, потік koval-legal `G-LEV6HJZ19S`) `contact_click` уже
+  позначений ключовою подією; створено спец. параметр «Способ связи»
+  (подія, `method`). Перевірено на проді обох доменів перехопленням
+  запитів (самі хіти НЕ відправлялись, щоб не рахувати тестові
+  конверсії): koval-legal → `G-LEV6HJZ19S`, koval-group → `G-24N1C2DG5F`
+  + Meta Contact. Бекап — `claude-backups/2026-10-01-messenger-tracking/`.
+  - На koval-legal два Google-теги: тема (`GT-KDD6P3PH` → `G-LEV6HJZ19S`)
+    і плагін Site Kit (`GT-PZMT9Q4M` → `G-4GEQWCSNS2`, ресурс поза
+    доступом цього логіна). Подвійного рахунку в 553165051 немає.
+  - Google Ads не чіпали (за рішенням користувача працюємо тільки в
+    ресурсі 553165051). Ресурс зв'язаний з Ads «koval ads» 843-637-3323.
