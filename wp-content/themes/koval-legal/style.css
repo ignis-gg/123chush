@@ -1079,11 +1079,11 @@ footer#site-footer{background:var(--navy);color:#9aa0ab;padding:70px 0 34px;font
 #bwc-chat-cloud-message{display:none!important;}
 
 
-/* "Back to top" button (footer.php + main.js), every page. Sits right above
-   Binotel's round call button (56px, 30px from the bottom-right corner) so
-   the two never overlap; hidden until the page is scrolled. */
+/* "Back to top" button (footer.php + main.js), every page. Sits on top of
+   the right-edge stack (Binotel's round button, call pill, messenger column
+   — see .msg-fab) on the same vertical line; hidden until scrolled. */
 .to-top{
-  position:fixed;right:36px;bottom:192px;z-index:99999997; /* above .call-fab */
+  position:fixed;right:36px;bottom:392px;z-index:99999997; /* on top of the .msg-fab column */
   width:44px;height:44px;border-radius:50%;
   display:flex;align-items:center;justify-content:center;
   background:var(--navy);color:#fff;border:1px solid rgba(217,189,130,.55);
@@ -1157,26 +1157,8 @@ footer#site-footer{padding-bottom:110px;}
 .call-fab-num{font-size:25px;font-weight:800;letter-spacing:.01em;white-space:nowrap;margin-top:3px;}
 @keyframes call-fab-ring{0%{transform:scale(1);opacity:.9;}100%{transform:scale(1.55);opacity:0;}}
 @keyframes call-fab-shake{0%,70%,100%{transform:rotate(0);}74%,82%,90%{transform:rotate(-14deg);}78%,86%,94%{transform:rotate(14deg);}}
-/* Phones (2026-09-30, from the user's real-phone screenshots): the pill
-   floated mid-screen over the hero text and, on koval-group, ran into
-   Binotel's buttons with the number cut off. Now it is a full-width bar
-   along the bottom edge, and Binotel's stack (left on koval-legal, right on
-   koval-group — set in each Binotel account) is lifted above it through
-   Binotel's own offset variable (set inline on <html> by its script, so
-   it needs !important). */
-@media(max-width:640px){
-  .to-top{right:16px;bottom:calc(86px + env(safe-area-inset-bottom,0px));}
-  footer#site-footer{padding-bottom:240px;}
-  .call-fab{
-    left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));
-    justify-content:center;gap:12px;padding:6px 18px 6px 6px;
-  }
-  .call-fab-icon{width:46px;height:46px;}
-  .call-fab-icon svg{width:22px;height:22px;}
-  .call-fab-label{font-size:10.5px;}
-  .call-fab-num{font-size:21px;}
-  html{--bwc-chat-mob-offset-vertical:calc(86px + env(safe-area-inset-bottom,0px))!important;}
-}
+/* Phones: the call button lives in the bottom contact dock — see
+   "phones: one bottom contact dock" at the end of the file. */
 
 /* Binotel buttons in the site's wine instead of the account's default blue
    (#6890E4) — same inline-on-<html> variables, every screen width. */
@@ -1191,3 +1173,114 @@ html{
 }
 @media (prefers-reduced-motion:reduce){.call-fab-icon,.call-fab-icon::after{animation:none;}}
 @media print{.call-fab{display:none;}}
+
+/* ---------- messenger buttons above the call button (2026-10-01) ----------
+   footer.php, every page. Official logos (Simple Icons) in each brand's
+   colours, with the same gold-light ring as .call-fab. A vertical column
+   along the right edge of the screen (user's call), centred on the same
+   line as Binotel's round button and .to-top, above the call pill (78px
+   tall at bottom:100px), .to-top on top of the column. Phones: inside the
+   bottom contact dock (next section). */
+.msg-fab{
+  position:fixed;right:31px;bottom:192px;z-index:150;
+  display:flex;flex-direction:column;gap:12px;
+}
+.msg-fab-btn{
+  position:relative;width:54px;height:54px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;text-decoration:none;border:2px solid var(--gold-light);
+  box-shadow:0 10px 24px rgba(18,21,28,.28),0 2px 5px rgba(0,0,0,.18);
+  transition:transform .18s ease,box-shadow .18s ease;
+  animation:msg-fab-in .5s cubic-bezier(.2,.9,.3,1.3) backwards; /* not "both": a held end state would override the hover lift */
+}
+.msg-fab-btn svg{width:28px;height:28px;display:block;}
+/* Telegram's plane is drawn inside the logo's 24px circle, so the svg
+   covers the whole button to keep the official proportions. */
+.msg-fab-tg svg{width:100%;height:100%;}
+.msg-fab-tg{background:linear-gradient(180deg,#2aabee,#229ed9);animation-delay:.16s;}
+.msg-fab-vb{background:linear-gradient(180deg,#8a77f6,#7360f2);animation-delay:.08s;}
+.msg-fab-wa{background:linear-gradient(180deg,#5fd97f,#25d366);}
+.msg-fab-btn:hover{transform:translateX(-3px);color:#fff;box-shadow:0 14px 30px rgba(18,21,28,.34),0 3px 7px rgba(0,0,0,.2);}
+.msg-fab-btn:focus-visible{outline:3px solid var(--gold);outline-offset:3px;}
+/* name tooltip to the left on hover (mouse only — on touch the tap opens the app) */
+.msg-fab-btn::after{
+  content:attr(data-tip);position:absolute;right:calc(100% + 10px);top:50%;
+  transform:translate(4px,-50%);padding:5px 11px;border-radius:var(--radius-pill);
+  background:var(--navy);color:#fff;font:600 12px/1.2 var(--sans);letter-spacing:.02em;
+  white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .15s,transform .15s;
+}
+@media (hover:hover){.msg-fab-btn:hover::after{opacity:1;transform:translate(0,-50%);}}
+@keyframes msg-fab-in{from{opacity:0;transform:translateX(14px) scale(.8);}to{opacity:1;transform:none;}}
+@media (prefers-reduced-motion:reduce){.msg-fab-btn{animation:none;transition:none;}}
+@media print{.msg-fab{display:none;}}
+
+/* ---------- phones: one bottom contact dock (2026-10-01) ----------
+   User: the floating buttons looked piled on top of each other. ≤640px the
+   call button and the messenger icons share one dark panel along the
+   bottom edge (.contact-dock wraps them in footer.php; on wider screens it
+   is display:contents, so both stay fixed on their own). Binotel's two
+   buttons sit just above the panel as a row of the same gold-ringed
+   circles — their side (left on koval-legal, right on koval-group) is set
+   in each Binotel account — with .to-top opposite. Binotel's offsets are
+   inline variables on <html> and its button rules use long selectors,
+   hence !important. */
+.contact-dock{display:contents;}
+@media(max-width:640px){
+  .contact-dock{
+    position:fixed;left:0;right:0;bottom:0;z-index:150;
+    display:flex;align-items:center;gap:10px;
+    padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));
+    background:rgba(18,21,28,.97);border-top:1px solid rgba(217,189,130,.5);
+    border-radius:20px 20px 0 0;box-shadow:0 -10px 30px rgba(18,21,28,.3);
+  }
+  @supports (backdrop-filter:blur(1px)){
+    .contact-dock{background:rgba(18,21,28,.88);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);}
+  }
+  .contact-dock .call-fab{
+    position:static;flex:1;min-width:0;justify-content:flex-start;
+    gap:10px;padding:4px 12px 4px 4px;box-shadow:0 6px 16px rgba(125,42,53,.45);
+  }
+  .call-fab-icon{width:42px;height:42px;}
+  .call-fab-icon svg{width:20px;height:20px;}
+  .call-fab-label{font-size:9.5px;letter-spacing:.05em;}
+  .call-fab-num{font-size:19px;margin-top:2px;}
+  .contact-dock .msg-fab{position:static;flex-direction:row;gap:8px;}
+  .msg-fab-btn{width:46px;height:46px;box-shadow:0 6px 14px rgba(0,0,0,.3);}
+  .msg-fab-btn svg{width:24px;height:24px;}
+  .msg-fab-tg svg{width:100%;height:100%;}
+  .msg-fab-btn:hover{transform:none;}
+
+  footer#site-footer{padding-bottom:170px;}
+  .to-top{right:14px;bottom:calc(84px + env(safe-area-inset-bottom,0px));width:46px;height:46px;}
+  html{
+    --bwc-chat-mob-offset-vertical:calc(84px + env(safe-area-inset-bottom,0px))!important;
+    --bwc-chat-mob-offset-horizontal:14px!important;
+  }
+  bwchat#bwc-wrap #bwc-widget-action.bwc-mobile{flex-direction:row!important;align-items:center!important;gap:10px!important;}
+  bwchat#bwc-wrap #bwc-widget-action.bwc-mobile > button{
+    width:46px!important;height:46px!important;min-width:0!important;margin:0!important;
+    border-radius:50%!important;border:2px solid var(--gold-light)!important;
+    box-shadow:0 8px 20px rgba(18,21,28,.3)!important;
+  }
+  /* Binotel cycles icon -> "Замовити дзвінок"/"Почати діалог" in the button */
+  bwchat#bwc-wrap #bwc-widget-action.bwc-mobile > button .bwc-btn-text{font-size:8.5px!important;line-height:1.15!important;letter-spacing:0!important;}
+}
+/* narrower phones: shrink the icons before the number gets squeezed */
+@media(max-width:400px){
+  .contact-dock{gap:8px;}
+  .contact-dock .msg-fab{gap:6px;}
+  .msg-fab-btn{width:42px;height:42px;}
+  .msg-fab-btn svg{width:22px;height:22px;}
+  .call-fab-icon{width:40px;height:40px;}
+  .call-fab-num{font-size:17px;}
+}
+@media(max-width:340px){
+  .contact-dock{padding-left:10px;padding-right:10px;}
+  .msg-fab-btn{width:38px;height:38px;}
+  .msg-fab-btn svg{width:20px;height:20px;}
+  .contact-dock .call-fab{gap:8px;padding-right:10px;}
+  .call-fab-icon{width:34px;height:34px;}
+  .call-fab-icon svg{width:17px;height:17px;}
+  .call-fab-label{font-size:8.5px;}
+  .call-fab-num{font-size:15px;}
+}

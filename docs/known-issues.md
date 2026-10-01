@@ -742,3 +742,19 @@ Apache/LiteSpeed-хостинге будет так же (может быть л
 не з'являлись у `/service-sitemap.xml` — Rank Math віддає закешовану карту.
 Після створення/видалення записів міграцією скидати кеш:
 `sudo -u perenos82 wp eval 'RankMath\Sitemap\Cache::invalidate_storage();'`.
+
+## Claude in Chrome: мобільний iframe-тест — `bwc-mobile` і стиснуті iframe
+
+Знайдено 2026-10-01.
+- Клас `bwc-mobile` треба ставити НЕ на `#bwc-wrap`, а на його дочірні
+  елементи з id (`#bwc-widget-action`, `#bwc-chat-cloud-message`,
+  `#bwc-chat-omnichannel`): `d.querySelectorAll('#bwc-wrap [id^=bwc-]')
+  .forEach(e=>e.classList.add('bwc-mobile'))` — саме там правила Binotel
+  з `--bwc-chat-mob-offset-vertical`. На `#bwc-wrap` клас нічого не дає.
+- Якщо iframe вставляти в `body` сторінки теми після навігації, стилі
+  теми можуть стиснути iframe (обидва в телефонному режимі, горизонтальний
+  скрол). Задавати `width`/`min-width` інлайн з `!important` і перевіряти
+  `iframe.contentWindow.innerWidth`.
+- kovallegalgroup.com.ua (старий сайт) не відкривається ні з цієї машини,
+  ні з VPS, ні в Chrome (connection timeout); прочитати можна лише через
+  TinyFish `fetch_content`.
