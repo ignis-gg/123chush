@@ -807,6 +807,14 @@ Apache/LiteSpeed-хостинге будет так же (может быть л
   slug українського терміна.
 - Rank Math бере title/description архіву `/poslugy/` з назви CPT
   («Послуги») — для RU підмінено фільтрами в `inc/i18n.php`.
+- Дата «Оновлено» у статтях — `post_modified`: `wp_insert_post()` ставить
+  її рівною даті публікації, `wp_update_post()` — моменту запуску. Імпорт
+  тепер копіює `post_modified` з UA-оригіналу через `$wpdb->update()`.
+- Медіа спільне для мов — alt-тексти картинок українські; на RU їх
+  перекладає `koval_t()` (фільтри `wp_get_attachment_image_attributes`,
+  Rank Math `og_image_alt`), переклад alt — у `inc/i18n-ru.php`.
+- `?m=1` у URL — WordPress-архів за датою («Нічого не знайдено»), не
+  брати його як cache-buster при перевірках.
 - `wp eval-file` виконує файл усередині функції: змінні міграції не
   глобальні, `global $x` у хелпері їх не бачить — передавати через
   `$GLOBALS[...]`.
