@@ -264,6 +264,20 @@ foreach ( $koval_pairs as $koval_ua_id => $koval_ru_id ) {
 }
 WP_CLI::log( "Links/IDs remapped in $koval_links fields." );
 
+// The RU copy shows the same "Оновлено / Обновлено" date as its UA
+// original (single.php prints it when it differs from the publish date) —
+// not the moment this script last touched it.
+global $wpdb;
+foreach ( $koval_pairs as $koval_ua_id => $koval_ru_id ) {
+	$koval_ua = get_post( $koval_ua_id );
+	$wpdb->update(
+		$wpdb->posts,
+		array( 'post_modified' => $koval_ua->post_modified, 'post_modified_gmt' => $koval_ua->post_modified_gmt ),
+		array( 'ID' => $koval_ru_id )
+	);
+	clean_post_cache( $koval_ru_id );
+}
+
 /* ------------------------------------------------------------- RU menu */
 
 $koval_menu_titles = array(
