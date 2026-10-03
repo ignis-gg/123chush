@@ -1125,7 +1125,7 @@ footer#site-footer{background:var(--navy);color:#9aa0ab;padding:70px 0 34px;font
 }
 @media(max-width:400px){
   /* long RU/UA words in big headings ("конфиденциальности", "бюрократических") */
-  h1,h2,h3,h4,.price-value{hyphens:auto;overflow-wrap:break-word;}
+  h1,h2,h3,h4,.price-value{hyphens:auto;hyphenate-limit-chars:14 6 6;overflow-wrap:break-word;} /* only really long words: not "кон-сультации" */
   .hero h1{hyphens:manual;} /* fits without help; don't split the accent word "кон-сультація" */
 }
 @media(max-width:360px){
