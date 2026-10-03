@@ -13,6 +13,16 @@ Standing authorization for this project — act without asking for confirmation 
   this VPS (`perenos74`, `perenos83`, …) are not ours, never touch them.
   Take a backup to `/var/www/perenos82/data/claude-backups/` before any
   DB/content change. Details: `docs/known-issues.md`, «Новий хостинг».
+- Exception granted by the user on 2026-10-03: `perenos74` owns the client's
+  old site kovallegalgroup.com.ua. Allowed there ONLY: creating and working
+  on the staging site `new.kovallegalgroup.com.ua` (own docroot
+  `/var/www/perenos74/data/www/new.kovallegalgroup.com.ua`, own DB),
+  read-only access to the old kovallegalgroup.com.ua for backups/content.
+  The other perenos74 sites (resultlawcompany.com.ua, viaestvita.kiev.ua,
+  osv.dok-ok.org.ua, sdm.…, ukr.viaestvita…) and the live
+  kovallegalgroup.com.ua itself must not be changed. Never change the
+  user-wide PHP version (`/var/www/perenos74/data/php-bin`). Backups to
+  `/var/www/perenos74/data/claude-backups/`. Project: `/home/guru/klg-site`.
 
 Exception — still confirm first, every time, with an isolated confirmation step:
 - Any `rm -rf`, `rmtree`, or bulk-delete of files/directories in this project.
