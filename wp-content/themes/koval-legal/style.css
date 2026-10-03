@@ -797,6 +797,8 @@ footer#site-footer{background:var(--navy);color:#9aa0ab;padding:70px 0 34px;font
 .price-jump a:hover{border-color:var(--wine);color:var(--wine);}
 
 .price-section{padding:60px 0 8px;scroll-margin-top:150px;}
+.price-section.wrap{padding-left:32px;padding-right:32px;} /* the shorthand above zeroed .wrap's side padding: /tsiny/ touched the screen edges on phones */
+@media(max-width:640px){.price-section.wrap{padding-left:20px;padding-right:20px;}}
 .price-section h2{
   font-family:var(--serif);font-size:24px;font-weight:700;margin-bottom:22px;
   padding-bottom:14px;border-bottom:2px solid var(--line);position:relative;
@@ -804,6 +806,7 @@ footer#site-footer{background:var(--navy);color:#9aa0ab;padding:70px 0 34px;font
 .price-section h2::after{content:"";position:absolute;left:0;bottom:-2px;width:52px;height:2px;background:var(--gold);}
 
 .price-section .wp-block-table{
+  position:relative; /* contain the absolute .sr-only header label, it widened the whole page on phones */
   overflow-x:auto;overflow-y:hidden;border:1px solid var(--line);border-radius:var(--radius);
   margin-bottom:8px;background:var(--paper);box-shadow:0 4px 18px rgba(23,26,32,.045);
   -webkit-overflow-scrolling:touch;
@@ -968,7 +971,7 @@ footer#site-footer{background:var(--navy);color:#9aa0ab;padding:70px 0 34px;font
   .menu-toggle{display:block;}
   .hero .wrap{grid-template-columns:1fr;}
   .hero-seal-box{display:none;}
-  .services-grid,.cases-grid,.test-grid,.footer-top,.single-grid{grid-template-columns:1fr;}
+  .services-grid,.cases-grid,.test-grid,.footer-top,.single-grid{grid-template-columns:minmax(0,1fr);}
   .adv-grid,.process-grid,.stats-grid{grid-template-columns:1fr 1fr;}
   .cta-grid{grid-template-columns:minmax(0,1fr);} /* minmax: a plain 1fr track grew to its min-content and overflowed 320px phones */
   .hero h1{font-size:34px;}
@@ -1115,6 +1118,14 @@ footer#site-footer{background:var(--navy);color:#9aa0ab;padding:70px 0 34px;font
   .header-right{gap:12px;}
   /* room for the UA | RU switch: keep the tagline on one line */
   .logo .lg-sub{font-size:8.5px;letter-spacing:.1em;white-space:nowrap;}
+}
+@media(max-width:560px){
+  /* two columns overflowed phones by ~30px (long words like "Працевлаштування") */
+  .scenario-grid{grid-template-columns:minmax(0,1fr);}
+}
+@media(max-width:400px){
+  /* long RU/UA words in big headings ("конфиденциальности", "бюрократических") */
+  h1,h2,h3,h4,.price-value{hyphens:auto;overflow-wrap:break-word;}
 }
 @media(max-width:360px){
   .logo{font-size:16.5px;}
