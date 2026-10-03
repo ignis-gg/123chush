@@ -10,40 +10,44 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 function koval_legal_rich_services() {
+	// Keyed by the Ukrainian slug (was post IDs until 2026-10-03 — dev and
+	// prod IDs differed for the later pages, and the RU copies have their
+	// own IDs; look a post up with koval_source_slug()). The value is a
+	// suffix appended to the H1, in Ukrainian — koval_t() translates it.
 	return array(
-		99  => ' — швидко і без черг', // Апостиль на диплом або атестат.
-		101 => '', // Легалізація диплома для роботи чи навчання за кордоном.
-		102 => ' — без бюрократичних складнощів', // Шлюб з іноземцем в Україні.
-		111 => '', // Апостиль в Мін'юсті.
-		112 => '', // Легалізація документів в Мін'юсті.
-		116 => '', // WES Canada.
-		119 => '', // Розлучення через ДРАЦС.
-		120 => '', // Наказ про стягнення аліментів.
+		'apostyl-na-dyplom-abo-atestat' => ' — швидко і без черг', // Апостиль на диплом або атестат.
+		'lehalizatsiya-dyploma-dlya-roboty-chy-navchannya-za-kordonom' => '', // Легалізація диплома для роботи чи навчання за кордоном.
+		'shlyub-z-inozemtsem-v-ukrayini' => ' — без бюрократичних складнощів', // Шлюб з іноземцем в Україні.
+		'apostyl-v-minyusti' => '', // Апостиль в Мін'юсті.
+		'lehalizatsiya-dokumentiv-v-minyusti' => '', // Легалізація документів в Мін'юсті.
+		'wes-canada' => '', // WES Canada.
+		'rozluchennya-cherez-drats' => '', // Розлучення через ДРАЦС.
+		'nakaz-pro-styagnennya-alimentiv' => '', // Наказ про стягнення аліментів.
 		// ТЗ "32 сторінки" (2026-09-03), хвилі 1-6:
-		137 => '', // Реєстрація шлюбу між громадянами України.
-		138 => '', // Шлюбний договір.
-		140 => '', // Витребування дублікатів освітніх документів.
-		141 => '', // Довідка про факт навчання.
-		142 => '', // Витребування освітніх документів з-за кордону.
-		143 => '', // Подання позовів до суду.
-		144 => '', // Витребування копій судових рішень.
-		145 => '', // Адвокатські запити (АдвЗП) в суди.
-		146 => '', // Апостиль на документи ДРАЦС.
-		147 => '', // Подвійний апостиль.
-		148 => '', // Терміновий апостиль документів.
-		150 => '', // Апостиль в МОН.
-		151 => '', // Апостиль в МЗС.
-		152 => '', // Апостиль за кордоном.
-		153 => '', // Консультація щодо Гаазької конвенції.
-		154 => '', // Консульська легалізація документів в Україні.
-		155 => '', // Легалізація документів за кордоном.
-		156 => '', // Легалізація документів в МЗС.
-		158 => '', // Легалізація довіреності в Україні.
-		160 => '', // Легалізація свідоцтва про шлюб.
-		161 => '', // Легалізація свідоцтва про розлучення.
-		164 => '', // Консульська легалізація іноземних документів в Україні.
-		361 => '', // Довідки (загальний лендінг, без переліку конкретних видів) — 2026-09-08.
-		394 => '', // Довідка про несудимість (dev ID) — 2026-09-21, див. koval_legal_criminal_record_ids().
+		'reyestratsiya-shlyubu' => '', // Реєстрація шлюбу між громадянами України.
+		'shlyubnyy-kontrakt' => '', // Шлюбний договір.
+		'dublikat-dyploma-atestata' => '', // Витребування дублікатів освітніх документів.
+		'dovidka-pro-fakt-navchannya' => '', // Довідка про факт навчання.
+		'osvitni-dokumenty-z-kordonu' => '', // Витребування освітніх документів з-за кордону.
+		'podannya-pozovu-do-sudu' => '', // Подання позовів до суду.
+		'kopiya-sudovogo-rishennya' => '', // Витребування копій судових рішень.
+		'advokatskyy-zapyt' => '', // Адвокатські запити (АдвЗП) в суди.
+		'apostyl-na-dokumenty-drats' => '', // Апостиль на документи ДРАЦС.
+		'podviynyy-apostyl' => '', // Подвійний апостиль.
+		'terminovyy-apostyl' => '', // Терміновий апостиль документів.
+		'apostyl-v-mon' => '', // Апостиль в МОН.
+		'apostyl-v-mzs' => '', // Апостиль в МЗС.
+		'apostyl-za-kordonom' => '', // Апостиль за кордоном.
+		'konsultatsiya-gaazka-konventsiya' => '', // Консультація щодо Гаазької конвенції.
+		'konsulska-legalizatsiya-v-ukrayini' => '', // Консульська легалізація документів в Україні.
+		'legalizatsiya-za-kordonom' => '', // Легалізація документів за кордоном.
+		'legalizatsiya-v-mzs' => '', // Легалізація документів в МЗС.
+		'legalizatsiya-dovirenosti' => '', // Легалізація довіреності в Україні.
+		'legalizatsiya-svidotstva-pro-shlyub' => '', // Легалізація свідоцтва про шлюб.
+		'legalizatsiya-svidotstva-pro-rozluchennya' => '', // Легалізація свідоцтва про розлучення.
+		'legalizatsiya-inozemnyh-dokumentiv' => '', // Консульська легалізація іноземних документів в Україні.
+		'dovidky' => '', // Довідки (загальний лендінг, без переліку конкретних видів) — 2026-09-08.
+		'dovidka-pro-nesudymist' => '', // Довідка про несудимість — 2026-09-21, див. koval_legal_criminal_record_slugs().
 		// 100, 103, 118, 133, 134, 135, 136, 157, 159, 162, 163 — retired
 		// 2026-09-06 (Google Ads compliance, ІПН/ДРАЦС group + 4 legalization-
 		// of-svidotstvo pages), see docs/google-ads-gov-services-classification.md.
@@ -57,26 +61,25 @@ function koval_legal_rich_services() {
  */
 function koval_legal_pillar_services() {
 	return array(
-		122 => '', // Легалізація документів.
-		123 => '', // Сімейні відносини.
-		125 => '', // Освітні документи.
-		126 => '', // Суд.
+		'legalizatsiya-dokumentiv' => '', // Легалізація документів.
+		'simeyni-vidnosyny' => '', // Сімейні відносини.
+		'osvitni-dokumenty' => '', // Освітні документи.
+		'sudovi-poslugy' => '', // Суд.
 		// 121 (Документи ДРАЦС), 124 (ІПН) — retired 2026-09-06, no
 		// surviving children to hub.
 	);
 }
 
 /**
- * IDs whose content is fully authored through ACF fields (rich landings +
- * pillar pages) — post_content on these still holds the old hand-authored
- * HTML as a non-destructive fallback, but it's not what an editor should
- * touch, so the admin edit screen hides the raw editor for exactly these.
+ * Whether a post's content is fully authored through ACF fields (rich
+ * landings + pillar pages, in any language) — post_content on these still
+ * holds the old hand-authored HTML as a non-destructive fallback (or is
+ * empty on the RU copies), but it's not what an editor should touch, so
+ * the admin edit screen hides the raw editor for exactly these.
  */
-function koval_legal_acf_content_ids() {
-	return array_merge(
-		array_keys( koval_legal_rich_services() ),
-		array_keys( koval_legal_pillar_services() )
-	);
+function koval_legal_is_acf_content( $post_id ) {
+	$slug = koval_source_slug( $post_id );
+	return array_key_exists( $slug, koval_legal_rich_services() ) || array_key_exists( $slug, koval_legal_pillar_services() );
 }
 
 /**
@@ -86,9 +89,27 @@ function koval_legal_acf_content_ids() {
  * koval_render_legal_notice() in inc/acf-render.php), per the 2026-09-04
  * Google Ads exclusion-request prep pass.
  */
-function koval_legal_legalization_group_ids() {
+function koval_legal_legalization_group_slugs() {
 	// 157, 159, 162, 163 removed 2026-09-06 (Google Ads compliance).
-	return array( 99, 147, 148, 150, 151, 111, 152, 153, 154, 164, 155, 101, 158, 160, 161, 112, 156 );
+	return array(
+		'apostyl-na-dyplom-abo-atestat',
+		'podviynyy-apostyl',
+		'terminovyy-apostyl',
+		'apostyl-v-mon',
+		'apostyl-v-mzs',
+		'apostyl-v-minyusti',
+		'apostyl-za-kordonom',
+		'konsultatsiya-gaazka-konventsiya',
+		'konsulska-legalizatsiya-v-ukrayini',
+		'legalizatsiya-inozemnyh-dokumentiv',
+		'legalizatsiya-za-kordonom',
+		'lehalizatsiya-dyploma-dlya-roboty-chy-navchannya-za-kordonom',
+		'legalizatsiya-dovirenosti',
+		'legalizatsiya-svidotstva-pro-shlyub',
+		'legalizatsiya-svidotstva-pro-rozluchennya',
+		'lehalizatsiya-dokumentiv-v-minyusti',
+		'legalizatsiya-v-mzs',
+	);
 }
 
 /**
@@ -103,8 +124,8 @@ function koval_legal_legalization_group_ids() {
  * page and this notice both keep the consultation-only framing (KOVAL
  * does not issue the certificate, only consults on how to obtain it).
  */
-function koval_legal_criminal_record_ids() {
-	return array( 394 ); // dev ID — prod ID differs, see docs/migration-status.md.
+function koval_legal_criminal_record_slugs() {
+	return array( 'dovidka-pro-nesudymist' );
 }
 
 /**
@@ -180,8 +201,11 @@ function koval_legal_catalog_categories() {
 			continue;
 		}
 
+		// The Ukrainian term's slug even on RU pages: it drives the
+		// #group-<slug> anchors and the .svc-icon-<slug> CSS icons.
+		$source_term = function_exists( 'pll_get_term' ) ? pll_get_term( $term->term_id, 'uk' ) : 0;
 		$categories[] = array(
-			'slug'             => $term->slug,
+			'slug'             => $source_term && $source_term !== $term->term_id ? get_term( $source_term )->slug : $term->slug,
 			'label'            => $term->name,
 			'description'      => $term->description,
 			'price_anchor'     => '',

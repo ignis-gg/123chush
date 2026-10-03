@@ -363,26 +363,28 @@
 			hint.classList.remove('is-visible');
 		}
 	};
+	// UA/RU strings come from inc/i18n.php (window.KOVAL_I18N).
+	var i18n = window.KOVAL_I18N || {};
 	var show = function () {
 		if (!hint) {
 			hint = document.createElement('div');
 			hint.className = 'viber-hint';
 			hint.setAttribute('role', 'status');
-			hint.innerHTML = '<button type="button" class="viber-hint-close" aria-label="Закрити">&times;</button>' +
-				'<p>Якщо Viber не відкрився — напишіть нам у Viber на номер <strong>' + pretty + '</strong></p>' +
-				'<button type="button" class="viber-hint-copy">Скопіювати номер</button>';
+			hint.innerHTML = '<button type="button" class="viber-hint-close" aria-label="' + (i18n.close || 'Закрити') + '">&times;</button>' +
+				'<p>' + (i18n.viberHint || 'Якщо Viber не відкрився — напишіть нам у Viber на номер') + ' <strong>' + pretty + '</strong></p>' +
+				'<button type="button" class="viber-hint-copy">' + (i18n.copyNumber || 'Скопіювати номер') + '</button>';
 			document.body.appendChild(hint);
 			hint.querySelector('.viber-hint-close').addEventListener('click', hide);
 			hint.querySelector('.viber-hint-copy').addEventListener('click', function (e) {
 				var copyBtn = e.currentTarget;
 				if (navigator.clipboard && navigator.clipboard.writeText) {
 					navigator.clipboard.writeText('+' + digits).then(function () {
-						copyBtn.textContent = 'Скопійовано ✓';
+						copyBtn.textContent = i18n.copied || 'Скопійовано ✓';
 					}, function () {});
 				}
 			});
 		}
-		hint.querySelector('.viber-hint-copy').textContent = 'Скопіювати номер';
+		hint.querySelector('.viber-hint-copy').textContent = i18n.copyNumber || 'Скопіювати номер';
 		// next frame, so the fade-in transition runs on first show too
 		window.requestAnimationFrame(function () {
 			hint.classList.add('is-visible');

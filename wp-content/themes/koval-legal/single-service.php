@@ -37,14 +37,15 @@ while ( have_posts() ) :
 	$duration     = koval_legal_field( 'service_duration' );
 	$cta_text     = koval_legal_field( 'service_cta_text' );
 	$location     = koval_legal_field( 'service_location' );
-	$koval_rich   = array_key_exists( get_the_ID(), $koval_rich_services );
-	$koval_pillar = array_key_exists( get_the_ID(), $koval_pillar_services );
+	$koval_slug   = koval_source_slug(); // UA slug — the RU copy shares its layout.
+	$koval_rich   = array_key_exists( $koval_slug, $koval_rich_services );
+	$koval_pillar = array_key_exists( $koval_slug, $koval_pillar_services );
 	?>
 	<main id="main">
 		<div class="single-hero">
 			<div class="wrap">
-				<div class="eyebrow on-dark"><?php echo esc_html( $koval_pillar ? 'Напрям' : 'Послуга' ); ?></div>
-				<h1><?php echo esc_html( $koval_rich ? get_the_title() . $koval_rich_services[ get_the_ID() ] : get_the_title() ); ?></h1>
+				<div class="eyebrow on-dark"><?php echo esc_html( koval_t( $koval_pillar ? 'Напрям' : 'Послуга' ) ); ?></div>
+				<h1><?php echo esc_html( $koval_rich ? get_the_title() . koval_t( $koval_rich_services[ $koval_slug ] ) : get_the_title() ); ?></h1>
 
 				<?php if ( $koval_rich || $koval_pillar ) : ?>
 					<?php if ( has_excerpt() ) : ?>
@@ -53,15 +54,15 @@ while ( have_posts() ) :
 
 					<?php if ( $koval_rich ) : ?>
 						<div class="hero-ctas">
-							<a href="#contact-form" class="btn btn-wine"><?php echo esc_html( $cta_text ? $cta_text : 'Дізнатись вартість для мого випадку →' ); ?></a>
+							<a href="#contact-form" class="btn btn-wine"><?php echo esc_html( $cta_text ? $cta_text : koval_t( 'Дізнатись вартість для мого випадку →' ) ); ?></a>
 						</div>
 
 						<?php if ( $price || $duration ) : ?>
 							<ul class="trust-row">
-								<?php if ( $price ) : ?><li>Вартість <?php echo esc_html( $price ); ?></li><?php endif; ?>
-								<?php if ( $duration ) : ?><li>Строк <?php echo esc_html( $duration ); ?></li><?php endif; ?>
-								<li><?php echo esc_html( $location ? $location : 'Подання у м. Київ' ); ?></li>
-								<li>15+ років досвіду</li>
+								<?php if ( $price ) : ?><li><?php echo esc_html( koval_t( 'Вартість' ) ); ?> <?php echo esc_html( $price ); ?></li><?php endif; ?>
+								<?php if ( $duration ) : ?><li><?php echo esc_html( koval_t( 'Строк' ) ); ?> <?php echo esc_html( $duration ); ?></li><?php endif; ?>
+								<li><?php echo esc_html( $location ? $location : koval_t( 'Подання у м. Київ' ) ); ?></li>
+								<li><?php echo esc_html( koval_t( '15+ років досвіду' ) ); ?></li>
 							</ul>
 						<?php endif; ?>
 					<?php endif; ?>
@@ -113,21 +114,21 @@ while ( have_posts() ) :
 					<aside class="single-side">
 						<dl>
 							<?php if ( $price ) : ?>
-								<div><dt>Вартість</dt><dd><?php echo esc_html( $price ); ?></dd></div>
+								<div><dt><?php echo esc_html( koval_t( 'Вартість' ) ); ?></dt><dd><?php echo esc_html( $price ); ?></dd></div>
 							<?php endif; ?>
 							<?php if ( $duration ) : ?>
-								<div><dt>Строк виконання</dt><dd><?php echo esc_html( $duration ); ?></dd></div>
+								<div><dt><?php echo esc_html( koval_t( 'Строк виконання' ) ); ?></dt><dd><?php echo esc_html( $duration ); ?></dd></div>
 							<?php endif; ?>
 						</dl>
-						<a href="#contact-form" class="btn btn-wine" style="width:100%;justify-content:center;">Отримати консультацію →</a>
-						<p class="cta-disclaimer" style="margin-top:18px;">Вартість орієнтовна і фіксується в договорі до початку роботи.</p>
+						<a href="#contact-form" class="btn btn-wine" style="width:100%;justify-content:center;"><?php echo esc_html( koval_t( 'Отримати консультацію →' ) ); ?></a>
+						<p class="cta-disclaimer" style="margin-top:18px;"><?php echo esc_html( koval_t( 'Вартість орієнтовна і фіксується в договорі до початку роботи.' ) ); ?></p>
 					</aside>
 				</div>
 			</div>
 
 		<?php endif; ?>
 
-		<?php echo koval_legal_render_cta_section( get_the_title() ); ?>
+		<?php echo koval_legal_render_cta_section( get_the_title( koval_source_id() ) ); ?>
 
 	</main>
 	<?php

@@ -42,8 +42,8 @@ $related    = is_array( $related ) ? $related : array();
 // while Binotel's schedule is 9:30–18:30 + Sat — two different numbers on
 // one page would undermine trust. "Оперативно", never minutes (TZ §1.6).
 $hours = $delicate
-	? 'Залишили номер у вихідний чи ввечері — зателефонуємо наступного робочого дня.'
-	: 'У робочі дні передзвонюємо оперативно. Залишили номер у вихідний чи ввечері — зателефонуємо наступного робочого дня.';
+	? koval_t( 'Залишили номер у вихідний чи ввечері — зателефонуємо наступного робочого дня.' )
+	: koval_t( 'У робочі дні передзвонюємо оперативно. Залишили номер у вихідний чи ввечері — зателефонуємо наступного робочого дня.' );
 
 // Notice: first sentence bold, like the prototype.
 $notice_html = '';
@@ -68,7 +68,7 @@ $desktop_picture = function ( $attachment_id, $class, $sizes ) {
 	$srcset = wp_get_attachment_image_srcset( $attachment_id, 'large' );
 	$src    = wp_get_attachment_image_url( $attachment_id, 'large' );
 	$meta   = wp_get_attachment_metadata( $attachment_id );
-	$alt    = get_post_meta( $attachment_id, '_wp_attachment_image_alt', true );
+	$alt    = koval_t( (string) get_post_meta( $attachment_id, '_wp_attachment_image_alt', true ) );
 	return '<picture class="' . esc_attr( $class ) . '">'
 		. '<source media="(min-width: 961px)" srcset="' . esc_attr( $srcset ? $srcset : $src ) . '" sizes="' . esc_attr( $sizes ) . '">'
 		. '<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="' . esc_attr( $alt ) . '" width="' . (int) ( $meta['width'] ?? 1200 ) . '" height="' . (int) ( $meta['height'] ?? 800 ) . '" loading="eager" decoding="async">'
@@ -80,10 +80,10 @@ $desktop_picture = function ( $attachment_id, $class, $sizes ) {
 	<section class="al-hero">
 		<div class="wrap al-hero__grid">
 			<div class="al-hero__text">
-				<nav class="al-crumbs" aria-label="Хлібні крихти">
-					<a href="<?php echo esc_url( home_url( '/' ) ); ?>">Головна</a>
+				<nav class="al-crumbs" aria-label="<?php echo esc_attr( koval_t( 'Хлібні крихти' ) ); ?>">
+					<a href="<?php echo esc_url( koval_home_url() ); ?>"><?php echo koval_t( 'Головна' ); ?></a>
 					<span aria-hidden="true">›</span>
-					<a href="<?php echo esc_url( get_post_type_archive_link( 'service' ) ); ?>">Послуги</a>
+					<a href="<?php echo esc_url( get_post_type_archive_link( 'service' ) ); ?>"><?php echo koval_t( 'Послуги' ); ?></a>
 					<span aria-hidden="true">›</span>
 					<span aria-current="page"><?php the_title(); ?></span>
 				</nav>
@@ -97,11 +97,11 @@ $desktop_picture = function ( $attachment_id, $class, $sizes ) {
 
 				<ul class="al-chips">
 					<?php if ( $delicate ) : ?>
-						<li><?php echo koval_legal_ads_svg( 'check', 16, 2.2 ); ?>Перша консультація безкоштовна</li>
-						<li><?php echo koval_legal_ads_svg( 'check', 16, 2.2 ); ?>Без зобов'язань</li>
+						<li><?php echo koval_legal_ads_svg( 'check', 16, 2.2 ); ?><?php echo koval_t( 'Перша консультація безкоштовна' ); ?></li>
+						<li><?php echo koval_legal_ads_svg( 'check', 16, 2.2 ); ?><?php echo koval_t( "Без зобов'язань" ); ?></li>
 					<?php else : ?>
-						<li class="al-chips__main"><?php echo koval_legal_ads_svg( 'check', 20, 2.2 ); ?>Перша консультація — безкоштовно</li>
-						<li class="al-chips__mobile"><?php echo koval_legal_ads_svg( 'check', 18, 2.2 ); ?>15+ років · 57&nbsp;000+ консультацій</li>
+						<li class="al-chips__main"><?php echo koval_legal_ads_svg( 'check', 20, 2.2 ); ?><?php echo koval_t( 'Перша консультація — безкоштовно' ); ?></li>
+						<li class="al-chips__mobile"><?php echo koval_legal_ads_svg( 'check', 18, 2.2 ); ?><?php echo koval_t( '15+ років · 57&nbsp;000+ консультацій' ); ?></li>
 						<?php if ( $chip ) : ?>
 							<li><?php echo koval_legal_ads_svg( 'check', 18, 2.2 ); ?><?php echo esc_html( $chip ); ?></li>
 						<?php endif; ?>
@@ -109,9 +109,9 @@ $desktop_picture = function ( $attachment_id, $class, $sizes ) {
 				</ul>
 
 				<div class="al-hero__cta">
-					<?php echo $call_btn( 'Передзвоніть мені' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+					<?php echo $call_btn( koval_t( 'Передзвоніть мені' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 					<?php if ( ! $delicate ) : ?>
-						<span class="al-hero__cta-note">Безкоштовно · без зобов'язань</span>
+						<span class="al-hero__cta-note"><?php echo koval_t( "Безкоштовно · без зобов'язань" ); ?></span>
 					<?php endif; ?>
 				</div>
 
@@ -122,8 +122,8 @@ $desktop_picture = function ( $attachment_id, $class, $sizes ) {
 				<div class="al-hero__media" aria-hidden="true">
 					<?php echo $desktop_picture( $hero_img, 'al-hero__photo', '(min-width: 1200px) 560px, 46vw' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 					<?php if ( ! $delicate ) : ?>
-						<div class="al-float al-float--a"><span class="al-float__num">57&nbsp;000+</span><span class="al-float__label">наданих<br>консультацій</span></div>
-						<div class="al-float al-float--b"><span class="al-float__num">15+</span><span class="al-float__label">років<br>практики</span></div>
+						<div class="al-float al-float--a"><span class="al-float__num">57&nbsp;000+</span><span class="al-float__label"><?php echo koval_t( 'наданих<br>консультацій' ); ?></span></div>
+						<div class="al-float al-float--b"><span class="al-float__num">15+</span><span class="al-float__label"><?php echo koval_t( 'років<br>практики' ); ?></span></div>
 					<?php endif; ?>
 				</div>
 			<?php endif; ?>
@@ -145,10 +145,10 @@ $desktop_picture = function ( $attachment_id, $class, $sizes ) {
 		<section class="al-section al-sit">
 			<div class="wrap">
 				<?php if ( ! $delicate ) : ?>
-					<div class="al-eyebrow">Ваша ситуація</div>
+					<div class="al-eyebrow"><?php echo koval_t( 'Ваша ситуація' ); ?></div>
 				<?php endif; ?>
-				<h2 class="al-h2"><?php echo $delicate ? 'Чим можемо допомогти' : 'Яка у вас ситуація?'; ?></h2>
-				<p class="al-sub"><?php echo $delicate ? 'Оберіть своє питання — і фахівець передзвонить саме з нього.' : 'Оберіть — і наш фахівець передзвонить саме з вашого питання.'; ?></p>
+				<h2 class="al-h2"><?php echo esc_html( $delicate ? koval_t( 'Чим можемо допомогти' ) : koval_t( 'Яка у вас ситуація?' ) ); ?></h2>
+				<p class="al-sub"><?php echo esc_html( $delicate ? koval_t( 'Оберіть своє питання — і фахівець передзвонить саме з нього.' ) : koval_t( 'Оберіть — і наш фахівець передзвонить саме з вашого питання.' ) ); ?></p>
 				<div class="al-sit__grid">
 					<?php
 					$last = count( $situations ) - 1;
@@ -163,7 +163,7 @@ $desktop_picture = function ( $attachment_id, $class, $sizes ) {
 								<span class="al-ico"><?php echo koval_legal_ads_svg( $sit['icon'] ?? 'doc', 21, 1.8 ); ?></span>
 							<?php endif; ?>
 							<span class="al-sit__text"><?php echo esc_html( $sit['text'] ); ?></span>
-							<span class="al-sit__go"><span class="al-sit__go-label">Передзвоніть мені</span><?php echo koval_legal_ads_svg( 'chevron', 18, 2 ); ?></span>
+							<span class="al-sit__go"><span class="al-sit__go-label"><?php echo koval_t( 'Передзвоніть мені' ); ?></span><?php echo koval_legal_ads_svg( 'chevron', 18, 2 ); ?></span>
 						</button>
 					<?php endforeach; ?>
 				</div>
@@ -180,18 +180,18 @@ $desktop_picture = function ( $attachment_id, $class, $sizes ) {
 			<?php endif; ?>
 			<div class="al-how__body">
 				<?php if ( ! $delicate ) : ?>
-					<div class="al-eyebrow">Як це працює</div>
+					<div class="al-eyebrow"><?php echo koval_t( 'Як це працює' ); ?></div>
 				<?php endif; ?>
-				<h2 class="al-h2"><?php echo $delicate ? 'Як це відбувається' : 'Усе починається з одного дзвінка'; ?></h2>
+				<h2 class="al-h2"><?php echo esc_html( $delicate ? koval_t( 'Як це відбувається' ) : koval_t( 'Усе починається з одного дзвінка' ) ); ?></h2>
 				<ol class="al-steps">
-					<li><span class="al-steps__num">1</span><span class="al-steps__txt"><strong>Ви залишаєте номер</strong><span>Це займає менше хвилини</span></span></li>
-					<li><span class="al-steps__num">2</span><span class="al-steps__txt"><strong>Фахівець передзвонює</strong><span><?php echo $delicate ? 'Спокійно уточнює деталі вашої ситуації' : 'Уточнює деталі вашої ситуації'; ?></span></span></li>
-					<li><span class="al-steps__num">3</span><span class="al-steps__txt"><strong><?php echo $delicate ? 'Ви знаєте, що робити далі' : 'Ви знаєте, як діяти далі'; ?></strong><?php if ( $step3 ) : ?><span><?php echo esc_html( $step3 ); ?></span><?php endif; ?></span></li>
+					<li><span class="al-steps__num">1</span><span class="al-steps__txt"><strong><?php echo koval_t( 'Ви залишаєте номер' ); ?></strong><span><?php echo koval_t( 'Це займає менше хвилини' ); ?></span></span></li>
+					<li><span class="al-steps__num">2</span><span class="al-steps__txt"><strong><?php echo koval_t( 'Фахівець передзвонює' ); ?></strong><span><?php echo esc_html( $delicate ? koval_t( 'Спокійно уточнює деталі вашої ситуації' ) : koval_t( 'Уточнює деталі вашої ситуації' ) ); ?></span></span></li>
+					<li><span class="al-steps__num">3</span><span class="al-steps__txt"><strong><?php echo esc_html( $delicate ? koval_t( 'Ви знаєте, що робити далі' ) : koval_t( 'Ви знаєте, як діяти далі' ) ); ?></strong><?php if ( $step3 ) : ?><span><?php echo esc_html( $step3 ); ?></span><?php endif; ?></span></li>
 				</ol>
 				<?php if ( $delicate ) : ?>
-					<p class="al-quiet-stats">15+ років юридичної практики · 57&nbsp;000+ наданих консультацій</p>
+					<p class="al-quiet-stats"><?php echo koval_t( '15+ років юридичної практики · 57&nbsp;000+ наданих консультацій' ); ?></p>
 				<?php else : ?>
-					<?php echo $call_btn( 'Передзвоніть мені' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+					<?php echo $call_btn( koval_t( 'Передзвоніть мені' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 				<?php endif; ?>
 			</div>
 		</div>
@@ -200,11 +200,11 @@ $desktop_picture = function ( $attachment_id, $class, $sizes ) {
 	<?php if ( ! $delicate ) : ?>
 		<section class="al-stats">
 			<div class="wrap al-stats__grid">
-				<div class="al-stat"><span class="al-stat__num">15+</span><span class="al-stat__label">років юридичної практики</span></div>
-				<div class="al-stat"><span class="al-stat__num">57&nbsp;000+</span><span class="al-stat__label">наданих консультацій</span></div>
+				<div class="al-stat"><span class="al-stat__num">15+</span><span class="al-stat__label"><?php echo koval_t( 'років юридичної практики' ); ?></span></div>
+				<div class="al-stat"><span class="al-stat__num">57&nbsp;000+</span><span class="al-stat__label"><?php echo koval_t( 'наданих консультацій' ); ?></span></div>
 				<div class="al-stat al-stat--world">
 					<span class="al-ico al-ico--dark"><?php echo koval_legal_ads_svg( 'globe', 24, 1.7 ); ?></span>
-					<p><strong>Консультуємо українців по всьому світу</strong> — тих, хто в Україні, і тих, хто виїхав за кордон.</p>
+					<p><strong><?php echo koval_t( 'Консультуємо українців по всьому світу' ); ?></strong> <?php echo koval_t( '— тих, хто в Україні, і тих, хто виїхав за кордон.' ); ?></p>
 				</div>
 			</div>
 		</section>
@@ -218,8 +218,8 @@ $desktop_picture = function ( $attachment_id, $class, $sizes ) {
 		?>
 		<section class="al-section al-reviews">
 			<div class="wrap">
-				<div class="al-eyebrow">Відгуки</div>
-				<h2 class="al-h2">Що кажуть клієнти</h2>
+				<div class="al-eyebrow"><?php echo koval_t( 'Відгуки' ); ?></div>
+				<h2 class="al-h2"><?php echo koval_t( 'Що кажуть клієнти' ); ?></h2>
 				<div class="al-reviews__track">
 					<?php foreach ( $reviews as $r ) : ?>
 						<figure class="al-review">
@@ -243,14 +243,14 @@ $desktop_picture = function ( $attachment_id, $class, $sizes ) {
 			<div class="wrap al-faq__grid">
 				<div class="al-faq__head">
 					<?php if ( ! $delicate ) : ?>
-						<div class="al-eyebrow">Питання</div>
+						<div class="al-eyebrow"><?php echo koval_t( 'Питання' ); ?></div>
 					<?php endif; ?>
-					<h2 class="al-h2">Часті запитання</h2>
+					<h2 class="al-h2"><?php echo koval_t( 'Часті запитання' ); ?></h2>
 					<?php if ( ! $delicate ) : ?>
 						<div class="al-faq__card">
-							<p class="al-faq__card-title">Не знайшли відповідь?</p>
-							<p>Залиште номер — фахівець передзвонить і відповість на ваше питання.</p>
-							<?php echo $call_btn( 'Передзвоніть мені' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+							<p class="al-faq__card-title"><?php echo koval_t( 'Не знайшли відповідь?' ); ?></p>
+							<p><?php echo koval_t( 'Залиште номер — фахівець передзвонить і відповість на ваше питання.' ); ?></p>
+							<?php echo $call_btn( koval_t( 'Передзвоніть мені' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 						</div>
 					<?php endif; ?>
 				</div>
@@ -269,11 +269,11 @@ $desktop_picture = function ( $attachment_id, $class, $sizes ) {
 	<section class="al-final" id="contact-form">
 		<div class="wrap al-final__grid">
 			<div class="al-final__text">
-				<h2>Залиште номер — ми передзвонимо</h2>
-				<p>Фахівець уточнить деталі й підкаже, з чого почати. Перша консультація безкоштовна.</p>
+				<h2><?php echo koval_t( 'Залиште номер — ми передзвонимо' ); ?></h2>
+				<p><?php echo koval_t( 'Фахівець уточнить деталі й підкаже, з чого почати. Перша консультація безкоштовна.' ); ?></p>
 				<p class="al-final__note"><?php echo esc_html( $final_note ); ?></p>
 			</div>
-			<?php echo $call_btn( 'Передзвоніть мені', 'al-btn al-btn--light' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+			<?php echo $call_btn( koval_t( 'Передзвоніть мені' ), 'al-btn al-btn--light' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 		</div>
 	</section>
 
@@ -283,7 +283,7 @@ $desktop_picture = function ( $attachment_id, $class, $sizes ) {
 		?>
 		<section class="al-related">
 			<div class="wrap">
-				<h2 class="al-related__title">Також може знадобитися</h2>
+				<h2 class="al-related__title"><?php echo koval_t( 'Також може знадобитися' ); ?></h2>
 				<div class="al-related__grid">
 					<?php
 					foreach ( $related as $rid ) :

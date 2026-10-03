@@ -8,7 +8,7 @@
  * manager: every CTA opens the Binotel GetCall "Передзвоніть мені" window,
  * no form and no chat buttons (the sitewide Binotel chat widget stays). A
  * service post opts in via the "ads_landing" ACF toggle (not an ID list —
- * dev and prod IDs differ, see koval_legal_criminal_record_ids()).
+ * a toggle stays with the page, and the RU copy gets it too).
  *
  * Text that is the same on every landing (steps, stats, hours, final CTA)
  * lives in template-parts/ads-landing.php; everything page-specific is an

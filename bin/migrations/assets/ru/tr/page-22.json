@@ -1,0 +1,10 @@
+{
+    "id": 22,
+    "type": "page",
+    "slug": "kontakty",
+    "ru_slug": "svyaz-s-nami",
+    "title": "Контакты",
+    "excerpt": "Приходите в офис или оставьте заявку — специалист оперативно свяжется с вами.",
+    "content": "<!-- wp:group {\"tagName\":\"section\",\"className\":\"contacts-body\"} -->\n<section class=\"wp-block-group contacts-body\">\n<!-- wp:columns {\"className\":\"wrap contacts-grid\"} -->\n<div class=\"wp-block-columns wrap contacts-grid\">\n\n<!-- wp:column -->\n<div class=\"wp-block-column\">\n<!-- wp:heading {\"level\":2} -->\n<h2 class=\"wp-block-heading\">Офис</h2>\n<!-- /wp:heading -->\n<!-- wp:list {\"className\":\"office-list\"} -->\n<ul class=\"wp-block-list office-list\">\n<!-- wp:list-item -->\n<li>г. Киев, ул. Иоанна Павла II, 23/35, подъезд 1, офис 1</li>\n<!-- /wp:list-item -->\n<!-- wp:list-item -->\n<li>График работы: Пн–Пт, 09:00–18:00</li>\n<!-- /wp:list-item -->\n</ul>\n<!-- /wp:list -->\n</div>\n<!-- /wp:column -->\n\n<!-- wp:column -->\n<div class=\"wp-block-column\">\n<!-- wp:shortcode -->\n[koval_contact_form]\n<!-- /wp:shortcode -->\n</div>\n<!-- /wp:column -->\n\n</div>\n<!-- /wp:columns -->\n</section>\n<!-- /wp:group -->\n\n<!-- wp:group {\"tagName\":\"section\",\"className\":\"map-section\"} -->\n<section class=\"wp-block-group map-section\">\n<!-- wp:group {\"className\":\"wrap\"} -->\n<div class=\"wp-block-group wrap\">\n<!-- wp:heading {\"level\":2} -->\n<h2 class=\"wp-block-heading\">Мы на карте</h2>\n<!-- /wp:heading -->\n<!-- wp:shortcode -->\n[koval_map]\n<!-- /wp:shortcode -->\n</div>\n<!-- /wp:group -->\n</section>\n<!-- /wp:group -->",
+    "meta": []
+}

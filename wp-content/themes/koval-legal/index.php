@@ -15,7 +15,7 @@ get_header();
 				<?php the_content(); ?>
 			</article>
 		<?php endwhile; else : ?>
-			<p>Нічого не знайдено.</p>
+			<p><?php echo esc_html( koval_t( 'Нічого не знайдено.' ) ); ?></p>
 		<?php endif; ?>
 	</div>
 </main>

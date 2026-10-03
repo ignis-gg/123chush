@@ -1,0 +1,130 @@
+[
+    {
+        "taxonomy": "service_category",
+        "id": 26,
+        "slug": "business",
+        "name": "Бизнес и регистрация",
+        "description": "Консультации по регистрации бизнеса, информационная поддержка по государственным выплатам.",
+        "meta": []
+    },
+    {
+        "taxonomy": "service_category",
+        "id": 31,
+        "slug": "dovidky",
+        "name": "Справки",
+        "description": "Консультации по оформлению нужных справок для разных жизненных ситуаций.",
+        "meta": {
+            "category_mini_cta": "Нужна консультация по справке?"
+        }
+    },
+    {
+        "taxonomy": "service_category",
+        "id": 23,
+        "slug": "dracs",
+        "name": "Документы ДРАЦС",
+        "description": "Консультации по дубликатам свидетельств, исправлению ошибок в актовых записях, восстановлению утерянных записей, выпискам из реестра.",
+        "meta": {
+            "category_mini_cta": "Не нашли нужный документ ДРАЦС в списке? Оставить заявку →"
+        }
+    },
+    {
+        "taxonomy": "service_category",
+        "id": 27,
+        "slug": "itn",
+        "name": "ИНН",
+        "description": "Консультации по оформлению ИНН для украинцев и иностранцев.",
+        "meta": []
+    },
+    {
+        "taxonomy": "service_category",
+        "id": 24,
+        "slug": "legalization",
+        "name": "Легализация документов",
+        "description": "Консультации по апостилю, консульской легализации и подготовке документов для использования за границей.",
+        "meta": {
+            "category_mini_cta": "Нужна легализация другого документа? Оставить заявку →"
+        }
+    },
+    {
+        "taxonomy": "service_category",
+        "id": 28,
+        "slug": "education",
+        "name": "Документы об образовании",
+        "description": "Консультации по восстановлению дипломов, аттестатов, справок об обучении.",
+        "meta": []
+    },
+    {
+        "taxonomy": "service_category",
+        "id": 25,
+        "slug": "family",
+        "name": "Семейные отношения",
+        "description": "Консультации по регистрации брака, браку с иностранцем, разводу, брачному договору.",
+        "meta": {
+            "category_mini_cta": "Планируете регистрацию брака? Оставить заявку →"
+        }
+    },
+    {
+        "taxonomy": "service_category",
+        "id": 29,
+        "slug": "court",
+        "name": "Суд",
+        "description": "Консультации по искам, взысканию алиментов, адвокатским запросам, судебному процессу.",
+        "meta": []
+    },
+    {
+        "taxonomy": "service_category",
+        "id": 30,
+        "slug": "drivers",
+        "name": "Судебная защита водителей",
+        "description": "Консультации по защите прав водителя.",
+        "meta": []
+    },
+    {
+        "taxonomy": "category",
+        "id": 1,
+        "slug": "uncategorized",
+        "name": "Uncategorized",
+        "description": "",
+        "meta": []
+    },
+    {
+        "taxonomy": "category",
+        "id": 16,
+        "slug": "biznes-fop",
+        "name": "Бизнес и ФЛП",
+        "description": "",
+        "meta": []
+    },
+    {
+        "taxonomy": "category",
+        "id": 13,
+        "slug": "dokumenty-dracs",
+        "name": "Документы ДРАЦС",
+        "description": "",
+        "meta": []
+    },
+    {
+        "taxonomy": "category",
+        "id": 14,
+        "slug": "legalizatsiya-apostyl",
+        "name": "Легализация и апостиль",
+        "description": "",
+        "meta": []
+    },
+    {
+        "taxonomy": "category",
+        "id": 15,
+        "slug": "simeyne-pravo",
+        "name": "Семейное право",
+        "description": "",
+        "meta": []
+    },
+    {
+        "taxonomy": "category",
+        "id": 17,
+        "slug": "sudovi-pytannya",
+        "name": "Судебные вопросы",
+        "description": "",
+        "meta": []
+    }
+]

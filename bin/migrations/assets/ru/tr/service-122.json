@@ -1,0 +1,153 @@
+{
+    "id": 122,
+    "type": "service",
+    "slug": "legalizatsiya-dokumentiv",
+    "ru_slug": "legalizatsiya-dokumentov",
+    "title": "Легализация документов — апостиль и консульская легализация",
+    "excerpt": "Разъясняем апостилирование и консульскую легализацию документов для использования за границей. Ниже — полный перечень услуг направления.",
+    "meta": {
+        "pillar_crosslinks": [
+            {
+                "url": "https://law-firm.ddev.site/poslugy/apostyl-na-dyplom-abo-atestat/",
+                "label": "Апостиль на диплом или аттестат →"
+            },
+            {
+                "url": "https://law-firm.ddev.site/poslugy/lehalizatsiya-dyploma-dlya-roboty-chy-navchannya-za-kordonom/",
+                "label": "Комплексная легализация документов (диплом) →"
+            },
+            {
+                "url": "https://law-firm.ddev.site/poslugy/lehalizatsiya-dokumentiv-v-minyusti/",
+                "label": "Легализация документов в Минюсте →"
+            },
+            {
+                "url": "https://law-firm.ddev.site/poslugy/apostyl-v-minyusti/",
+                "label": "Апостиль в Минюсте →"
+            }
+        ],
+        "pillar_card_groups": [
+            {
+                "heading": "Апостиль по органам",
+                "cards": [
+                    {
+                        "name": "Двойной апостиль",
+                        "description": "Если страна назначения требует апостиль на апостиль (редкий, но встречающийся случай) — консультируем по обоим этапам.",
+                        "price": "от 8 500 грн",
+                        "duration": "от 10 рабочих дней",
+                        "link_url": "https://law-firm.ddev.site/poslugy/podviynyy-apostyl/"
+                    },
+                    {
+                        "name": "Срочный апостиль документов",
+                        "description": "Ускоренное оформление апостиля, когда выезд или дедлайн подачи уже близко.",
+                        "price": "от 9 000 грн",
+                        "duration": "от 1 рабочего дня",
+                        "link_url": "https://law-firm.ddev.site/poslugy/terminovyy-apostyl/"
+                    },
+                    {
+                        "name": "Апостиль в МОН",
+                        "description": "Апостилирование документов об образовании через Министерство образования и науки.",
+                        "price": "",
+                        "duration": "",
+                        "link_url": "https://law-firm.ddev.site/poslugy/apostyl-v-mon/"
+                    },
+                    {
+                        "name": "Апостиль в МИД",
+                        "description": "Апостилирование документов, которые подаются через Министерство иностранных дел.",
+                        "price": "",
+                        "duration": "",
+                        "link_url": "https://law-firm.ddev.site/poslugy/apostyl-v-mzs/"
+                    },
+                    {
+                        "name": "Апостиль за границей",
+                        "description": "Консультируем, если нужно легализовать украинский документ через зарубежное учреждение.",
+                        "price": "",
+                        "duration": "",
+                        "link_url": "https://law-firm.ddev.site/poslugy/apostyl-za-kordonom/"
+                    },
+                    {
+                        "name": "Консультация по Гаагской конвенции",
+                        "description": "Объясняем, нужен ли апостиль или консульская легализация для вашей страны назначения.",
+                        "price": "",
+                        "duration": "",
+                        "link_url": "https://law-firm.ddev.site/poslugy/konsultatsiya-gaazka-konventsiya/"
+                    }
+                ]
+            },
+            {
+                "heading": "Консульская легализация",
+                "cards": [
+                    {
+                        "name": "Консульская легализация документов в Украине",
+                        "description": "Консультация по легализации украинских документов для стран, которые не являются участницами Гаагской конвенции.",
+                        "price": "",
+                        "duration": "",
+                        "link_url": "https://law-firm.ddev.site/poslugy/konsulska-legalizatsiya-v-ukrayini/"
+                    },
+                    {
+                        "name": "Консульская легализация иностранных документов в Украине",
+                        "description": "Помогаем легализовать иностранный документ для использования в Украине.",
+                        "price": "",
+                        "duration": "",
+                        "link_url": "https://law-firm.ddev.site/poslugy/legalizatsiya-inozemnyh-dokumentiv/"
+                    },
+                    {
+                        "name": "Легализация документов за границей",
+                        "description": "Консультируем по процедуре, когда легализация проходит непосредственно за границей.",
+                        "price": "",
+                        "duration": "",
+                        "link_url": "https://law-firm.ddev.site/poslugy/legalizatsiya-za-kordonom/"
+                    },
+                    {
+                        "name": "Легализация документов в МИД",
+                        "description": "Консультация по легализации через Министерство иностранных дел Украины.",
+                        "price": "",
+                        "duration": "",
+                        "link_url": "https://law-firm.ddev.site/poslugy/legalizatsiya-v-mzs/"
+                    }
+                ]
+            },
+            {
+                "heading": "Легализация свидетельств ДРАЦС",
+                "cards": [
+                    {
+                        "name": "Легализация свидетельства о браке",
+                        "description": "Консульская легализация свидетельства о браке.",
+                        "price": "",
+                        "duration": "",
+                        "link_url": "https://law-firm.ddev.site/poslugy/legalizatsiya-svidotstva-pro-shlyub/"
+                    },
+                    {
+                        "name": "Легализация свидетельства о разводе",
+                        "description": "Консульская легализация свидетельства о расторжении брака.",
+                        "price": "",
+                        "duration": "",
+                        "link_url": "https://law-firm.ddev.site/poslugy/legalizatsiya-svidotstva-pro-rozluchennya/"
+                    }
+                ]
+            },
+            {
+                "heading": "Другие виды легализации",
+                "cards": [
+                    {
+                        "name": "Легализация доверенности в Украине",
+                        "description": "Консультация по легализации доверенности для использования за границей.",
+                        "price": "",
+                        "duration": "",
+                        "link_url": "https://law-firm.ddev.site/poslugy/legalizatsiya-dovirenosti/"
+                    }
+                ]
+            }
+        ],
+        "pillar_faq_items": [
+            {
+                "question": "Как понять, нужен ли апостиль или консульская легализация?",
+                "answer": "Зависит от того, является ли страна назначения участницей Гаагской конвенции — уточняем на консультации для конкретной страны."
+            },
+            {
+                "question": "Вы государственный орган или частная компания?",
+                "answer": "Частная юридическая компания, которая оказывает консультационные и информационные услуги. Не входим в структуру Минюста, МИД или МОН и не выдаём документы самостоятельно."
+            }
+        ],
+        "rank_math_title": "Легализация документов — апостиль и консульская",
+        "rank_math_description": "Разъясняем апостилирование и консульскую легализацию документов для использования за границей. Консультация."
+    }
+}

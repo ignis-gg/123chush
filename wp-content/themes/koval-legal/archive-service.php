@@ -19,11 +19,11 @@ $koval_categories = koval_legal_catalog_categories();
 <main id="main">
 	<div class="archive-head">
 		<div class="wrap">
-			<div class="eyebrow on-dark">Послуги</div>
-			<h1>Наші ключові напрями</h1>
-			<p>Консультаційна та інформаційна підтримка: консультація, роз'яснення щодо підготовки документів — із фіксованою вартістю та строками.</p>
+			<div class="eyebrow on-dark"><?php echo esc_html( koval_t( 'Послуги' ) ); ?></div>
+			<h1><?php echo esc_html( koval_t( 'Наші ключові напрями' ) ); ?></h1>
+			<p><?php echo esc_html( koval_t( "Консультаційна та інформаційна підтримка: консультація, роз'яснення щодо підготовки документів — із фіксованою вартістю та строками." ) ); ?></p>
 			<div class="svc-search">
-				<input type="text" id="svcSearch" placeholder="Що вам потрібно? Наприклад: апостиль, дублікат свідоцтва, шлюб з іноземцем">
+				<input type="text" id="svcSearch" placeholder="<?php echo esc_attr( koval_t( 'Що вам потрібно? Наприклад: апостиль, дублікат свідоцтва, шлюб з іноземцем' ) ); ?>">
 			</div>
 		</div>
 	</div>
@@ -34,15 +34,15 @@ $koval_categories = koval_legal_catalog_categories();
 		<div class="wrap">
 
 			<div class="svc-tabs" id="svcTabs">
-				<button class="svc-tab is-active" data-filter="all" type="button">Усі послуги</button>
+				<button class="svc-tab is-active" data-filter="all" type="button"><?php echo esc_html( koval_t( 'Усі послуги' ) ); ?></button>
 				<?php foreach ( $koval_categories as $cat ) : ?>
 					<button class="svc-tab" data-filter="<?php echo esc_attr( $cat['slug'] ); ?>" type="button"><?php echo esc_html( $cat['label'] ); ?></button>
 				<?php endforeach; ?>
 			</div>
 
 			<div class="svc-intro">
-				<div class="eyebrow">Напрями</div>
-				<h2>Оберіть свою ситуацію</h2>
+				<div class="eyebrow"><?php echo esc_html( koval_t( 'Напрями' ) ); ?></div>
+				<h2><?php echo esc_html( koval_t( 'Оберіть свою ситуацію' ) ); ?></h2>
 			</div>
 
 			<nav class="svc-mini-nav" id="svcMiniNav" hidden>
@@ -64,22 +64,22 @@ $koval_categories = koval_legal_catalog_categories();
 							<?php foreach ( $cat['cards'] as $card ) :
 								$href = ! empty( $card['permalink'] )
 									? get_permalink( $card['permalink'] )
-									: ( $cat['price_anchor'] ? home_url( '/tsiny/#' . $cat['price_anchor'] ) : home_url( '/tsiny/' ) );
-								$search_blob = strtolower( $card['name'] . ' ' . $card['desc'] );
+									: ( $cat['price_anchor'] ? koval_page_url( 'tsiny', '#' . $cat['price_anchor'] ) : koval_page_url( 'tsiny' ) );
+								$search_blob = mb_strtolower( $card['name'] . ' ' . $card['desc'] );
 								?>
 								<div class="svc-card" data-search="<?php echo esc_attr( $search_blob ); ?>">
 									<?php if ( ! empty( $card['popular'] ) ) : ?>
-										<span class="svc-badge-popular">Часто замовляють</span>
+										<span class="svc-badge-popular"><?php echo esc_html( koval_t( 'Часто замовляють' ) ); ?></span>
 									<?php endif; ?>
 									<h4><a href="<?php echo esc_url( $href ); ?>"><?php echo esc_html( $card['name'] ); ?></a></h4>
 									<p><?php echo esc_html( $card['desc'] ); ?></p>
 									<?php if ( $card['price'] || $card['duration'] ) : ?>
 										<div class="svc-meta">
-											<?php if ( $card['price'] ) : ?><span>Вартість <b><?php echo esc_html( $card['price'] ); ?></b></span><?php endif; ?>
-											<?php if ( $card['duration'] ) : ?><span>Строк <b><?php echo esc_html( $card['duration'] ); ?></b></span><?php endif; ?>
+											<?php if ( $card['price'] ) : ?><span><?php echo esc_html( koval_t( 'Вартість' ) ); ?> <b><?php echo esc_html( $card['price'] ); ?></b></span><?php endif; ?>
+											<?php if ( $card['duration'] ) : ?><span><?php echo esc_html( koval_t( 'Строк' ) ); ?> <b><?php echo esc_html( $card['duration'] ); ?></b></span><?php endif; ?>
 										</div>
 									<?php endif; ?>
-									<a href="<?php echo esc_url( $href ); ?>" class="service-link">Детальніше →</a>
+									<a href="<?php echo esc_url( $href ); ?>" class="service-link"><?php echo esc_html( koval_t( 'Детальніше →' ) ); ?></a>
 								</div>
 							<?php endforeach; ?>
 						</div>

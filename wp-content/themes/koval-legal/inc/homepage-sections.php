@@ -23,11 +23,11 @@ function koval_legal_render_services_grid() {
 		<div class="wrap">
 			<div class="section-head">
 				<div>
-					<div class="eyebrow">Послуги</div>
-					<h2>Наші ключові напрями</h2>
-					<p>Прозорі ціни, фіксовані строки, договір і чіткі зобов'язання сторін.</p>
+					<div class="eyebrow"><?php echo esc_html( koval_t( 'Послуги' ) ); ?></div>
+					<h2><?php echo esc_html( koval_t( 'Наші ключові напрями' ) ); ?></h2>
+					<p><?php echo esc_html( koval_t( "Прозорі ціни, фіксовані строки, договір і чіткі зобов'язання сторін." ) ); ?></p>
 				</div>
-				<a href="<?php echo esc_url( $archive ); ?>" class="service-link">Усі послуги →</a>
+				<a href="<?php echo esc_url( $archive ); ?>" class="service-link"><?php echo esc_html( koval_t( 'Усі послуги →' ) ); ?></a>
 			</div>
 			<div class="services-grid">
 				<?php foreach ( array_slice( $categories, 0, 6 ) as $cat ) : ?>
@@ -36,14 +36,14 @@ function koval_legal_render_services_grid() {
 						<h3><a href="<?php echo esc_url( $archive . '#group-' . $cat['slug'] ); ?>"><?php echo esc_html( $cat['label'] ); ?></a></h3>
 						<p><?php echo esc_html( $cat['description'] ); ?></p>
 						<div class="service-meta">
-							<span>Кілька послуг у цьому напрямі →</span>
+							<span><?php echo esc_html( koval_t( 'Кілька послуг у цьому напрямі →' ) ); ?></span>
 						</div>
-						<a href="<?php echo esc_url( $archive . '#group-' . $cat['slug'] ); ?>" class="service-link">Детальніше →</a>
+						<a href="<?php echo esc_url( $archive . '#group-' . $cat['slug'] ); ?>" class="service-link"><?php echo esc_html( koval_t( 'Детальніше →' ) ); ?></a>
 					</div>
 				<?php endforeach; ?>
 			</div>
 			<div class="services-more">
-				<a href="<?php echo esc_url( $archive ); ?>" class="btn btn-ghost">Переглянути всі послуги →</a>
+				<a href="<?php echo esc_url( $archive ); ?>" class="btn btn-ghost"><?php echo esc_html( koval_t( 'Переглянути всі послуги →' ) ); ?></a>
 			</div>
 		</div>
 	</section>
@@ -60,8 +60,8 @@ function koval_legal_render_testimonials() {
 	?>
 	<section class="testimonials">
 		<div class="wrap">
-			<div class="eyebrow">Відгуки</div>
-			<h2>Що кажуть клієнти</h2>
+			<div class="eyebrow"><?php echo esc_html( koval_t( 'Відгуки' ) ); ?></div>
+			<h2><?php echo esc_html( koval_t( 'Що кажуть клієнти' ) ); ?></h2>
 			<div class="test-grid">
 				<?php foreach ( $testimonials as $t ) :
 					$city = koval_legal_field( 'testimonial_city', $t->ID );
@@ -89,8 +89,8 @@ function koval_legal_render_faq() {
 	?>
 	<section class="faq">
 		<div class="wrap">
-			<div class="eyebrow">Питання</div>
-			<h2>Питання щодо послуг</h2>
+			<div class="eyebrow"><?php echo esc_html( koval_t( 'Питання' ) ); ?></div>
+			<h2><?php echo esc_html( koval_t( 'Питання щодо послуг' ) ); ?></h2>
 			<div class="faq-list" id="faqList">
 				<?php foreach ( $items as $item ) : ?>
 					<div class="faq-item">
@@ -116,12 +116,14 @@ function koval_legal_render_faq() {
  * before without needing to touch them.
  */
 function koval_legal_render_cta_section( $locked_service = 'Головна сторінка' ) {
-	$koval_cta_eyebrow      = get_field( 'cta_eyebrow', 'option' ) ?: 'Готові розпочати?';
-	$koval_cta_heading      = get_field( 'cta_heading', 'option' ) ?: 'Перша консультація — безкоштовно';
-	$koval_cta_lead         = get_field( 'cta_lead', 'option' ) ?: "Фахівець оперативно зв'яжеться з вами в робочий час і оцінить вашу ситуацію без зобов'язань.";
-	$koval_cta_disclaimer   = get_field( 'cta_disclaimer', 'option' ) ?: 'Заповнюючи форму, ви звертаєтесь до приватної юридичної компанії за консультаційними послугами — не до державного органу.';
-	$koval_cta_form_heading = get_field( 'cta_form_heading', 'option' ) ?: 'Заявка на консультацію';
-	$koval_cta_form_lead    = get_field( 'cta_form_lead', 'option' ) ?: 'Залишіть контакти — підберемо оптимальний варіант супроводу саме для вашої ситуації.';
+	// Option texts are edited in Ukrainian (Налаштування сайту); on RU
+	// pages koval_t() swaps in the translation from inc/i18n-ru.php.
+	$koval_cta_eyebrow      = koval_t( get_field( 'cta_eyebrow', 'option' ) ?: 'Готові розпочати?' );
+	$koval_cta_heading      = koval_t( get_field( 'cta_heading', 'option' ) ?: 'Перша консультація — безкоштовно' );
+	$koval_cta_lead         = koval_t( get_field( 'cta_lead', 'option' ) ?: "Фахівець оперативно зв'яжеться з вами в робочий час і оцінить вашу ситуацію без зобов'язань." );
+	$koval_cta_disclaimer   = koval_t( get_field( 'cta_disclaimer', 'option' ) ?: 'Заповнюючи форму, ви звертаєтесь до приватної юридичної компанії за консультаційними послугами — не до державного органу.' );
+	$koval_cta_form_heading = koval_t( get_field( 'cta_form_heading', 'option' ) ?: 'Заявка на консультацію' );
+	$koval_cta_form_lead    = koval_t( get_field( 'cta_form_lead', 'option' ) ?: 'Залишіть контакти — підберемо оптимальний варіант супроводу саме для вашої ситуації.' );
 
 	ob_start();
 	?>
@@ -142,7 +144,7 @@ function koval_legal_render_cta_section( $locked_service = 'Головна ст�
 					?>
 					<div class="cta-photo">
 						<?php
-						$koval_cta_img = '<img src="' . esc_url( $koval_cta_photo ) . '" alt="Підготовка документів" loading="lazy"' . ( $koval_cta_photo_size ? ' width="' . (int) $koval_cta_photo_size[0] . '" height="' . (int) $koval_cta_photo_size[1] . '"' : '' ) . '>';
+						$koval_cta_img = '<img src="' . esc_url( $koval_cta_photo ) . '" alt="' . esc_attr( koval_t( 'Підготовка документів' ) ) . '" loading="lazy"' . ( $koval_cta_photo_size ? ' width="' . (int) $koval_cta_photo_size[0] . '" height="' . (int) $koval_cta_photo_size[1] . '"' : '' ) . '>';
 						echo koval_wrap_webp_picture( $koval_cta_img );
 						?>
 					</div>

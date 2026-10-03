@@ -21,18 +21,19 @@ get_header();
 the_post();
 
 $koval_full_width_slugs = array( 'pro-nas', 'kontakty', 'tsiny' );
-$koval_is_full          = in_array( get_post_field( 'post_name' ), $koval_full_width_slugs, true );
+$koval_slug             = koval_source_slug(); // UA slug — the RU copy shares the layout.
+$koval_is_full          = in_array( $koval_slug, $koval_full_width_slugs, true );
 ?>
 <main id="main">
 	<?php if ( $koval_is_full ) : ?>
 
 		<?php
-		$koval_kicker = 'Юридична компанія · Київ';
+		$koval_kicker = koval_t( 'Юридична компанія · Київ' );
 		$koval_h1     = get_field( 'hero_h1' ) ?: get_the_title();
 		$koval_lead   = get_field( 'hero_lead' ) ?: get_the_excerpt();
 
-		if ( is_page( 'pro-nas' ) ) {
-			$koval_kicker = 'Про нас';
+		if ( 'pro-nas' === $koval_slug ) {
+			$koval_kicker = koval_t( 'Про нас' );
 		}
 		?>
 		<div class="page-hero">
@@ -51,8 +52,8 @@ $koval_is_full          = in_array( get_post_field( 'post_name' ), $koval_full_w
 		add_filter( 'the_content', 'wpautop' );
 		?>
 
-		<?php if ( is_page( array( 'pro-nas', 'kontakty', 'tsiny' ) ) ) : ?>
-			<?php echo koval_legal_render_cta_section( get_the_title() ); ?>
+		<?php if ( in_array( $koval_slug, array( 'pro-nas', 'kontakty', 'tsiny' ), true ) ) : ?>
+			<?php echo koval_legal_render_cta_section( get_the_title( koval_source_id() ) ); ?>
 		<?php endif; ?>
 
 	<?php else : ?>

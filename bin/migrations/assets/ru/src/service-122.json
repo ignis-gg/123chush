@@ -1,0 +1,152 @@
+{
+    "id": 122,
+    "type": "service",
+    "slug": "legalizatsiya-dokumentiv",
+    "title": "Легалізація документів — апостиль і консульська легалізація",
+    "excerpt": "Роз'яснюємо апостилювання та консульську легалізацію документів для використання за кордоном. Нижче — повний перелік послуг напряму.",
+    "meta": {
+        "pillar_crosslinks": [
+            {
+                "url": "https://law-firm.ddev.site/poslugy/apostyl-na-dyplom-abo-atestat/",
+                "label": "Апостиль на диплом або атестат →"
+            },
+            {
+                "url": "https://law-firm.ddev.site/poslugy/lehalizatsiya-dyploma-dlya-roboty-chy-navchannya-za-kordonom/",
+                "label": "Комплексна легалізація документів (диплом) →"
+            },
+            {
+                "url": "https://law-firm.ddev.site/poslugy/lehalizatsiya-dokumentiv-v-minyusti/",
+                "label": "Легалізація документів в Мін'юсті →"
+            },
+            {
+                "url": "https://law-firm.ddev.site/poslugy/apostyl-v-minyusti/",
+                "label": "Апостиль в Мін'юсті →"
+            }
+        ],
+        "pillar_card_groups": [
+            {
+                "heading": "Апостиль по органах",
+                "cards": [
+                    {
+                        "name": "Подвійний апостиль",
+                        "description": "Якщо країна призначення вимагає апостиль на апостиль (рідкісний, але трапляється випадок) — консультуємо щодо обох етапів.",
+                        "price": "від 8 500 грн",
+                        "duration": "від 10 робочих днів",
+                        "link_url": "https://law-firm.ddev.site/poslugy/podviynyy-apostyl/"
+                    },
+                    {
+                        "name": "Терміновий апостиль документів",
+                        "description": "Прискорене оформлення апостилю, коли виїзд чи дедлайн подачі вже близько.",
+                        "price": "від 9 000 грн",
+                        "duration": "від 1 робочого дня",
+                        "link_url": "https://law-firm.ddev.site/poslugy/terminovyy-apostyl/"
+                    },
+                    {
+                        "name": "Апостиль в МОН",
+                        "description": "Апостилювання освітніх документів через Міністерство освіти і науки.",
+                        "price": "",
+                        "duration": "",
+                        "link_url": "https://law-firm.ddev.site/poslugy/apostyl-v-mon/"
+                    },
+                    {
+                        "name": "Апостиль в МЗС",
+                        "description": "Апостилювання документів, що подаються через Міністерство закордонних справ.",
+                        "price": "",
+                        "duration": "",
+                        "link_url": "https://law-firm.ddev.site/poslugy/apostyl-v-mzs/"
+                    },
+                    {
+                        "name": "Апостиль за кордоном",
+                        "description": "Консультуємо, якщо потрібно легалізувати український документ через закордонну установу.",
+                        "price": "",
+                        "duration": "",
+                        "link_url": "https://law-firm.ddev.site/poslugy/apostyl-za-kordonom/"
+                    },
+                    {
+                        "name": "Консультація щодо Гаазької конвенції",
+                        "description": "Пояснюємо, чи потрібен апостиль, чи консульська легалізація для вашої країни призначення.",
+                        "price": "",
+                        "duration": "",
+                        "link_url": "https://law-firm.ddev.site/poslugy/konsultatsiya-gaazka-konventsiya/"
+                    }
+                ]
+            },
+            {
+                "heading": "Консульська легалізація",
+                "cards": [
+                    {
+                        "name": "Консульська легалізація документів в Україні",
+                        "description": "Консультація легалізації українських документів для країн, які не є учасницями Гаазької конвенції.",
+                        "price": "",
+                        "duration": "",
+                        "link_url": "https://law-firm.ddev.site/poslugy/konsulska-legalizatsiya-v-ukrayini/"
+                    },
+                    {
+                        "name": "Консульська легалізація іноземних документів в Україні",
+                        "description": "Допомагаємо легалізувати іноземний документ для використання в Україні.",
+                        "price": "",
+                        "duration": "",
+                        "link_url": "https://law-firm.ddev.site/poslugy/legalizatsiya-inozemnyh-dokumentiv/"
+                    },
+                    {
+                        "name": "Легалізація документів за кордоном",
+                        "description": "Консультуємо щодо процедури, коли легалізація відбувається безпосередньо за кордоном.",
+                        "price": "",
+                        "duration": "",
+                        "link_url": "https://law-firm.ddev.site/poslugy/legalizatsiya-za-kordonom/"
+                    },
+                    {
+                        "name": "Легалізація документів в МЗС",
+                        "description": "Консультація легалізації через Міністерство закордонних справ України.",
+                        "price": "",
+                        "duration": "",
+                        "link_url": "https://law-firm.ddev.site/poslugy/legalizatsiya-v-mzs/"
+                    }
+                ]
+            },
+            {
+                "heading": "Легалізація свідоцтв ДРАЦС",
+                "cards": [
+                    {
+                        "name": "Легалізація свідоцтва про шлюб",
+                        "description": "Консульська легалізація свідоцтва про шлюб.",
+                        "price": "",
+                        "duration": "",
+                        "link_url": "https://law-firm.ddev.site/poslugy/legalizatsiya-svidotstva-pro-shlyub/"
+                    },
+                    {
+                        "name": "Легалізація свідоцтва про розлучення",
+                        "description": "Консульська легалізація свідоцтва про розірвання шлюбу.",
+                        "price": "",
+                        "duration": "",
+                        "link_url": "https://law-firm.ddev.site/poslugy/legalizatsiya-svidotstva-pro-rozluchennya/"
+                    }
+                ]
+            },
+            {
+                "heading": "Інші види легалізації",
+                "cards": [
+                    {
+                        "name": "Легалізація довіреності в Україні",
+                        "description": "Консультація легалізації довіреності для використання за кордоном.",
+                        "price": "",
+                        "duration": "",
+                        "link_url": "https://law-firm.ddev.site/poslugy/legalizatsiya-dovirenosti/"
+                    }
+                ]
+            }
+        ],
+        "pillar_faq_items": [
+            {
+                "question": "Як зрозуміти, чи потрібен апостиль, чи консульська легалізація?",
+                "answer": "Залежить від того, чи країна призначення є учасницею Гаазької конвенції — уточнюємо на консультації для конкретної країни."
+            },
+            {
+                "question": "Ви державний орган чи приватна компанія?",
+                "answer": "Приватна юридична компанія, що надає консультаційні та інформаційні послуги. Не входимо до структури Мін'юсту, МЗС чи МОН і не видаємо документи самостійно."
+            }
+        ],
+        "rank_math_title": "Легалізація документів — апостиль і консульська",
+        "rank_math_description": "Роз'яснюємо апостилювання та консульську легалізацію документів для використання за кордоном. Консультація."
+    }
+}

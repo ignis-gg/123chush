@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 function koval_schema_organization() {
-	$address = get_theme_mod( 'company_address', "м. Київ, вул. Іоанна Павла ІІ, 23/35, під'їзд 1, офіс 1" );
+	$address = koval_t( get_theme_mod( 'company_address', "м. Київ, вул. Іоанна Павла ІІ, 23/35, під'їзд 1, офіс 1" ) );
 
 	return array(
 		'@type'        => 'ProfessionalService',
@@ -28,7 +28,7 @@ function koval_schema_organization() {
 		'address'      => array(
 			'@type'           => 'PostalAddress',
 			'streetAddress'   => $address,
-			'addressLocality' => 'Київ',
+			'addressLocality' => koval_t( 'Київ' ),
 			'addressCountry'  => 'UA',
 		),
 		'areaServed'   => 'UA',
@@ -82,7 +82,7 @@ function koval_schema_blogposting_node( $post_id ) {
 		'mainEntityOfPage' => get_permalink( $post_id ),
 		'author'           => array(
 			'@type' => 'Person',
-			'name'  => 'Олег Коваль',
+			'name'  => koval_t( 'Олег Коваль' ),
 		),
 		'publisher'        => array( '@id' => home_url( '/#organization' ) ),
 	);

@@ -126,6 +126,11 @@ nav.main-nav a:hover,nav.main-nav .current-menu-item>a{opacity:1;}
 .header-right{display:flex;align-items:center;gap:22px;}
 .lang{display:flex;gap:8px;font-size:12.5px;font-weight:700;color:#7d8494;}
 .lang b{color:#fff;}
+/* UA | RU switch (inc/i18n.php, koval_language_switcher) — 2026-10-03 */
+.lang-switch{display:inline-flex;align-items:center;gap:2px;padding:3px;border:1px solid rgba(255,255,255,.22);border-radius:var(--radius-pill);font-size:12px;font-weight:700;letter-spacing:.06em;line-height:1;flex-shrink:0;}
+.lang-switch__item{display:inline-flex;align-items:center;justify-content:center;min-width:36px;height:30px;padding:0 9px;border-radius:var(--radius-pill);color:#aab0bd;transition:color .15s,background .15s;}
+a.lang-switch__item:hover,a.lang-switch__item:focus-visible{color:#fff;background:rgba(255,255,255,.1);}
+.lang-switch__item.is-current{background:var(--gold-light);color:var(--navy);}
 .btn{
   font-family:var(--sans);font-weight:700;font-size:14px;border:none;cursor:pointer;
   padding:14px 28px;border-radius:var(--radius-pill);display:inline-flex;align-items:center;gap:9px;
@@ -965,7 +970,7 @@ footer#site-footer{background:var(--navy);color:#9aa0ab;padding:70px 0 34px;font
   .hero-seal-box{display:none;}
   .services-grid,.cases-grid,.test-grid,.footer-top,.single-grid{grid-template-columns:1fr;}
   .adv-grid,.process-grid,.stats-grid{grid-template-columns:1fr 1fr;}
-  .cta-grid{grid-template-columns:1fr;}
+  .cta-grid{grid-template-columns:minmax(0,1fr);} /* minmax: a plain 1fr track grew to its min-content and overflowed 320px phones */
   .hero h1{font-size:34px;}
 }
 
@@ -1107,6 +1112,14 @@ footer#site-footer{background:var(--navy);color:#9aa0ab;padding:70px 0 34px;font
 @media(max-width:600px){
   header#site-header .header-right > .btn{display:none;}
   .logo-row{white-space:nowrap;}
+  .header-right{gap:12px;}
+  /* room for the UA | RU switch: keep the tagline on one line */
+  .logo .lg-sub{font-size:8.5px;letter-spacing:.1em;white-space:nowrap;}
+}
+@media(max-width:360px){
+  .logo{font-size:16.5px;}
+  .lang-switch{padding:2px;}
+  .lang-switch__item{min-width:30px;height:28px;padding:0 6px;font-size:11.5px;}
 }
 @media(max-width:640px){
   footer#site-footer{padding:44px 0 170px;}

@@ -19,8 +19,8 @@ function koval_legal_contact_form_shortcode( $atts = array() ) {
 	ob_start();
 	?>
 	<div class="form-card" id="contact-form">
-		<h3>Заявка на консультацію</h3>
-		<p>Заповніть форму — фахівець оперативно зв'яжеться з вами.</p>
+		<h3><?php echo esc_html( koval_t( 'Заявка на консультацію' ) ); ?></h3>
+		<p><?php echo esc_html( koval_t( "Заповніть форму — фахівець оперативно зв'яжеться з вами." ) ); ?></p>
 		<?php koval_legal_consultation_form( $atts['service'] ); ?>
 	</div>
 	<?php
@@ -40,16 +40,16 @@ function koval_legal_consultation_form( $locked_service = '' ) {
 		<input type="text" name="website" value="" autocomplete="off" tabindex="-1" style="position:absolute;left:-9999px;" aria-hidden="true">
 
 		<div class="form-row">
-			<div class="field"><label for="koval-name">Ім'я *</label><input id="koval-name" type="text" name="name" placeholder="Як до вас звертатись" required></div>
-			<div class="field"><label for="koval-phone">Телефон *</label><input id="koval-phone" type="tel" name="phone" placeholder="+380" required></div>
+			<div class="field"><label for="koval-name"><?php echo esc_html( koval_t( "Ім'я" ) ); ?> *</label><input id="koval-name" type="text" name="name" placeholder="<?php echo esc_attr( koval_t( 'Як до вас звертатись' ) ); ?>" required></div>
+			<div class="field"><label for="koval-phone"><?php echo esc_html( koval_t( 'Телефон' ) ); ?> *</label><input id="koval-phone" type="tel" name="phone" placeholder="+380" required></div>
 		</div>
 		<div class="form-row form-row-single">
 			<div class="field"><label for="koval-email">Email</label><input id="koval-email" type="email" name="email" placeholder="you@mail.com"></div>
-			<?php if ( $locked_service ) : ?><input type="hidden" name="service" value="<?php echo esc_attr( $locked_service ); ?>"><?php endif; ?>
+			<?php if ( $locked_service ) : ?><input type="hidden" name="service" value="<?php echo esc_attr( koval_lead_service_label( $locked_service ) ); ?>"><?php endif; ?>
 		</div>
-		<div class="field"><label for="koval-comment">Коментар</label><textarea id="koval-comment" name="comment" placeholder="Коротко опишіть вашу ситуацію"></textarea></div>
-		<label class="consent"><input type="checkbox" name="consent" value="1" required> Приймаю умови обробки персональних даних згідно з <a href="<?php echo esc_url( get_privacy_policy_url() ); ?>" target="_blank" rel="noopener">Політикою конфіденційності</a> *</label>
-		<button type="submit" class="btn btn-wine">Отримати консультацію</button>
+		<div class="field"><label for="koval-comment"><?php echo esc_html( koval_t( 'Коментар' ) ); ?></label><textarea id="koval-comment" name="comment" placeholder="<?php echo esc_attr( koval_t( 'Коротко опишіть вашу ситуацію' ) ); ?>"></textarea></div>
+		<label class="consent"><input type="checkbox" name="consent" value="1" required> <span><?php echo esc_html( koval_t( 'Приймаю умови обробки персональних даних згідно з' ) ); ?> <a href="<?php echo esc_url( koval_privacy_url() ); ?>" target="_blank" rel="noopener"><?php echo esc_html( koval_t( 'Політикою конфіденційності' ) ); ?></a> *</span></label><?php // one <span>: .consent is flex, bare text + link + "*" became 3 columns. ?>
+		<button type="submit" class="btn btn-wine"><?php echo esc_html( koval_t( 'Отримати консультацію' ) ); ?></button>
 	</form>
 	<?php
 }
@@ -84,7 +84,7 @@ function koval_legal_handle_consultation_submit() {
 	if ( ! isset( $_POST['koval_legal_contact_nonce'] ) || ! wp_verify_nonce( $_POST['koval_legal_contact_nonce'], 'koval_legal_contact' ) ) {
 		wp_die( 'Security check failed.' );
 	}
-	$referer = wp_get_referer() ? wp_get_referer() : home_url( '/' );
+	$referer = wp_get_referer() ? wp_get_referer() : koval_home_url();
 
 	if ( ! empty( $_POST['website'] ) ) {
 		// Honeypot tripped — silently pretend success.
@@ -163,12 +163,12 @@ function koval_legal_map_shortcode() {
 	 * $address stays clean for the human-readable text used in the
 	 * footer/contacts block — only the map query uses the business name.
 	 */
-	$src = 'https://www.google.com/maps?q=' . rawurlencode( 'Result Law Company, вулиця Іоанна Павла II, 23/35, Київ' ) . '&output=embed&hl=uk';
+	$src = 'https://www.google.com/maps?q=' . rawurlencode( 'Result Law Company, вулиця Іоанна Павла II, 23/35, Київ' ) . '&output=embed&hl=' . ( koval_is_ru() ? 'ru' : 'uk' );
 
 	ob_start();
 	?>
 	<div class="map-frame">
-		<iframe src="<?php echo esc_url( $src ); ?>" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="<?php esc_attr_e( 'Карта — офіс KOVAL Legal Group', 'koval-legal' ); ?>"></iframe>
+		<iframe src="<?php echo esc_url( $src ); ?>" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="<?php echo esc_attr( koval_t( 'Карта — офіс KOVAL Legal Group' ) ); ?>"></iframe>
 	</div>
 	<?php
 	return ob_get_clean();

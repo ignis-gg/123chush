@@ -206,14 +206,14 @@ function koval_legal_breadcrumbs() {
 		return;
 	}
 	echo '<nav class="breadcrumbs"><div class="wrap">';
-	echo '<a href="' . esc_url( home_url( '/' ) ) . '">Головна</a>';
+	echo '<a href="' . esc_url( koval_home_url() ) . '">' . esc_html( koval_t( 'Головна' ) ) . '</a>';
 
 	if ( is_post_type_archive( 'service' ) ) {
-		echo ' <span class="sep">/</span> <span class="current">Послуги</span>';
+		echo ' <span class="sep">/</span> <span class="current">' . esc_html( koval_t( 'Послуги' ) ) . '</span>';
 	} elseif ( is_singular( 'service' ) ) {
 		$archive_link = get_post_type_archive_link( 'service' );
 		if ( $archive_link ) {
-			echo ' <span class="sep">/</span> <a href="' . esc_url( $archive_link ) . '">Послуги</a>';
+			echo ' <span class="sep">/</span> <a href="' . esc_url( $archive_link ) . '">' . esc_html( koval_t( 'Послуги' ) ) . '</a>';
 		}
 		echo ' <span class="sep">/</span> <span class="current">' . esc_html( get_the_title() ) . '</span>';
 	} else {
@@ -268,17 +268,18 @@ add_action( 'customize_register', 'koval_legal_customize_register' );
 function koval_legal_default_menu() {
 	$archive = get_post_type_archive_link( 'service' );
 	echo '<ul>';
-	echo '<li><a href="' . esc_url( home_url( '/' ) ) . '">Головна</a></li>';
+	echo '<li><a href="' . esc_url( koval_home_url() ) . '">' . esc_html( koval_t( 'Головна' ) ) . '</a></li>';
 	if ( $archive ) {
-		echo '<li><a href="' . esc_url( $archive ) . '">Послуги</a></li>';
+		echo '<li><a href="' . esc_url( $archive ) . '">' . esc_html( koval_t( 'Послуги' ) ) . '</a></li>';
 	}
-	echo '<li><a href="' . esc_url( home_url( '/pro-nas/' ) ) . '">Про нас</a></li>';
-	echo '<li><a href="' . esc_url( home_url( '/blog/' ) ) . '">Блог</a></li>';
-	echo '<li><a href="' . esc_url( home_url( '/kontakty/' ) ) . '">Контакти</a></li>';
-	echo '<li><a href="' . esc_url( home_url( '/tsiny/' ) ) . '">Ціни</a></li>';
+	echo '<li><a href="' . esc_url( koval_page_url( 'pro-nas' ) ) . '">' . esc_html( koval_t( 'Про нас' ) ) . '</a></li>';
+	echo '<li><a href="' . esc_url( koval_blog_url() ) . '">' . esc_html( koval_t( 'Блог' ) ) . '</a></li>';
+	echo '<li><a href="' . esc_url( koval_page_url( 'kontakty' ) ) . '">' . esc_html( koval_t( 'Контакти' ) ) . '</a></li>';
+	echo '<li><a href="' . esc_url( koval_page_url( 'tsiny' ) ) . '">' . esc_html( koval_t( 'Ціни' ) ) . '</a></li>';
 	echo '</ul>';
 }
 
+require get_theme_file_path( 'inc/i18n.php' );
 require get_theme_file_path( 'inc/shortcodes.php' );
 require get_theme_file_path( 'inc/homepage-sections.php' );
 require get_theme_file_path( 'inc/service-lists.php' );

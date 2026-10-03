@@ -645,7 +645,7 @@ function koval_legal_register_acf_fields() {
 				'name'         => 'legalization_disclaimer',
 				'type'         => 'textarea',
 				'rows'         => 3,
-				'instructions' => 'Показується помітним блоком одразу під заголовком на кожній сторінці групи "Легалізація документів" (список ID — inc/service-lists.php, koval_legal_legalization_group_ids()).',
+				'instructions' => 'Показується помітним блоком одразу під заголовком на кожній сторінці групи "Легалізація документів" (список slug — inc/service-lists.php, koval_legal_legalization_group_slugs()).',
 			),
 			array(
 				'key'   => 'field_koval_analytics_tab',

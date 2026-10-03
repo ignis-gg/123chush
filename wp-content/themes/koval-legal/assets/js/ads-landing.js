@@ -69,7 +69,7 @@
 			} else if (Date.now() - started > 6000) {
 				clearInterval(pending);
 				pending = null;
-				showToast('Не вдалося відкрити вікно зворотного дзвінка. Оновіть сторінку й спробуйте ще раз.');
+				showToast((window.KOVAL_I18N && window.KOVAL_I18N.callbackErr) || 'Не вдалося відкрити вікно зворотного дзвінка. Оновіть сторінку й спробуйте ще раз.');
 			}
 		}, 200);
 	}

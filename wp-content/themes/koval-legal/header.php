@@ -18,20 +18,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 </head>
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
-<a class="skip-link" href="#main">Перейти до контенту</a>
+<a class="skip-link" href="#main"><?php echo esc_html( koval_t( 'Перейти до контенту' ) ); ?></a>
 
 <div class="topbar">
-	<div class="wrap">Ми — дочірня компанія юридичного об'єднання «Шлях до мрії О.К.» з 15+ роками досвіду</div>
+	<div class="wrap"><?php echo esc_html( koval_t( "Ми — дочірня компанія юридичного об'єднання «Шлях до мрії О.К.» з 15+ роками досвіду" ) ); ?></div>
 </div>
 
 <header id="site-header">
 	<div class="wrap">
-		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="logo">
+		<a href="<?php echo esc_url( koval_home_url() ); ?>" class="logo">
 			<span class="logo-row"><span class="lg-koval">KOVAL</span><span class="lg-legal">Legal Group</span></span>
-			<span class="lg-sub">Юридична компанія · Київ</span>
+			<span class="lg-sub"><?php echo esc_html( koval_t( 'Юридична компанія · Київ' ) ); ?></span>
 		</a>
 
-		<nav class="main-nav" aria-label="Головна навігація">
+		<nav class="main-nav" aria-label="<?php echo esc_attr( koval_t( 'Головна навігація' ) ); ?>">
 			<?php
 			wp_nav_menu( array(
 				'theme_location' => 'primary',
@@ -43,8 +43,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</nav>
 
 		<div class="header-right">
-			<a href="#contact-form" class="btn btn-wine btn-sm">Консультація</a>
-			<button class="menu-toggle" aria-label="Меню" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span><span></span></button>
+			<?php echo koval_language_switcher(); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped inside. ?>
+			<a href="#contact-form" class="btn btn-wine btn-sm"><?php echo esc_html( koval_t( 'Консультація' ) ); ?></a>
+			<button class="menu-toggle" aria-label="<?php echo esc_attr( koval_t( 'Меню' ) ); ?>" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span><span></span></button>
 		</div>
 	</div>
 

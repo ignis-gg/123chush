@@ -21,7 +21,7 @@ function koval_legal_hide_editor_for_acf_posts() {
 	if ( 'service' !== get_post_type( $post_id ) ) {
 		return;
 	}
-	if ( in_array( $post_id, koval_legal_acf_content_ids(), true ) ) {
+	if ( koval_legal_is_acf_content( $post_id ) ) {
 		remove_post_type_support( 'service', 'editor' );
 	}
 }

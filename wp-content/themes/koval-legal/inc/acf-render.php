@@ -46,19 +46,21 @@ function koval_icon_svg( $key, $size = 20 ) {
 	return '<svg width="' . $size . '" height="' . $size . '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">' . $paths . '</svg>';
 }
 
-const KOVAL_GUARANTEE_HTML = '<section class="guarantee-section"><div class="wrap"><div class="eyebrow">Гарантія</div><div class="guarantee-card">'
+function koval_guarantee_html() {
+	return '<section class="guarantee-section"><div class="wrap"><div class="eyebrow">' . koval_t( 'Гарантія' ) . '</div><div class="guarantee-card">'
 	. '<div class="guarantee-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>'
-	. '<div><h3>Ваш ризик — під нашим контролем</h3>'
-	. '<p>Строк виконання фіксуємо в договорі. Якщо виникають затримки з боку державного органу або інші обставини, що не залежать від нас, одразу повідомляємо про це та узгоджуємо подальші дії. Якщо причиною відмови стала помилка з нашого боку — беремо виправлення на себе.</p>'
-	. '<a class="guarantee-link" href="/umovy-garantii/">Умови співпраці →</a></div></div></div></section>';
+	. '<div><h3>' . koval_t( 'Ваш ризик — під нашим контролем' ) . '</h3>'
+	. '<p>' . koval_t( 'Строк виконання фіксуємо в договорі. Якщо виникають затримки з боку державного органу або інші обставини, що не залежать від нас, одразу повідомляємо про це та узгоджуємо подальші дії. Якщо причиною відмови стала помилка з нашого боку — беремо виправлення на себе.' ) . '</p>'
+	. '<a class="guarantee-link" href="' . esc_url( koval_page_url( 'umovy-garantii' ) ) . '">' . koval_t( 'Умови співпраці →' ) . '</a></div></div></div></section>';
+}
 
 function koval_render_scenarios( $scenarios ) {
 	if ( empty( $scenarios ) ) {
 		return '';
 	}
 	$out = '<section class="services" style="padding:60px 0 64px;"><div class="wrap">'
-		. '<div class="eyebrow">Кому актуально</div><h2 class="section-h2">Впізнаєте себе?</h2>'
-		. '<p class="section-lead">Ось найчастіші ситуації, з якими до нас звертаються:</p><div class="scenario-grid">';
+		. '<div class="eyebrow">' . koval_t( 'Кому актуально' ) . '</div><h2 class="section-h2">' . koval_t( 'Впізнаєте себе?' ) . '</h2>'
+		. '<p class="section-lead">' . koval_t( 'Ось найчастіші ситуації, з якими до нас звертаються:' ) . '</p><div class="scenario-grid">';
 	foreach ( $scenarios as $s ) {
 		$out .= '<div class="scenario-card"><div class="scenario-icon">' . koval_icon_svg( $s['icon'] ) . '</div>'
 			. '<h4>' . koval_text( $s['heading'] ) . '</h4><p class="consequence">' . koval_text( $s['consequence'] ) . '</p></div>';
@@ -72,18 +74,18 @@ function koval_render_advantages( $lead, $steps, $docs, $terms ) {
 		return '';
 	}
 	$out = '<section class="advantages"><div class="wrap">'
-		. '<div class="eyebrow">Що входить</div><h2 class="section-h2">Що входить у послугу</h2>'
+		. '<div class="eyebrow">' . koval_t( 'Що входить' ) . '</div><h2 class="section-h2">' . koval_t( 'Що входить у послугу' ) . '</h2>'
 		. '<p class="section-lead">' . koval_text( $lead ) . '</p><div class="stepper-grid">';
 	$n = 1;
 	foreach ( $steps as $s ) {
 		$out .= '<div class="stepper-card"><div class="stepper-num">' . $n . '</div><h4>' . koval_text( $s['heading'] ) . '</h4><p>' . koval_text( $s['description'] ) . '</p></div>';
 		$n++;
 	}
-	$out .= '</div><div class="info-cols"><div class="addon-panel"><h3>Документи від вас</h3><ul class="check-list">';
+	$out .= '</div><div class="info-cols"><div class="addon-panel"><h3>' . koval_t( 'Документи від вас' ) . '</h3><ul class="check-list">';
 	foreach ( (array) $docs as $d ) {
 		$out .= '<li>' . koval_text( $d['item'] ) . '</li>';
 	}
-	$out .= '</ul></div><div class="addon-panel"><h3>Строки виконання</h3><ul class="check-list">';
+	$out .= '</ul></div><div class="addon-panel"><h3>' . koval_t( 'Строки виконання' ) . '</h3><ul class="check-list">';
 	foreach ( (array) $terms as $t ) {
 		$out .= '<li>' . koval_text( $t['item'] ) . '</li>';
 	}
@@ -96,8 +98,8 @@ function koval_render_compare( $heading, $lead, $rows ) {
 		return '';
 	}
 	$out = '<section class="cases"><div class="wrap">'
-		. '<div class="eyebrow">Чому ми</div><h2 class="section-h2">' . koval_text( $heading ) . '</h2><p class="section-lead">' . koval_text( $lead ) . '</p>'
-		. '<div class="compare-table"><div class="compare-head"><div>Самостійно</div><div>З KOVAL Legal Group</div></div>';
+		. '<div class="eyebrow">' . koval_t( 'Чому ми' ) . '</div><h2 class="section-h2">' . koval_text( $heading ) . '</h2><p class="section-lead">' . koval_text( $lead ) . '</p>'
+		. '<div class="compare-table"><div class="compare-head"><div>' . koval_t( 'Самостійно' ) . '</div><div>' . koval_t( 'З KOVAL Legal Group' ) . '</div></div>';
 	foreach ( $rows as $r ) {
 		$out .= '<div class="compare-row"><div><span class="x-icon">✕</span>' . koval_text( $r['self_text'] ) . '</div><div><span class="check-icon">✓</span>' . koval_text( $r['koval_text'] ) . '</div></div>';
 	}
@@ -127,7 +129,7 @@ function koval_render_price( $cards, $legend ) {
 	$count      = count( $cards );
 	$wrap_class = 1 === $count ? 'price-single' : 'pricing-cards cols-' . min( $count, 3 );
 	$out = '<section class="price-section on-cream"><div class="wrap">'
-		. '<div class="eyebrow">Ціна</div><h2 class="wp-block-heading">Вартість послуги</h2>'
+		. '<div class="eyebrow">' . koval_t( 'Ціна' ) . '</div><h2 class="wp-block-heading">' . koval_t( 'Вартість послуги' ) . '</h2>'
 		. '<div class="' . $wrap_class . '">';
 	foreach ( $cards as $c ) {
 		$featured = ! empty( $c['featured'] ) ? ' featured' : '';
@@ -137,7 +139,7 @@ function koval_render_price( $cards, $legend ) {
 			. '<p class="price-desc">' . koval_text( $c['description'] ) . '</p>'
 			. '<p class="price-term">' . koval_text( $c['term'] ) . '</p>';
 		if ( ! empty( $c['link_url'] ) ) {
-			$out .= '<a href="' . esc_url( $c['link_url'] ) . '" class="service-link">Детальніше →</a>';
+			$out .= '<a href="' . esc_url( $c['link_url'] ) . '" class="service-link">' . koval_t( 'Детальніше →' ) . '</a>';
 		}
 		$out .= '</div>';
 	}
@@ -154,7 +156,7 @@ function koval_render_process( $steps ) {
 		return '';
 	}
 	$roman = array( 'I', 'II', 'III', 'IV', 'V', 'VI' );
-	$out   = '<section class="process"><div class="wrap"><div class="eyebrow">Процес</div><h2>Як відбувається процедура</h2><div class="process-grid">';
+	$out   = '<section class="process"><div class="wrap"><div class="eyebrow">' . koval_t( 'Процес' ) . '</div><h2>' . koval_t( 'Як відбувається процедура' ) . '</h2><div class="process-grid">';
 	foreach ( $steps as $i => $s ) {
 		$out .= '<div class="process-step"><p class="process-num">' . ( $roman[ $i ] ?? ( $i + 1 ) ) . '</p><h4>' . koval_text( $s['heading'] ) . '</h4><p>' . koval_text( $s['description'] ) . '</p></div>';
 	}
@@ -166,8 +168,9 @@ function koval_render_faq( $items, $heading = 'Питання щодо посл�
 	if ( empty( $items ) ) {
 		return '';
 	}
+	$heading = koval_t( $heading );
 	static $koval_faq_counter = 0;
-	$out = '<section class="faq"><div class="wrap"><div class="eyebrow">Питання</div><h2>' . koval_text( $heading ) . '</h2><div class="faq-list">';
+	$out = '<section class="faq"><div class="wrap"><div class="eyebrow">' . koval_t( 'Питання' ) . '</div><h2>' . koval_text( $heading ) . '</h2><div class="faq-list">';
 	foreach ( $items as $q ) {
 		$koval_faq_counter++;
 		$panel_id = 'faq-a-' . $koval_faq_counter;
@@ -195,14 +198,14 @@ function koval_render_pillar_card( $c ) {
 	if ( ! empty( $c['price'] ) || ! empty( $c['duration'] ) ) {
 		$out .= '<div class="svc-meta">';
 		if ( ! empty( $c['price'] ) ) {
-			$out .= '<span>Вартість <b>' . koval_text( $c['price'] ) . '</b></span>';
+			$out .= '<span>' . koval_t( 'Вартість' ) . ' <b>' . koval_text( $c['price'] ) . '</b></span>';
 		}
 		if ( ! empty( $c['duration'] ) ) {
-			$out .= '<span>Строк <b>' . koval_text( $c['duration'] ) . '</b></span>';
+			$out .= '<span>' . koval_t( 'Строк' ) . ' <b>' . koval_text( $c['duration'] ) . '</b></span>';
 		}
 		$out .= '</div>';
 	}
-	$out .= '<a href="' . $href . '" class="service-link">Детальніше →</a></div>';
+	$out .= '<a href="' . $href . '" class="service-link">' . koval_t( 'Детальніше →' ) . '</a></div>';
 	return $out;
 }
 
@@ -248,20 +251,22 @@ function koval_legal_render_pillar_acf( $post_id ) {
  */
 function koval_render_legal_notice( $post_id ) {
 	$post_id             = (int) $post_id;
-	$is_legalization     = in_array( $post_id, koval_legal_legalization_group_ids(), true );
-	$is_criminal_record  = in_array( $post_id, koval_legal_criminal_record_ids(), true );
+	$slug                = koval_source_slug( $post_id );
+	$is_legalization     = in_array( $slug, koval_legal_legalization_group_slugs(), true );
+	$is_criminal_record  = in_array( $slug, koval_legal_criminal_record_slugs(), true );
 	if ( ! $is_legalization && ! $is_criminal_record ) {
 		return '';
 	}
 	if ( $is_criminal_record ) {
-		$text = "KOVAL Legal Group — приватна юридична компанія. Ми не є Національною поліцією чи іншим державним органом, не видаємо довідку про несудимість і не проводимо перевірку на судимість. Надаємо винятково консультаційні та інформаційні послуги щодо порядку звернення — видачу довідки здійснює виключно уповноважений державний орган.";
+		$text = koval_t( "KOVAL Legal Group — приватна юридична компанія. Ми не є Національною поліцією чи іншим державним органом, не видаємо довідку про несудимість і не проводимо перевірку на судимість. Надаємо винятково консультаційні та інформаційні послуги щодо порядку звернення — видачу довідки здійснює виключно уповноважений державний орган." );
 	} else {
 		$text = get_field( 'legalization_disclaimer', 'option' );
 		if ( ! $text ) {
 			$text = "KOVAL Legal Group — приватна юридична компанія. Ми не є державним органом, консульством чи офіційним провайдером легалізації чи апостилю, не видаємо і не гарантуємо видачу документа. Наші консультаційні та інформаційні послуги щодо підготовки документів не замінюють звернення до відповідного державного органу чи консульства — саме він ухвалює остаточне рішення щодо засвідчення чи видачі документа.";
 		}
+		$text = koval_t( $text );
 	}
-	return '<section style="padding:28px 0 0;"><div class="wrap"><div class="legal-notice"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 8v5"/><circle cx="12" cy="16.3" r=".6" fill="currentColor" stroke="none"/></svg><p><strong>Важливо:</strong> ' . koval_text( $text ) . '</p></div></div></section>';
+	return '<section style="padding:28px 0 0;"><div class="wrap"><div class="legal-notice"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 8v5"/><circle cx="12" cy="16.3" r=".6" fill="currentColor" stroke="none"/></svg><p><strong>' . koval_t( 'Важливо:' ) . '</strong> ' . koval_text( $text ) . '</p></div></div></section>';
 }
 
 function koval_legal_render_service_acf( $post_id ) {
@@ -288,7 +293,7 @@ function koval_legal_render_service_acf( $post_id ) {
 	);
 	$html .= koval_render_testimonials( get_field( 'testimonials', $post_id ) );
 	$html .= koval_render_price( get_field( 'price_cards', $post_id ), get_field( 'price_legend', $post_id ) );
-	$html .= KOVAL_GUARANTEE_HTML;
+	$html .= koval_guarantee_html();
 	$html .= koval_render_process( get_field( 'process_steps', $post_id ) );
 	$html .= koval_render_faq( get_field( 'faq_items', $post_id ) );
 
