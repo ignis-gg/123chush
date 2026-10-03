@@ -191,3 +191,17 @@ function koval_blog_categories() {
 	} );
 	return $cats;
 }
+
+/**
+ * Media is shared between languages (Polylang media_support off), so the
+ * images' alt texts are Ukrainian — translate them on RU pages: <img alt>
+ * of featured images and Rank Math's og:image:alt / twitter:image:alt.
+ */
+add_filter( 'wp_get_attachment_image_attributes', function ( $attr ) {
+	if ( ! empty( $attr['alt'] ) ) {
+		$attr['alt'] = koval_t( $attr['alt'] );
+	}
+	return $attr;
+} );
+add_filter( 'rank_math/opengraph/facebook/og_image_alt', 'koval_t' );
+add_filter( 'rank_math/opengraph/twitter/twitter_image_alt', 'koval_t' );
